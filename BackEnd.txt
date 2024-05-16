@@ -1,0 +1,22 @@
+# Crear una carpeta para el proyecto de NodeJS 
+$ mkdir api-express
+
+# Acceder a la carpeta creada previamente
+$ cd api 
+
+# Inicializar proyecto de NodeJS
+$ npm init -y
+
+# Instalar modulos de NodeJS
+$ npm i nodemon
+$ npm i express
+$ npm i body-parser
+$ npm i dotenv
+$ npm install --save sequelize
+$ npm install --save mysql2
+
+# Crear una carpeta para almacenar todo el código de desarrollo
+$ mkdir src
+
+// @see https://sequelize.org/docs/v6/getting-started/#connecting-to-a-database
+// @see https://sequelize.org/docs/v6/core-concepts/model-instances/

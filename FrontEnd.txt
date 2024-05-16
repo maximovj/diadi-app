@@ -1,0 +1,13 @@
+# Crear un proyecto de react js 
+$ npx create-react-app react-app
+
+# Acceder a la carpeta de react
+$ cd react-app
+
+# Instalar el enroutador de react
+$ npm install react-router-dom
+
+# Correr el proyecto 
+$ npm run dev 
+
+// @see https://reactrouter.com/en/main/start/tutorial#adding-a-router
