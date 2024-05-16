@@ -7,3 +7,7 @@ Node JS + Express + Nodemon + Morgan + Sequelize + MySQL para el BackEnd.
 
 * Node JS => 18.17.x
 * MySQL 5.7.43
+
+# Colaboradoes
+
+Boris Parra Lemus
