@@ -10,5 +10,6 @@ Node JS + Express + Nodemon + Morgan + Sequelize + MySQL para el BackEnd.
 
 # Colaboradoes
 
-Boris Parra Lemus
+Boris Parra Lemus 
+
 Victor Jesus Maximo Abundio
