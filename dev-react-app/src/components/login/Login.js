@@ -24,7 +24,7 @@ export function Login({ onLogin }) {
         <h2 className="mb-4">Acceder</h2>
         <form>
           <div className="mb-3">
-            <label htmlFor="email" className="form-label">Correo electrónico</label>
+            <label htmlFor="email" className="form-label">Nombre de usuario</label>
             <input
               type="text"
               className="form-control"
