@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { findUserByUsername } from '../../services/services';
+import { findUserByUsername } from '../services/services';
 
-export function Login({ onLogin }) {
+export function Acceder({ onLogin }) {
   const navigate = useNavigate();
   const [userName, setEmail] = useState('');
   const [password, setPassword] = useState('');

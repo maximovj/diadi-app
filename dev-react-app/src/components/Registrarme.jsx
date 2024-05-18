@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { addUser } from "../../services/services";
+import { addUser } from "../services/services";
 import { useNavigate } from "react-router-dom";
 
-export function RegisterUser(){
+export function Registrarme(){
     
       const [username, setUsername] = useState('');
       const [password, setPassword] = useState('');
