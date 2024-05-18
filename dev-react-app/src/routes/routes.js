@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Acceder } from '../components/Acceder'
 import { Registrarme } from '../components/Registrarme'
 import { Home } from '../pages/Home'
-import { Diario } from '../pages/Diario'
+import { Diarios } from '../components/Diarios'
 import { NavBar } from '../components/NavBar'
 import { Pie } from '../components/Pie'
 import { Tareas } from '../components/Tareas'
@@ -17,7 +17,7 @@ export function RoutePage (){
                 <Route path="/inicio" element={<Home/>}/>
                 <Route path="/acceder" element={<Acceder/>}/>
                 <Route path="/registrarme" element={<Registrarme/>}/>
-                <Route path="/diario" element={<Diario/>}/>
+                <Route path="/diarios" element={<Diarios/>}/>
                 <Route path="/tareas" element={<Tareas/>}/>
             </Routes>
             </div>
