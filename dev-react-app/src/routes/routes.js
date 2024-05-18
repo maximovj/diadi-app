@@ -5,6 +5,7 @@ import { Home } from '../pages/Home'
 import { Diario } from '../pages/Diario'
 import { NavBar } from '../components/NavBar'
 import { Pie } from '../components/Pie'
+import { Tareas } from '../components/Tareas'
 
 export function RoutePage (){
     return(
@@ -17,6 +18,7 @@ export function RoutePage (){
                 <Route path="/acceder" element={<Acceder/>}/>
                 <Route path="/registrarme" element={<Registrarme/>}/>
                 <Route path="/diario" element={<Diario/>}/>
+                <Route path="/tareas" element={<Tareas/>}/>
             </Routes>
             </div>
             <Pie></Pie>
