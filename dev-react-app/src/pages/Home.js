@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Sidebar } from "../components/HomePage/SideBar";
 import { TaskModal } from "../components/TodoList/TaskModal";
 import { TaskDetailsModal } from "../components/TodoList/TaskModelDetails";
 
@@ -86,9 +85,7 @@ export function Home(){
     setTasks(updatedTasks);
     handleCloseDetailsModal();
   };
-
-  return (
-    <Sidebar>
+/*<Sidebar>
       <div className="container">
         <div className="d-flex justify-content-between align-items-center">
           <h2>Lista de Tareas</h2>
@@ -124,6 +121,8 @@ export function Home(){
         handleEdit={handleEditTask}
         handleDelete={handleDeleteTask}
       />
-    </Sidebar>
+    </Sidebar> */
+  return (
+    <><h1>Contenido</h1></>
   );
 }
