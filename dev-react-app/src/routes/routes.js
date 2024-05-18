@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Acceder } from '../components/Acceder'
-import { Registrarme } from '../components/Registrarme'
+import { Acceder } from '../pages/Acceder'
+import { Registrarme } from '../pages/Registrarme'
 import { Home } from '../pages/Home'
-import { Diarios } from '../components/Diarios'
+import { Diarios } from '../pages/Diarios'
+import { Tareas } from '../pages/Tareas'
 import { NavBar } from '../components/NavBar'
 import { Pie } from '../components/Pie'
-import { Tareas } from '../components/Tareas'
 
 export function RoutePage (){
     return(
