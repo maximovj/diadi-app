@@ -9,7 +9,6 @@ export function LoginPage(){
         
           return (
             <div>
-              <h1 className="border border-primary p-3 mb-5">Página de Inicio de Sesión</h1>
               <Login onLogin={handleLogin} />
             </div>
           );

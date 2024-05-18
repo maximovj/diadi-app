@@ -19,12 +19,12 @@ export function RegisterUser(){
       };
     
       return (
-        <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
-          <div className="card border border-primary p-4" style={{ maxWidth: '400px', width: '100%' }}>
-            <h2 className="mb-4">Registro</h2>
+        <div className="d-flex vh-100">
+          <div className="m-auto card card-css p-4">
+            <h2 className="mb-4">Registrarme</h2>
             <form>
               <div className="mb-3">
-                <label htmlFor="username" className="form-label">Nombre de Usuario</label>
+                <label htmlFor="username" className="form-label">Nombre de usuario</label>
                 <input 
                   type="text" 
                   className="form-control" 
@@ -43,8 +43,10 @@ export function RegisterUser(){
                   onChange={(e) => setPassword(e.target.value)} 
                 />
               </div>
-              <button type="button" className="btn btn-primary" onClick={handleRegister}>Registrarse</button>
-              <a href="/" className="btn btn-secondary ms-2">Volver al inicio sesion</a>
+              <div className="d-flex justify-content-between align-items-center">
+                <button type="button" className="btn btn-success">Registrarme</button>
+                <button type="button" className="btn btn-primary">Acceder</button>
+              </div>
             </form>
           </div>
         </div>
