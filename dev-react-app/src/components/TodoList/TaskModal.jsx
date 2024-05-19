@@ -1,8 +1,8 @@
 export function TaskModal({ show, handleClose, handleSubmit, newTask, handleChange }) {
   return (
-    <div className={`modal ${show ? 'd-block' : ''}`} tabIndex="-1">
+    <div className={`modal ${show ? 'd-block' : ''} `} tabIndex="-1">
       <div className="modal-dialog">
-        <div className="modal-content">
+        <div className={`modal-content ${document.body.classList.contains('dark-mode') ? 'card-dark-mode' : ''}`}>
           <div className="modal-header">
             <h5 className="modal-title">Nueva Tarea</h5>
             <button type="button" className="btn-close" onClick={handleClose}></button>

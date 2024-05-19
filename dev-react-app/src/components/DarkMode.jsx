@@ -1,12 +1,8 @@
-import useDarkMode from "../hooks/useDarkMode/useDarkMode";
+import useModoOscuro from "../hooks/useModoOscuro";
 import "../App.css";
 
 export default function DarkMode() {
-  const [darkMode, setDarkMode] = useDarkMode();
-
-  const handleDarkModeToggle = () => {
-    setDarkMode((prevDarkMode) => !prevDarkMode);
-  };
+  const [isDarkMode, toggleDarkMode] = useModoOscuro();
 
   return (
     <div className="form-check form-switch">
@@ -14,8 +10,8 @@ export default function DarkMode() {
         className="form-check-input"
         type="checkbox"
         id="darkModeSwitch"
-        checked={darkMode}
-        onChange={handleDarkModeToggle}
+        checked={isDarkMode}
+        onChange={toggleDarkMode}
       />
       <label className="form-check-label" htmlFor="darkModeSwitch">
         Modo oscuro
