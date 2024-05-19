@@ -43,6 +43,7 @@ footer a:hover {
 *** MODO OSCURO
 *************************************************/
 body.dark-mode {
+  color: #fff;
   background-color: #1c1c1c;
 }
 
