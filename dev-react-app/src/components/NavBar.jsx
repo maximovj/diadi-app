@@ -1,7 +1,12 @@
+import DarkMode from "./DarkMode";
+
 export function NavBar() {
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-dark text-white" style={{ backgroundColor: '#363636' }}>
+      <nav
+        className="navbar navbar-expand-lg navbar-dark text-white"
+        style={{ backgroundColor: "#363636" }}
+      >
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
             DiaDiApp
@@ -40,9 +45,10 @@ export function NavBar() {
                 </a>
               </li>
             </ul>
-           <div>
-            <span>v1.0Alpha</span>
-           </div>
+            <div className="d-flex flex-column justify-content-end align-items-end">
+              <span className="txt-span-version-css">v1.0Alpha</span>
+              <DarkMode></DarkMode>
+            </div>
           </div>
         </div>
       </nav>
@@ -67,17 +73,17 @@ export function NavBar() {
         <div className="offcanvas-body">
           <span>Menu</span>
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a className="nav-link" aria-current="page" href="#">
-                  Lista de tareas
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" aria-current="page" href="#">
-                  Diario
-                </a>
-              </li>
-            </ul>
+            <li className="nav-item">
+              <a className="nav-link" aria-current="page" href="#">
+                Lista de tareas
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" aria-current="page" href="#">
+                Diario
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </>
