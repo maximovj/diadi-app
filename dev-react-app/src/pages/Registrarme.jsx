@@ -2,6 +2,7 @@ import { useState } from "react";
 import { addUser } from "../services/services";
 import { useNavigate } from "react-router-dom";
 import { Boton } from "../components/Boton";
+import { Tarjeta } from "../components/Tarjeta";
 
 export function Registrarme(){
     
@@ -19,7 +20,7 @@ export function Registrarme(){
     
       return (
         <div className="d-flex vh-100">
-          <div className={`m-auto card card-css p-4 ${document.modoOscuroActivo ? 'card-dark-mode' : ''}`}>
+          <Tarjeta className={`m-auto card-dark-mode`}>
             <h2 className="mb-4">Registrarme</h2>
             <form>
               <div className="mb-3">
@@ -47,7 +48,7 @@ export function Registrarme(){
                 <Boton tipo="primary">Acceder</Boton>
               </div>
             </form>
-          </div>
+          </Tarjeta>
         </div>
       )
     }
