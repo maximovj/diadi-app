@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { addUser } from "../services/services";
 import { useNavigate } from "react-router-dom";
+import { Boton } from "../components/Boton";
+import { Tarjeta } from "../components/Tarjeta";
 
 export function Registrarme(){
     
@@ -12,15 +14,13 @@ export function Registrarme(){
         // Aquí podrías realizar la lógica de registro
         console.log(`Usuario registrado: ${username}`);
         console.log(`Contraseña: ${password}`);
-        
-      
         addUser({ username, password });
         navigate('/')
       };
     
       return (
         <div className="d-flex vh-100">
-          <div className="m-auto card card-css p-4">
+          <Tarjeta className={`m-auto card-dark-mode`}>
             <h2 className="mb-4">Registrarme</h2>
             <form>
               <div className="mb-3">
@@ -44,11 +44,11 @@ export function Registrarme(){
                 />
               </div>
               <div className="d-flex justify-content-between align-items-center">
-                <button type="button" className="btn btn-success">Registrarme</button>
-                <button type="button" className="btn btn-primary">Acceder</button>
+                <Boton tipo="danger"  onClick={handleRegister}>Registrarme</Boton>
+                <Boton tipo="primary">Acceder</Boton>
               </div>
             </form>
-          </div>
+          </Tarjeta>
         </div>
       )
     }

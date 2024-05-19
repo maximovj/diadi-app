@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 
 function useModoOscuro() {
-  const [isDarkMode, setIsDarkMode] = useState(() => {
+  const [isModoOscuro, setIsModoOscuro] = useState(() => {
     const savedMode = localStorage.getItem("darkMode");
     return savedMode ? JSON.parse(savedMode) : false;
   });
 
-  const toggleDarkMode = () => {
-    setIsDarkMode((prevMode) => {
+  const toggleModoOscuro = () => {
+    setIsModoOscuro((prevMode) => {
       const newMode = !prevMode;
       localStorage.setItem("darkMode", JSON.stringify(newMode));
       return newMode;
@@ -15,22 +15,23 @@ function useModoOscuro() {
   };
 
   useEffect(() => {
-    document.body.classList.toggle("dark-mode", isDarkMode);
+    document.body.classList.toggle("dark-mode", isModoOscuro);
+    document.modoOscuroActivo = isModoOscuro;
 
     // Selecciona todos los elementos con la clase card
     const cards = document.querySelectorAll(".card");
     cards.forEach((card) => {
-      card.classList.toggle("card-dark-mode", isDarkMode);
+      card.classList.toggle("card-dark-mode", isModoOscuro);
     });
 
     // Selecciona todos los elementos con la clase btn
     const btns = document.querySelectorAll(".btn");
     btns.forEach((card) => {
-      card.classList.toggle("btn-dark-mode", isDarkMode);
+      card.classList.toggle("btn-dark-mode", isModoOscuro);
     });
-  }, [isDarkMode]);
+  }, [isModoOscuro]);
 
-  return [isDarkMode, toggleDarkMode];
+  return [isModoOscuro, toggleModoOscuro];
 }
 
 export default useModoOscuro;
