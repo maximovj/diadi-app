@@ -1,4 +1,4 @@
-import DarkMode from "./DarkMode";
+import SwitchModoOscuro from "./SwitchModoOscuro";
 
 export function NavBar() {
   return (
@@ -47,7 +47,7 @@ export function NavBar() {
             </ul>
             <div className="d-flex flex-column justify-content-end align-items-end">
               <span className="txt-span-version-css">v1.0Alpha</span>
-              <DarkMode></DarkMode>
+              <SwitchModoOscuro></SwitchModoOscuro>
             </div>
           </div>
         </div>
