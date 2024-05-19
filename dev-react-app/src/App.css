@@ -43,20 +43,32 @@ footer a:hover {
 /************************************************* 
 *** MODO OSCURO
 *************************************************/
-body.dark-mode {
-  color: #fff;
-  background-color: #1c1c1c;
+
+body.light {
+  --background-color: #ffffff;
+  --text-color: #000000;
+}
+
+body.dark {
+  --background-color: #000000;
+  --text-color: #ffffff;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .card-dark-mode {
-  color: white !important;
-  background-color: #414141 !important;
+  background-color: var(--background-color);
+  color: var(--text-color);
   box-shadow:  0.05rem 0.05rem 0.35rem #fff;
 }
 
 .btn-dark-mode {
-  color: white !important;
-  background-color: #1b1b1b !important;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
 /* !! Este es para el modo oscuro del sistema (Desactivado por defecto) */
