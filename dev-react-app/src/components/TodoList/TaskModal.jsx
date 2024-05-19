@@ -1,8 +1,14 @@
+import React, { useContext } from 'react';
+import { ThemeContext } from "../../context/ThemeContext";
+import { Boton } from "../../components/Boton";
+
 export function TaskModal({ show, handleClose, handleSubmit, newTask, handleChange }) {
+  const { theme } = useContext(ThemeContext);
+
   return (
-    <div className={`modal ${show ? 'd-block' : ''} `} tabIndex="-1">
+    <div className={`modal ${show ? 'd-block' : ''}`} tabIndex="-1">
       <div className="modal-dialog">
-        <div className={`modal-content ${document.modoOscuroActivo ? 'card-dark-mode' : ''}`}>
+        <div className={`modal-content ${theme === 'light' ? 'bg-light text-dark' : 'card-dark-mode text-light'}`}>
           <div className="modal-header">
             <h5 className="modal-title">Nueva Tarea</h5>
             <button type="button" className="btn-close" onClick={handleClose}></button>
@@ -76,8 +82,8 @@ export function TaskModal({ show, handleClose, handleSubmit, newTask, handleChan
             </form>
           </div>
           <div className="modal-footer">
-            <button type="button" className="btn btn-secondary" onClick={handleClose}>Cancelar</button>
-            <button type="button" className="btn btn-primary" onClick={handleSubmit}>Guardar Tarea</button>
+            <Boton tipo="secondary" onClick={handleClose}>Cancelar</Boton>
+            <Boton tipo="success" onClick={handleClose}>Guardar Tarea</Boton>
           </div>
         </div>
       </div>
