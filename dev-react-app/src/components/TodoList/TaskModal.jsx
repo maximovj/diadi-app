@@ -49,16 +49,29 @@ export function TaskModal({ show, handleClose, handleSubmit, newTask, handleChan
                   <option value="high">Alta</option>
                 </select>
               </div>
-              <div className="mb-3">
-                <label htmlFor="deadline" className="form-label">Fecha Límite</label>
-                <input
-                  type="date"
-                  className="form-control"
-                  id="deadline"
-                  name="deadline"
-                  value={newTask.deadline}
-                  onChange={handleChange}
-                />
+              <div className="row mb-3">
+                <div className="col-md-6">
+                  <label htmlFor="startDate" className="form-label">Fecha de Inicio</label>
+                  <input
+                    type="date"
+                    className="form-control"
+                    id="startDate"
+                    name="startDate"
+                    value={newTask.startDate}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="col-md-6">
+                  <label htmlFor="deadline" className="form-label">Fecha Límite</label>
+                  <input
+                    type="date"
+                    className="form-control"
+                    id="deadline"
+                    name="deadline"
+                    value={newTask.deadline}
+                    onChange={handleChange}
+                  />
+                </div>
               </div>
             </form>
           </div>
