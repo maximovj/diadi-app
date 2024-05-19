@@ -85,7 +85,7 @@ export function Home(){
     setTasks(updatedTasks);
     handleCloseDetailsModal();
   };
-/*<Sidebar>
+{/* <Sidebar>
       <div className="container">
         <div className="d-flex justify-content-between align-items-center">
           <h2>Lista de Tareas</h2>
@@ -121,7 +121,7 @@ export function Home(){
         handleEdit={handleEditTask}
         handleDelete={handleDeleteTask}
       />
-    </Sidebar> */
+    </Sidebar>  */}
   return (
     <><h1>Contenido</h1></>
   );
