@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { addUser } from "../services/services";
 import { useNavigate } from "react-router-dom";
+import { Boton } from "../components/Boton";
 
 export function Registrarme(){
     
@@ -42,8 +43,8 @@ export function Registrarme(){
                 />
               </div>
               <div className="d-flex justify-content-between align-items-center">
-                <button type="button" className="btn btn-success" onClick={handleRegister}>Registrarme</button>
-                <button type="button" className="btn btn-primary">Acceder</button>
+                <Boton tipo="danger"  onClick={handleRegister}>Registrarme</Boton>
+                <Boton tipo="primary">Acceder</Boton>
               </div>
             </form>
           </div>
