@@ -135,7 +135,7 @@ export function Tareas() {
               className={`card mb-2 border-${task.importance}`}
               onClick={() => handleViewDetails(task)}
             >
-              <div className={`card h-100 ${document.body.classList.contains('dark-mode') ? 'card-dark-mode' : ''}`}>
+              <div className={`card h-100 ${document.modoOscuroActivo ? 'card-dark-mode' : ''}`}>
                 <h5>{task.title}</h5>
                 <p>{task.description}</p>
                 <p><strong>Importancia:</strong> {task.importance} | <strong>Fecha limite:</strong> {task.deadline|| ' sin asignar'}</p>
@@ -157,7 +157,7 @@ export function Tareas() {
         </div>
         <div className="row">
           <div className="col-lg-4 mb-4">
-            <div className={`card h-100 ${document.body.classList.contains('dark-mode') ? 'card-dark-mode' : ''}`}>
+            <div className={`card h-100 ${document.modoOscuroActivo ? 'card-dark-mode' : ''}`}>
               <div className="card-header">
                 <h1 className="txt-h1-css">Para hacer</h1>
               </div>
@@ -171,7 +171,7 @@ export function Tareas() {
             </div>
           </div>
           <div className="col-lg-4 mb-4">
-            <div className={`card h-100 ${document.body.classList.contains('dark-mode') ? 'card-dark-mode' : ''}`}>
+            <div className={`card h-100 ${document.modoOscuroActivo ? 'card-dark-mode' : ''}`}>
               <div className="card-header">
                 <h1 className="txt-h1-css">En proceso</h1>
               </div>
@@ -185,7 +185,7 @@ export function Tareas() {
             </div>
           </div>
           <div className="col-lg-4 mb-4">
-            <div className={`card h-100 ${document.body.classList.contains('dark-mode') ? 'card-dark-mode' : ''}`}>
+            <div className={`card h-100 ${document.modoOscuroActivo ? 'card-dark-mode' : ''}`}>
               <div className="card-header">
                 <h1 className="txt-h1-css">Hecho</h1>
               </div>

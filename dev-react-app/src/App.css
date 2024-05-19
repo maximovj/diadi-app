@@ -59,6 +59,8 @@ body.dark-mode {
   background-color: #1b1b1b !important;
 }
 
+/* !! Este es para el modo oscuro del sistema (Desactivado por defecto) */
+/*
 @media (prefers-color-scheme: dark) {
   .card {
     color: white !important;
@@ -76,4 +78,15 @@ body.dark-mode {
     background-color: #222222 !important;
   }
   
+
+  p, span, h1, h2, h3, h4, h5, h6 {
+    color: white !important;
+  }
+
+  body.dark-mode {
+    color: #fff;
+    background-color: #1c1c1c;
+  }
+
 }
+*/

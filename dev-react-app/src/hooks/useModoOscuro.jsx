@@ -16,6 +16,7 @@ function useModoOscuro() {
 
   useEffect(() => {
     document.body.classList.toggle("dark-mode", isDarkMode);
+    document.modoOscuro = isDarkMode;
 
     // Selecciona todos los elementos con la clase card
     const cards = document.querySelectorAll(".card");

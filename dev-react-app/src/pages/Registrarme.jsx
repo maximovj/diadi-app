@@ -12,15 +12,13 @@ export function Registrarme(){
         // Aquí podrías realizar la lógica de registro
         console.log(`Usuario registrado: ${username}`);
         console.log(`Contraseña: ${password}`);
-        
-      
         addUser({ username, password });
         navigate('/')
       };
     
       return (
         <div className="d-flex vh-100">
-          <div className="m-auto card card-css p-4">
+          <div className={`m-auto card card-css p-4 ${document.modoOscuroActivo ? 'card-dark-mode' : ''}`}>
             <h2 className="mb-4">Registrarme</h2>
             <form>
               <div className="mb-3">
@@ -44,7 +42,7 @@ export function Registrarme(){
                 />
               </div>
               <div className="d-flex justify-content-between align-items-center">
-                <button type="button" className="btn btn-success">Registrarme</button>
+                <button type="button" className="btn btn-success" onClick={handleRegister}>Registrarme</button>
                 <button type="button" className="btn btn-primary">Acceder</button>
               </div>
             </form>

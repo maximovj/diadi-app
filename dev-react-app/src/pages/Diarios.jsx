@@ -35,7 +35,7 @@ export function Diarios() {
         <div className="row row-cols-1 row-cols-md-3 g-4">
           {notas.map((nota, index) => (
             <div className="col" key={index}>
-              <div className={`card h-100 ${document.body.classList.contains('dark-mode') ? 'card-dark-mode' : ''}`}>
+              <div className={`card h-100 ${document.modoOscuroActivo ? 'card-dark-mode' : ''}`}>
                 <div className="card-body">
                   <h5 className="card-title">Nota {index + 1}</h5>
                   <p className="card-text">{nota.texto}</p>
