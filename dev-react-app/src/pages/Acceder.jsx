@@ -51,7 +51,7 @@ export function Acceder({ onLogin }) {
           </div>
           <div className="d-flex justify-content-between align-items-center">
             <Boton tipo="success" onClick={handleLogin}>Acceder</Boton>
-            <Boton tipo="danger">Registrarme</Boton>
+            <Boton tipo="primary">Registrarme</Boton>
           </div>
         </form>
       </Tarjeta>

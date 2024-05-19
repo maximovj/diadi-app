@@ -44,7 +44,7 @@ export function Registrarme(){
                 />
               </div>
               <div className="d-flex justify-content-between align-items-center">
-                <Boton tipo="danger"  onClick={handleRegister}>Registrarme</Boton>
+                <Boton tipo="success"  onClick={handleRegister}>Registrarme</Boton>
                 <Boton tipo="primary">Acceder</Boton>
               </div>
             </form>
