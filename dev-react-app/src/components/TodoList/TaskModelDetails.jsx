@@ -59,7 +59,7 @@ export function TaskDetailsModal({ show, handleClose, task, handleEdit, handleDe
   return (
     <div className={`modal ${show ? 'd-block' : ''}`} tabIndex="-1">
       <div className="modal-dialog">
-        <div className="modal-content">
+      <div className={`modal-content ${document.body.classList.contains('dark-mode') ? 'card-dark-mode' : ''}`}>
           <div className="modal-header">
             <h5 className="modal-title">Detalles de Tarea</h5>
             <button type="button" className="btn-close" onClick={handleClose}></button>
