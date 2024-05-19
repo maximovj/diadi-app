@@ -3,7 +3,7 @@ export function NavBar() {
     <>
       <nav className="navbar navbar-expand-lg navbar-dark text-white" style={{ backgroundColor: '#363636' }}>
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+          <a className="navbar-brand" href="/">
             DiaDiApp
           </a>
           <button
@@ -49,7 +49,7 @@ export function NavBar() {
 
       <div
         className="offcanvas offcanvas-start"
-        tabindex="-1"
+        tabIndex="-1"
         id="offcanvasExample"
         aria-labelledby="offcanvasExampleLabel"
       >
@@ -68,12 +68,12 @@ export function NavBar() {
           <span>Menu</span>
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link" aria-current="page" href="#">
+                <a className="nav-link" aria-current="page" href="/">
                   Lista de tareas
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" aria-current="page" href="#">
+                <a className="nav-link" aria-current="page" href="/">
                   Diario
                 </a>
               </li>
