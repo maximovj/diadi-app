@@ -6,7 +6,7 @@ export function Tarjeta({ tipo, onClick, children, className, size, ...props }) 
 
   // className={`m-auto card card-css p-4 ${document.modoOscuroActivo ? 'card-dark-mode' : ''}`}
   const classNames = `
-   card card-css p-4 
+   card card-css 
   ${theme === 'light' ? 'bg-light text-dark' : 'bg-dark text-light'}
   ${className}
   `;

@@ -20,7 +20,7 @@ export function Registrarme(){
     
       return (
         <div className="d-flex vh-100">
-          <Tarjeta className={`m-auto card-dark-mode`}>
+          <Tarjeta className={`m-auto p-4 card-dark-mode`}>
             <h2 className="mb-4">Registrarme</h2>
             <form>
               <div className="mb-3">
@@ -44,7 +44,7 @@ export function Registrarme(){
                 />
               </div>
               <div className="d-flex justify-content-between align-items-center">
-                <Boton tipo="danger"  onClick={handleRegister}>Registrarme</Boton>
+                <Boton tipo="success"  onClick={handleRegister}>Registrarme</Boton>
                 <Boton tipo="primary">Acceder</Boton>
               </div>
             </form>
