@@ -101,9 +101,9 @@ export function TaskDetailsModal({ show, handleClose, task, handleEdit, handleDe
                   value={editedTask.importance}
                   onChange={handleChange}
                 >
-                  <option value="low">Baja</option>
-                  <option value="normal">Normal</option>
-                  <option value="high">Alta</option>
+                  <option value="Baja">Baja</option>
+                  <option value="Normal">Normal</option>
+                  <option value="Alta">Alta</option>
                 </select>
               </div>
               <div className="row mb-3">
