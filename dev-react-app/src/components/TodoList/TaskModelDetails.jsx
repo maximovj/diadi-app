@@ -1,9 +1,13 @@
+import React, { useContext } from 'react';
+import { ThemeContext } from "../../context/ThemeContext";
+import { Boton } from "../../components/Boton";
 import { useEffect, useState } from "react";
 
 export function TaskDetailsModal({ show, handleClose, task, handleEdit, handleDelete }) {
   const [editedTask, setEditedTask] = useState(null);
   const [startDate, setStartDate] = useState('');
   const [deadline, setDeadline] = useState('');
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     if (task) {
@@ -59,7 +63,7 @@ export function TaskDetailsModal({ show, handleClose, task, handleEdit, handleDe
   return (
     <div className={`modal ${show ? 'd-block' : ''}`} tabIndex="-1">
       <div className="modal-dialog">
-        <div className="modal-content">
+      <div className={`modal-content ${theme === 'light' ? 'bg-light text-dark' : 'card-dark-mode text-light'}`}>
           <div className="modal-header">
             <h5 className="modal-title">Detalles de Tarea</h5>
             <button type="button" className="btn-close" onClick={handleClose}></button>
@@ -144,9 +148,9 @@ export function TaskDetailsModal({ show, handleClose, task, handleEdit, handleDe
             </form>
           </div>
           <div className="modal-footer">
-            <button type="button" className="btn btn-danger me-auto" onClick={confirmDelete}>Eliminar</button>
-            <button type="button" className="btn btn-secondary" onClick={handleClose}>Cerrar</button>
-            <button type="button" className="btn btn-primary" onClick={handleSaveChanges}>Guardar Cambios</button>
+            <Boton tipo="danger" className={`me-auto`} onClick={confirmDelete}>Eliminar</Boton>
+            <Boton tipo="secondary" onClick={handleClose}>Cerrar</Boton>
+            <Boton tipo="success"  onClick={handleSaveChanges}>Guardar Cambios</Boton>
           </div>
         </div>
       </div>
