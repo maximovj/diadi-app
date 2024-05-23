@@ -16,4 +16,4 @@ const getUsers = () => {
     return users.find(user => user.username === username);
   };
 
-  export { getUsers, addUser, findUserByUsername };
+  export { getUsers, addUser, findUserByUsername};
