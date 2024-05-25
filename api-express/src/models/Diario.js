@@ -24,7 +24,7 @@ const Diario = sequelize.define('Diario', {
     timestamps: true,
     underscored: true,
     timestamps: true,
-    alter: true,
+    alter: false,
     createdAt: true,
     updatedAt: true,
 });

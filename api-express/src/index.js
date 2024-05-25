@@ -1,13 +1,16 @@
 require('dotenv').config();
+const { database_env, sequelize } = require('./sequelize');
 const express = require('express');
 const app = express();
-const { database_env, sequelize } = require('./sequelize');
+const Diario = require('./models/Diario');
+const Usuario = require('./models/Usuario');
+const rutas_usuario = require('./routes/usuario');
+
 app.set('port', process.env.PORT || 3010);
 
-app.get('/', function (request, response) {
-    response.send('API de DIADI-APP');
-});
-
+// Middleware
+app.use(express.json());
+app.use('/api', rutas_usuario);
 
 const iniciarServicio = async () => {
     try {

@@ -22,12 +22,12 @@ const Usuario = sequelize.define('Usuario', {
         allowNull: false,
     }
 }, {
-    tableName: 'diario',
+    tableName: 'usuario',
     freezeTableName: true,
     timestamps: true,
     underscored: true,
     timestamps: true,
-    alter: true,
+    alter: false,
     createdAt: true,
     updatedAt: true,
 });
