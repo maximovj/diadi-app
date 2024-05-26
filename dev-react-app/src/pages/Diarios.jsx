@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Tarjeta } from "../components/Tarjeta";
 import { Boton } from "../components/Boton";
+import { crearDiario } from "../services/service_diario";
 
 export function Diarios() {
   const [notas, setNotas] = useState([]);
@@ -10,14 +11,23 @@ export function Diarios() {
     setTextoNota(e.target.value);
   };
 
-  const agregarNota = () => {
+  const agregarNota = async () => {
     if (textoNota.trim()) {
-      const nuevaNota = {
-        texto: textoNota,
-        timestamp: new Date().toLocaleString(),
-      };
-      setNotas([...notas, nuevaNota]);
-      setTextoNota("");
+      try {
+        await crearDiario({
+          titulo: "Diario",
+          contenido: textoNota,
+          usuario_id: 1,
+        });
+        setTextoNota("");
+        console.log('nuevo diario registrado.')
+      } catch (err) {
+        if (err.response) {
+          // El servidor respondió con un código de estado fuera del rango 2xx
+          console.log('Código de estado:', err.response.status);
+          console.log('Error de respuesta del servidor:', err.response.data);
+        }
+      }
     }
   };
 
