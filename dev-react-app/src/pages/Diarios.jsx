@@ -3,6 +3,9 @@ import { Tarjeta } from "../components/Tarjeta";
 import { Boton } from "../components/Boton";
 import { crearDiario, listarDiario } from "../services/service_diario";
 
+import { ToastContainer, Bounce, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export function Diarios() {
   const [notas, setNotas] = useState([]);
   const [textoNota, setTextoNota] = useState("");
@@ -38,6 +41,17 @@ export function Diarios() {
         });
         setTextoNota("");
         setNotas([...notas, response.data]);
+        toast.success("Dario registrado correctamente.", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Bounce,
+        });
         //console.log('nuevo diario registrado.')
       } catch (err) {
         if (err.response) {
@@ -81,6 +95,7 @@ export function Diarios() {
           ))}
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }

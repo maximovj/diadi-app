@@ -7,6 +7,10 @@ $ cd react-app
 # Instalar el enroutador de react
 $ npm install react-router-dom
 
+# Instalar depedencias de react 
+$ npm install axios
+$ npm install --save react-toastify
+
 # Correr el proyecto 
 $ npm run dev 
 
