@@ -60,11 +60,15 @@ exports.modificarDiario = async (req, res) => {
 
 // Esta ruta es para eliminar un diario registrado
 exports.eliminarDiario = async (req, res) => {
-    const { id } = req.params;
     try{
-        const diario_eliminar = await Diario.destroy({ where: { id }});
-        res.status(201).json(diario_eliminar);
+        const diario = await Diario.findByPk(req.params.id);
+        if(!diario){
+            return res.status(404).json({ err: 'Diario no encontrado en el sistema.' });
+        }
+
+        await diario.destroy();
+        return res.status(200).json({ msg_title: 'Diario', msg_content: 'Diario eliminado exitosamente.' });
     } catch(err){
-        res.status(404).json(err);
+        return res.status(500).json(err);
     }
 }
