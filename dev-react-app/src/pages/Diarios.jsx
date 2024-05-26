@@ -20,12 +20,11 @@ export function Diarios() {
           usuario_id: 1,
         });
         setTextoNota("");
-        console.log('nuevo diario registrado.')
+        //console.log('nuevo diario registrado.')
       } catch (err) {
         if (err.response) {
-          // El servidor respondió con un código de estado fuera del rango 2xx
-          console.log('Código de estado:', err.response.status);
-          console.log('Error de respuesta del servidor:', err.response.data);
+          //console.log('Código de estado:', err.response.status);
+          //console.log('Error de respuesta del servidor:', err.response.data);
         }
       }
     }
