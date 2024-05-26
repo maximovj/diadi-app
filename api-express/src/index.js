@@ -2,18 +2,23 @@ require('dotenv').config();
 const { database_env, sequelize } = require('./sequelize');
 const express = require('express');
 const app = express();
-const rutas_usuario = require('./routes/usuario');
 
 // Importar modelos para que las relaciones se definan
 const Diario = require('./models/Diario');
 const Usuario = require('./models/Usuario');
 
+// Importar las rutas
+const rutas_usuario = require('./routes/usuario');
+const rutas_diario = require('./routes/diario');
 
 app.set('port', process.env.PORT || 3010);
 
-// Middleware
+// Middleware para parsear JSON
 app.use(express.json());
+
+// Usar las rutas
 app.use('/api/v1', rutas_usuario);
+app.use('/api/v1', rutas_diario);
 
 const iniciarServicio = async () => {
     try {
