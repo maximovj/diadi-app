@@ -62,6 +62,7 @@ exports.modificarDiario = async (req, res) => {
 exports.eliminarDiario = async (req, res) => {
     try{
         const diario = await Diario.findByPk(req.params.id);
+        
         if(!diario){
             return res.status(404).json({ err: 'Diario no encontrado en el sistema.' });
         }
