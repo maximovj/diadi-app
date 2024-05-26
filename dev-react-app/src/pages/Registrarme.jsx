@@ -14,7 +14,19 @@ export function Registrarme() {
   const navigate = useNavigate();
 
   const handleRegister = async () => {
-    if(!username.trim() || !password.trim()){
+    if(!username.trim() || !password.trim())
+    {
+      toast.error('Verifica que los campos sean correctos.', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
       return;
     }
 
