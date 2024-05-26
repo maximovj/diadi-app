@@ -4,7 +4,7 @@ const Diario = require('../models/Diario');
 
 // @see https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#limits-and-pagination
 // @see https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#simple-select-queries
-// Esta ruta es para listar todos los usuarios registrados
+// Esta ruta es para listar todos los diarios registrados
 exports.listarDiario = async(req, res) => {
     const { usuario_id } = req.body;
     try{
