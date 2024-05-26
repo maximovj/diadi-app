@@ -1,6 +1,17 @@
 const Usuario = require('../models/Usuario');
 const Diario = require('../models/Diario');
 
+// Esta ruta es para ver los datos de un diario registrado
+exports.verDiario = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const diario_ver = await Diario.findOne({ where: { id }});
+        res.status(201).json(diario_ver);
+    } catch(err){
+        res.status(404).json({ err });
+    }
+}
+
 // Esta ruta es para crear o registrar un nuevo diario
 exports.crearDiario = async (req, res) => {
     const { titulo, contenido, usuario_id } = req.body;
