@@ -2,9 +2,12 @@ require('dotenv').config();
 const { database_env, sequelize } = require('./sequelize');
 const express = require('express');
 const app = express();
+const rutas_usuario = require('./routes/usuario');
+
+// Importar modelos para que las relaciones se definan
 const Diario = require('./models/Diario');
 const Usuario = require('./models/Usuario');
-const rutas_usuario = require('./routes/usuario');
+
 
 app.set('port', process.env.PORT || 3010);
 
