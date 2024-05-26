@@ -6,6 +6,8 @@ router.post('/diario', diarioController.crearDiario);
 
 router.put('/diario/:id', diarioController.modificarDiario);
 
+router.delete('/diario/:id', diarioController.eliminarDiario);
+
 module.exports = router;
 
 

@@ -23,3 +23,14 @@ exports.modificarDiario = async (req, res) => {
         res.status(404).json({ err });
     }
 }
+
+// Esta ruta es para eliminar un diario registrado
+exports.eliminarDiario = async (req, res) => {
+    const { id } = req.params;
+    try{
+        const diario_eliminar = await Diario.destroy({ where: { id }});
+        res.status(201).json(diario_eliminar);
+    } catch(err){
+        res.status(404).json(err);
+    }
+}
