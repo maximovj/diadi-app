@@ -32,7 +32,7 @@ router.post('/usuario', async (req, res) => {
         const registrar_usuario = await Usuario.create({ usuario, correo, contrasena });
         res.status(201).json(registrar_usuario);
     }catch(err){
-        res.status(404).json({ error: err.message[0] });
+        res.status(404).json({ error: err.errors[0] });
     }
 });
 
