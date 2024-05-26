@@ -39,13 +39,22 @@ exports.crearDiario = async (req, res) => {
 
 // Esta ruta es para editar o modificar un diario registrado
 exports.modificarDiario = async (req, res) => {
-    const { id } = req.params;
-    const { titulo, contenido, usuario_id } = req.body;
     try{
-        const diario_modificar = await Diario.update({ titulo, contenido, usuario_id }, { where: { id } });
-        res.status(201).json(diario_modificar); 
+        const { titulo, contenido, usuario_id } = req.body;
+        const diario = await Diario.findByPk(req.params.id);
+        
+        if(diario === null){
+            return res.status(404).json({ err: 'Diario no encontrado en el sistema.' });
+        }
+        
+        diario.titulo = titulo;
+        diario.contenido = contenido;
+        diario.usuario_id = usuario_id;
+
+        await diario.save();
+        return res.status(200).json({ msg_title: 'Diario', msg_content: 'Diario modificado exitosamente.' });
     } catch(err){
-        res.status(404).json({ err });
+        return res.status(500).json({ err });
     }
 }
 
