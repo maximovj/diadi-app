@@ -14,3 +14,9 @@ const serviceDiario = axios.create({
 export const crearDiario = (diario) =>{
     return serviceDiario.post('/diario', diario);
 }
+
+export const listarDiario = (usuario_id) => {
+    return serviceDiario.get('/diario/mio', { params: {
+        usuario_id
+    } });
+}
