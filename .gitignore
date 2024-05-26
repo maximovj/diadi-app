@@ -1,3 +1,4 @@
 /dev-react-app/node_modules
 /api-express/node_modules
+/api-express/.env
 .my-codes
