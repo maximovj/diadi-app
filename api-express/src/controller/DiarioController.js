@@ -17,12 +17,16 @@ exports.listarDiario = async(req, res) => {
 
 // Esta ruta es para ver los datos de un diario registrado
 exports.verDiario = async (req, res) => {
-    const { id } = req.params;
     try {
-        const diario_ver = await Diario.findOne({ where: { id }});
-        res.status(201).json(diario_ver);
+        const diario = await Diario.findByPk(req.params.id);
+
+        if(!diario) {
+            return res.status(404).json({ err: 'Diario no encontrado en el sistema.' });
+        }
+
+        return res.status(200).json(diario);
     } catch(err){
-        res.status(404).json({ err });
+        return res.status(500).json({ err });
     }
 }
 
@@ -62,7 +66,7 @@ exports.modificarDiario = async (req, res) => {
 exports.eliminarDiario = async (req, res) => {
     try{
         const diario = await Diario.findByPk(req.params.id);
-        
+
         if(!diario){
             return res.status(404).json({ err: 'Diario no encontrado en el sistema.' });
         }
