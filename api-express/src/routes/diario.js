@@ -2,7 +2,7 @@ const express = require('express');
 const router  = express.Router();
 const diarioController = require('../controller/DiarioController');
 
-router.get('/diario', diarioController.listarDiario);
+router.get('/diario/mio', diarioController.listarDiario);
 
 router.get('/diario/:id', diarioController.verDiario);
 

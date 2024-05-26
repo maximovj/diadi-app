@@ -6,7 +6,7 @@ const Diario = require('../models/Diario');
 // @see https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#simple-select-queries
 // Esta ruta es para listar todos los diarios registrados
 exports.listarDiario = async(req, res) => {
-    const { usuario_id } = req.body;
+    const { usuario_id } = req.query;
     try{
         const diario_listar = await Diario.findAll({ where: { usuario_id }, limit: 15});
         res.status(201).json(diario_listar);
