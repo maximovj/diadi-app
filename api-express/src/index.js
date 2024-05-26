@@ -10,7 +10,7 @@ app.set('port', process.env.PORT || 3010);
 
 // Middleware
 app.use(express.json());
-app.use('/api', rutas_usuario);
+app.use('/api/v1', rutas_usuario);
 
 const iniciarServicio = async () => {
     try {
