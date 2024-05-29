@@ -14,6 +14,7 @@ const allowedOrigins = cors_origins;
 // Importar modelos para que las relaciones se definan
 const Diario = require('./models/Diario');
 const Usuario = require('./models/Usuario');
+const Tarea = require('./models/Tarea');
 
 // Importar las rutas
 const rutas_usuario = require('./routes/usuario');
