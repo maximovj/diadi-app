@@ -1,5 +1,11 @@
 const usuario = require('../models/Usuario.js');
 
+// @author Víctor J.
+// @created 31/08/2024
+// @updated 31/08/2024
+// @see https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#limits-and-pagination
+// @see https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#simple-select-queries
+
 exports.listarUsuarios = async (req, res) => {
     try {
         const usuario_listar = await Usuario.findAll({ limit: 15 });

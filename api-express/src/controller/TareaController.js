@@ -1,5 +1,11 @@
 const tarea = require('../models/Tarea.js');
 
+// @author Víctor J.
+// @created 31/08/2024
+// @updated 31/08/2024
+// @see https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#limits-and-pagination
+// @see https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#simple-select-queries
+
 exports.listarTareas = async (req, res) => {
     const tareas_15 = await tarea.findAll({ limit: 15 });
     res.status(200).json({ test: 'Endpoint /GET', tareas_15 });

@@ -7,19 +7,19 @@ const {
     modificarTarea,
     verTarea } = require('../controller/TareaController.js');
 
-// Listar 15 tareas
+// Esta ruta es para listar todas las tareas registrados
 routers.get('/tarea', listarTareas);
 
-// Ver información de una tarea
+// Esta ruta es para ver los datos de una tarea registrada
 routers.get('/tarea/:id', verTarea);
 
-// Registrar una tarea
+// Esta ruta es para crear o registrar una nueva tarea
 routers.post('/tarea', crearTarea);
 
-// Actualizar una tarea
+// Esta ruta es para editar o modificar una tarea registrada
 routers.put('/tarea/:id', modificarTarea);
 
-//  Eliminar una tarea
+// Esta ruta es para eliminar una tarea registrada
 routers.delete('/tarea/:id', eliminarTarea);
 
 module.exports = routers;

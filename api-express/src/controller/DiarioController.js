@@ -1,9 +1,11 @@
 const Diario = require('../models/Diario');
 
-
+// @author Víctor J.
+// @created 31/08/2024
+// @updated 31/08/2024
 // @see https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#limits-and-pagination
 // @see https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#simple-select-queries
-// Esta ruta es para listar todos los diarios registrados
+
 exports.listarDiario = async (req, res) => {
     const { usuario_id } = req.query;
     try {
@@ -14,7 +16,6 @@ exports.listarDiario = async (req, res) => {
     }
 }
 
-// Esta ruta es para ver los datos de un diario registrado
 exports.verDiario = async (req, res) => {
     try {
         const diario = await Diario.findByPk(req.params.id);
@@ -29,7 +30,6 @@ exports.verDiario = async (req, res) => {
     }
 }
 
-// Esta ruta es para crear o registrar un nuevo diario
 exports.crearDiario = async (req, res) => {
     const { titulo, contenido, usuario_id } = req.body;
     try {
@@ -40,7 +40,6 @@ exports.crearDiario = async (req, res) => {
     }
 }
 
-// Esta ruta es para editar o modificar un diario registrado
 exports.modificarDiario = async (req, res) => {
     try {
         const { titulo, contenido, usuario_id } = req.body;
@@ -61,7 +60,6 @@ exports.modificarDiario = async (req, res) => {
     }
 }
 
-// Esta ruta es para eliminar un diario registrado
 exports.eliminarDiario = async (req, res) => {
     try {
         const diario = await Diario.findByPk(req.params.id);
