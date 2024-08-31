@@ -41,8 +41,7 @@ const tarea = sequelizeConfig.define('tarea', {
     freezeTableName: true,
     timestamps: true,
     underscored: true,
-    timestamps: true,
-    alter: false,
+    alter: true,
     createdAt: true,
     updatedAt: true,
 });

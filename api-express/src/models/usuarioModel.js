@@ -26,8 +26,7 @@ const usuario = sequelizeConfig.define('usuario', {
     freezeTableName: true,
     timestamps: true,
     underscored: true,
-    timestamps: true,
-    alter: false,
+    alter: true,
     createdAt: true,
     updatedAt: true,
 });

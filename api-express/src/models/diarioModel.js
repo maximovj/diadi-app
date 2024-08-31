@@ -23,8 +23,7 @@ const diario = sequelizeConfig.define('diario', {
     freezeTableName: true,
     timestamps: true,
     underscored: true,
-    timestamps: true,
-    alter: false,
+    alter: true,
     createdAt: true,
     updatedAt: true,
 });
