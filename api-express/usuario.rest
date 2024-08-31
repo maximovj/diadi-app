@@ -28,7 +28,7 @@ Authorization: Bearer {{token}}
 
 # @name actualizarUsuario
 # Ruta para actualizar un usuario mediante su id
-PUT {{baseUrl}}/usuario/2
+PUT {{baseUrl}}/usuario/1
 Content-Type: application/json
 Origin: {{baseUrl}}
 Authorization: Bearer {{token}}
@@ -41,7 +41,7 @@ Authorization: Bearer {{token}}
 
 # @name eliminarUsuario
 # Ruta para actualizar un usuario mediante su id
-DELETE {{baseUrl}}/usuario/2
+DELETE {{baseUrl}}/usuario/1
 Origin: {{baseUrl}}
 Authorization: Bearer {{token}}
 

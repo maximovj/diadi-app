@@ -8,7 +8,7 @@ const {
     verTarea } = require('../controller/TareaController.js');
 
 // Esta ruta es para listar todas las tareas registrados
-routers.get('/tarea', listarTareas);
+routers.get('/tarea/mio', listarTareas);
 
 // Esta ruta es para ver los datos de una tarea registrada
 routers.get('/tarea/:id', verTarea);

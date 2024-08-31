@@ -7,7 +7,8 @@ const Tarea = require('../models/tareaModel.js');
 // @see https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#simple-select-queries
 
 exports.listarTareas = async (req, res) => {
-    const tareas_15 = await Tarea.findAll({ limit: 15 });
+    const usuario_id = req.query.usuario_id;
+    const tareas_15 = await Tarea.findAll({ where: { usuario_id: usuario_id }, limit: 15 });
     res.status(200).json({ test: 'Endpoint /GET', tareas_15 });
 };
 
