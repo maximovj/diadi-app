@@ -1,4 +1,4 @@
-const tarea = require('../models/tareaModel.js');
+const Tarea = require('../models/tareaModel.js');
 
 // @author Víctor J.
 // @created 31/08/2024
@@ -7,13 +7,13 @@ const tarea = require('../models/tareaModel.js');
 // @see https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#simple-select-queries
 
 exports.listarTareas = async (req, res) => {
-    const tareas_15 = await tarea.findAll({ limit: 15 });
+    const tareas_15 = await Tarea.findAll({ limit: 15 });
     res.status(200).json({ test: 'Endpoint /GET', tareas_15 });
 };
 
 exports.verTarea = async (req, res) => {
     const id = req.params.id;
-    const buscar_tarea = await tarea.findByPk(id);
+    const buscar_tarea = await Tarea.findByPk(id);
 
     if (buscar_tarea) {
         res.status(200).json({ test: 'Endpoint /GET', buscar_tarea });
@@ -24,7 +24,7 @@ exports.verTarea = async (req, res) => {
 
 exports.crearTarea = async (req, res) => {
     const { titulo, descripcion, estado, importancia, fecha_inicio, fecha_limite } = req.body;
-    const crear_tarea = await tarea.create({
+    const crear_tarea = await Tarea.create({
         titulo,
         descripcion,
         estado,
@@ -39,7 +39,7 @@ exports.modificarTarea = async (req, res) => {
     const { titulo, descripcion, estado, importancia, fecha_inicio, fecha_limite } = req.body;
     const id = req.params.id;
 
-    const buscar_tarea = await tarea.findByPk(id);
+    const buscar_tarea = await Tarea.findByPk(id);
 
     if (buscar_tarea) {
         const actualizar_tarea = await buscar_tarea.update({
@@ -58,7 +58,7 @@ exports.modificarTarea = async (req, res) => {
 
 exports.eliminarTarea = async (req, res) => {
     const id = req.params.id;
-    const buscar_tarea = await tarea.findByPk(id);
+    const buscar_tarea = await Tarea.findByPk(id);
 
     if (buscar_tarea) {
         await buscar_tarea.destroy();
