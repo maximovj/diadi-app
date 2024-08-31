@@ -1,13 +1,13 @@
-const { DataTypes  } = require('sequelize');
+const { DataTypes } = require('sequelize');
 const { sequelize } = require('../sequelize');
-const Usuario = require('./Usuario');
+const usuario = require('./usuarioModel');
 
-const Tarea = sequelize.define('Tarea', {
+const tarea = sequelize.define('tarea', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
-    }, 
+    },
     titulo: {
         type: DataTypes.STRING,
         defaultValue: 'N/A',
@@ -36,7 +36,7 @@ const Tarea = sequelize.define('Tarea', {
         type: DataTypes.DATE,
         allowNull: true,
     },
-},{
+}, {
     tableName: 'tarea',
     freezeTableName: true,
     timestamps: true,
@@ -48,7 +48,7 @@ const Tarea = sequelize.define('Tarea', {
 });
 
 // Definir la relación: Un Usuario tiene muchos Diaro
-Usuario.hasMany(Tarea, { foreignKey: 'usuario_id' });
-Tarea.belongsTo(Usuario, { foreignKey: 'usuario_id' });
+usuario.hasMany(tarea, { foreignKey: 'usuario_id' });
+tarea.belongsTo(usuario, { foreignKey: 'usuario_id' });
 
-module.exports = Tarea;
+module.exports = tarea;

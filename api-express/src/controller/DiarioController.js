@@ -1,4 +1,4 @@
-const Diario = require('../models/Diario');
+const diario = require('../models/diarioModel.js');
 
 // @author Víctor J.
 // @created 31/08/2024
@@ -9,7 +9,7 @@ const Diario = require('../models/Diario');
 exports.listarDiario = async (req, res) => {
     const { usuario_id } = req.query;
     try {
-        const diario_listar = await Diario.findAll({ where: { usuario_id }, limit: 15 });
+        const diario_listar = await diario.findAll({ where: { usuario_id }, limit: 15 });
         res.status(201).json(diario_listar);
     } catch (err) {
         res.status(404).json({ err });
@@ -18,7 +18,7 @@ exports.listarDiario = async (req, res) => {
 
 exports.verDiario = async (req, res) => {
     try {
-        const diario = await Diario.findByPk(req.params.id);
+        const diario = await diario.findByPk(req.params.id);
 
         if (!diario) {
             return res.status(404).json({ err: 'Diario no encontrado en el sistema.' });
@@ -33,7 +33,7 @@ exports.verDiario = async (req, res) => {
 exports.crearDiario = async (req, res) => {
     const { titulo, contenido, usuario_id } = req.body;
     try {
-        const diario_crear = await Diario.create({ titulo, contenido, usuario_id });
+        const diario_crear = await diario.create({ titulo, contenido, usuario_id });
         res.status(201).json(diario_crear);
     } catch (err) {
         res.status(404).json({ err });
@@ -43,7 +43,7 @@ exports.crearDiario = async (req, res) => {
 exports.modificarDiario = async (req, res) => {
     try {
         const { titulo, contenido, usuario_id } = req.body;
-        const diario = await Diario.findByPk(req.params.id);
+        const diario = await diario.findByPk(req.params.id);
 
         if (diario === null) {
             return res.status(404).json({ err: 'Diario no encontrado en el sistema.' });
@@ -62,7 +62,7 @@ exports.modificarDiario = async (req, res) => {
 
 exports.eliminarDiario = async (req, res) => {
     try {
-        const diario = await Diario.findByPk(req.params.id);
+        const diario = await diario.findByPk(req.params.id);
 
         if (!diario) {
             return res.status(404).json({ err: 'Diario no encontrado en el sistema.' });

@@ -1,4 +1,4 @@
-const tarea = require('../models/Tarea.js');
+const tarea = require('../models/tareaModel.js');
 
 // @author Víctor J.
 // @created 31/08/2024

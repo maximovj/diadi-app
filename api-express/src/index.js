@@ -12,14 +12,14 @@ const allowedOrigins = cors_origins;
 
 
 // Importar modelos para que las relaciones se definan
-const Diario = require('./models/Diario');
-const Usuario = require('./models/Usuario');
-const Tarea = require('./models/Tarea');
+const Diario = require('./models/diarioModel.js');
+const Usuario = require('./models/usuarioModel.js');
+const Tarea = require('./models/tareaModel.js');
 
 // Importar las rutas
-const rutas_usuario = require('./routes/usuario.js');
-const rutas_diario = require('./routes/diario.js');
-const rutas_tarea = require('./routes/tarea.js');
+const rutas_usuario = require('./routes/usuarioRoutes.js');
+const rutas_diario = require('./routes/diarioRoutes.js');
+const rutas_tarea = require('./routes/tareaRoutes.js');
 
 app.set('port', process.env.PORT || 3010);
 
