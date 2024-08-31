@@ -1,0 +1,63 @@
+@baseUrl=http://localhost:3010/api/v1
+@token=aqui.va.tu.token.secreto
+
+###
+
+# @name todosTarea
+# Ruta para obtener todos los tareas
+GET {{baseUrl}}/tarea
+Origin: {{baseUrl}}
+Authorization: Bearer {{token}}
+
+### 
+
+# @name crearTarea
+# Ruta para crear una tarea
+POST {{baseUrl}}/tarea
+Content-Type: application/json
+Origin: {{baseUrl}}
+Authorization: Bearer {{token}}
+
+{
+    "titulo":"Desarrollar un CRUD",
+    "descripcion":"Utilizar ReactJS + SpringBoot",
+    "estado":"en_progreso",
+    "importancia":"baja",
+    "fecha_inicio":"Wed, 10 Oct 2024 08:10:00 GMT",
+    "fecha_limite":"Wed, 21 Oct 2024 12:23:00 GMT"
+}
+
+###
+
+# @name verTarea
+# Ruta para obtener ver una tarea
+GET {{baseUrl}}/tarea/1
+Origin: {{baseUrl}}
+Authorization: Bearer {{token}}
+
+### 
+
+# @name actualizarTarea
+# Ruta para actualizar una tarea mediante su id
+PUT {{baseUrl}}/tarea/1
+Content-Type: application/json
+Origin: {{baseUrl}}
+Authorization: Bearer {{token}}
+
+{
+    "titulo":"CRUD",
+    "descripcion":"ReactJS + SpringBoot",
+    "estado":"en_progreso",
+    "importancia":"baja",
+    "fecha_inicio":"Wed, 10 Oct 2024 08:10:00 GMT",
+    "fecha_limite":"Wed, 21 Oct 2024 12:23:00 GMT"
+}
+
+### 
+
+# @name eliminarTarea
+# Ruta para actualizar una tarea mediante su id
+DELETE {{baseUrl}}/tarea/3
+Origin: {{baseUrl}}
+Authorization: Bearer {{token}}
+

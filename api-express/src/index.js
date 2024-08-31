@@ -17,8 +17,9 @@ const Usuario = require('./models/Usuario');
 const Tarea = require('./models/Tarea');
 
 // Importar las rutas
-const rutas_usuario = require('./routes/usuario');
-const rutas_diario = require('./routes/diario');
+const rutas_usuario = require('./routes/usuario.js');
+const rutas_diario = require('./routes/diario.js');
+const rutas_tarea = require('./routes/tarea.js');
 
 app.set('port', process.env.PORT || 3010);
 
@@ -42,6 +43,7 @@ app.use(cors({
 // Usar las rutas
 app.use('/api/v1', rutas_usuario);
 app.use('/api/v1', rutas_diario);
+app.use('/api/v1', rutas_tarea);
 
 const iniciarServicio = async () => {
     try {
@@ -60,8 +62,8 @@ const iniciarServicio = async () => {
                 JSON.stringify(database_env, null, -2) + '\n',
                 '::status::',
                 JSON.stringify(server.address(), null, -2) + '\n',
-                '::cors::', 
-                JSON.stringify(allowedOrigins, null, -2)  + '\n',
+                '::cors::',
+                JSON.stringify(allowedOrigins, null, -2) + '\n',
                 '::url::',
                 url + '\n');
         });
