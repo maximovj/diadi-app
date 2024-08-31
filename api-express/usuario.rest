@@ -1,0 +1,47 @@
+@baseUrl=http://localhost:3010/api/v1
+@token=aqui.va.tu.token.secreto
+
+###
+
+# @name todosUsuarios
+# Ruta para obtener todos los usuarios
+GET {{baseUrl}}/usuario
+Origin: {{baseUrl}}
+Authorization: Bearer {{token}}
+
+### 
+
+# @name crearUsuario
+# Ruta para crear un usuario
+POST {{baseUrl}}/usuario
+Content-Type: application/json
+Origin: {{baseUrl}}
+Authorization: Bearer {{token}}
+
+{
+    "usuario":"lorem.ipsum",
+    "correo":"lorem.ipsum@example.com",
+    "contrasena":"lorem.ipsum@example.com"
+}
+
+### 
+
+# @name actualizarUsuario
+# Ruta para actualizar un usuario mediante su id
+PUT {{baseUrl}}/usuario/2
+Content-Type: application/json
+Origin: {{baseUrl}}
+Authorization: Bearer {{token}}
+
+{
+    "contrasena":"password"
+}
+
+### 
+
+# @name eliminarUsuario
+# Ruta para actualizar un usuario mediante su id
+DELETE {{baseUrl}}/usuario/2
+Origin: {{baseUrl}}
+Authorization: Bearer {{token}}
+
