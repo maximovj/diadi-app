@@ -1,4 +1,4 @@
-const diario = require('../models/diarioModel.js');
+const Diario = require('../models/diarioModel.js');
 
 // @author Víctor J.
 // @created 31/08/2024
@@ -9,7 +9,7 @@ const diario = require('../models/diarioModel.js');
 exports.listarDiario = async (req, res) => {
     const { usuario_id } = req.query;
     try {
-        const diario_listar = await diario.findAll({ where: { usuario_id }, limit: 15 });
+        const diario_listar = await Diario.findAll({ where: { usuario_id }, limit: 15 });
         res.status(201).json(diario_listar);
     } catch (err) {
         res.status(404).json({ err });
@@ -18,7 +18,7 @@ exports.listarDiario = async (req, res) => {
 
 exports.verDiario = async (req, res) => {
     try {
-        const diario = await diario.findByPk(req.params.id);
+        const diario = await Diario.findByPk(req.params.id);
 
         if (!diario) {
             return res.status(404).json({ err: 'Diario no encontrado en el sistema.' });
@@ -26,43 +26,39 @@ exports.verDiario = async (req, res) => {
 
         return res.status(200).json(diario);
     } catch (err) {
-        return res.status(500).json({ err });
+        return res.status(500).json({ err: err.message });
     }
 }
 
 exports.crearDiario = async (req, res) => {
     const { titulo, contenido, usuario_id } = req.body;
     try {
-        const diario_crear = await diario.create({ titulo, contenido, usuario_id });
+        const diario_crear = await Diario.create({ titulo, contenido, usuario_id });
         res.status(201).json(diario_crear);
     } catch (err) {
-        res.status(404).json({ err });
+        res.status(404).json({ err: err.message });
     }
 }
 
 exports.modificarDiario = async (req, res) => {
     try {
-        const { titulo, contenido, usuario_id } = req.body;
-        const diario = await diario.findByPk(req.params.id);
+        const { titulo, contenido } = req.body;
+        const diario = await Diario.findByPk(req.params.id);
 
         if (diario === null) {
             return res.status(404).json({ err: 'Diario no encontrado en el sistema.' });
         }
 
-        diario.titulo = titulo;
-        diario.contenido = contenido;
-        diario.usuario_id = usuario_id;
-
-        await diario.save();
+        await diario.update({ titulo, contenido });
         return res.status(200).json({ msg_title: 'Diario', msg_content: 'Diario modificado exitosamente.' });
     } catch (err) {
-        return res.status(500).json({ err });
+        return res.status(500).json({ err: err.message });
     }
 }
 
 exports.eliminarDiario = async (req, res) => {
     try {
-        const diario = await diario.findByPk(req.params.id);
+        const diario = await Diario.findByPk(req.params.id);
 
         if (!diario) {
             return res.status(404).json({ err: 'Diario no encontrado en el sistema.' });
@@ -71,6 +67,6 @@ exports.eliminarDiario = async (req, res) => {
         await diario.destroy();
         return res.status(200).json({ msg_title: 'Diario', msg_content: 'Diario eliminado exitosamente.' });
     } catch (err) {
-        return res.status(500).json(err);
+        return res.status(500).json({ err: err.message });
     }
 }
