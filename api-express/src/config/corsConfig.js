@@ -8,12 +8,13 @@ const cors_origins = getCorsOrigin.map(variable => process.env[variable]);
 const allowedOrigins = cors_origins;
 
 const corsConfig = cors({
-    methods: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
     optionsSuccessStatus: 200,
     credentials: true,
-    allowedHeaders: 'Content-Type, Authorization, Origin, X-Requested-With, x-csrf-token, X-CSRF-Token, Content-Length, User-Agent, Referer',
+    allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'User-Agent', 'User-Agent', 'Content-Length'],
     origin: function (origin, callback) {
-        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+        const allowOrigin = origin || '';
+        if (allowedOrigins.indexOf(allowOrigin) !== -1 || !origin) {
             callback(null, true);
         } else {
             callback(new Error('Not allowed by CORS'));
