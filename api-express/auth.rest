@@ -1,0 +1,31 @@
+@baseUrl=http://localhost:3010/api/v1
+@token=aqui.va.tu.token.secreto
+
+### 
+
+# @name registrarUsuario
+# Ruta para registrar un nuevo usuario
+POST {{baseUrl}}/registrar
+Content-Type: application/json
+Origin: {{baseUrl}}
+Authorization: Bearer {{token}}
+
+{
+    "usuario":"kami.kase",
+    "correo":"kami.kase@diadiapp.com",
+    "contrasena":"kami.kase"
+}
+
+### 
+
+# @name accederUsuario
+# Ruta para acceder al sistema con un usuario
+POST {{baseUrl}}/acceder
+Content-Type: application/json
+Origin: {{baseUrl}}
+Authorization: Bearer {{token}}
+
+{
+    "usuario":"kami.kase",
+    "contrasena":"kami.kase"
+}

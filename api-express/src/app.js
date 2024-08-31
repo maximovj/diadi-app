@@ -13,6 +13,7 @@ require('./models/tareaModel.js');
 const rutas_usuario = require('./routes/usuarioRoutes.js');
 const rutas_diario = require('./routes/diarioRoutes.js');
 const rutas_tarea = require('./routes/tareaRoutes.js');
+const rutas_auth = require('./routes/authRoutes.js');
 
 // Se define variables de entorno
 app.set('port', process.env.PORT || 3010);
@@ -29,6 +30,7 @@ app.use(corsConfig);
 app.use('/api/v1', rutas_usuario);
 app.use('/api/v1', rutas_diario);
 app.use('/api/v1', rutas_tarea);
+app.use('/api/v1', rutas_auth);
 
 sequelizeConfig.sync({ alter: false, force: false });
 
