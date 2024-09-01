@@ -51,24 +51,23 @@ export function Acceder({ onLogin }) {
 
     try {
 
-      const acceder_sistema = await acceder({
+      const response = await acceder({
         usuario: usernameTrimmed,
         contrasena: password.trim(),
       });
 
-      const data = acceder_sistema.data;
+      const response_data = response.data;
 
-      if (data?.success) {
+      if (response_data?.success) {
         setEmail('');
         setPassword('');
-        showToast(data.ctx_contenido, 'success');
-        login(JSON.stringify(data.data));
+        showToast(response_data.ctx_contenido, 'success');
+        login(JSON.stringify(response_data.data));
         navigate("/panel");
       }
 
     } catch (err) {
-      console.log(err);
-      showToast(err.response.data.cxt_contenido, 'error');
+      showToast(err.response.data.ctx_contenido, 'error');
     }
 
   };

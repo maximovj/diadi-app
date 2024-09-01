@@ -18,7 +18,7 @@ exports.acceder = (req, res) => {
     const { usuario, contrasena } = req.body;
     Usuario.findOne({ where: { usuario: usuario } })
         .then((data) => {
-            if (data.contrasena === contrasena) {
+            if (data && data.contrasena === contrasena) {
                 return res.status(200).json({
                     ctx_contenido: 'Usuario inicio sesión correctamente.', success: true,
                     data: { id: data.id, correo: data.correo }
@@ -27,5 +27,7 @@ exports.acceder = (req, res) => {
                 return res.status(401).json({ ctx_contenido: 'Credenciales incorrectas.', success: false, data: null });
             }
         })
-        .catch(() => res.status(500).json({ ctx_contenido: err.message, success: false, data: null }));
+        .catch((err) => {
+            return res.status(500).json({ ctx_contenido: err.message, success: false, data: null });
+        });
 };
