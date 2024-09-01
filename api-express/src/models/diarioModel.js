@@ -29,7 +29,7 @@ const diario = sequelizeConfig.define('diario', {
 });
 
 // Definir la relación: Un Usuario tiene muchos Diaro
-usuario.hasMany(diario, { foreignKey: 'usuario_id' });
+usuario.hasMany(diario, { foreignKey: 'usuario_id', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 diario.belongsTo(usuario, { foreignKey: 'usuario_id' });
 
 module.exports = diario;

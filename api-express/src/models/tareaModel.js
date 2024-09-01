@@ -47,7 +47,7 @@ const tarea = sequelizeConfig.define('tarea', {
 });
 
 // Definir la relación: Un Usuario tiene muchos Diaro
-usuario.hasMany(tarea, { foreignKey: 'usuario_id' });
+usuario.hasMany(tarea, { foreignKey: 'usuario_id', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 tarea.belongsTo(usuario, { foreignKey: 'usuario_id' });
 
 module.exports = tarea;
