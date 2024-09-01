@@ -61,9 +61,11 @@ export function Acceder({ onLogin }) {
       if (response_data?.success) {
         setEmail('');
         setPassword('');
-        showToast(response_data.ctx_contenido, 'success');
         login(JSON.stringify(response_data.data));
-        navigate("/panel");
+        showToast(response_data.ctx_contenido, 'success');
+        setTimeout(() => {
+          navigate("/panel");
+        }, 1600);
       }
 
     } catch (err) {

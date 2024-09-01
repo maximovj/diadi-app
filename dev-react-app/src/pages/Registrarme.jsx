@@ -55,7 +55,7 @@ export function Registrarme() {
 
     } catch (err) {
       if (err.response?.status === 409) {
-        showToast(err.response.data.cxt_contenido, 'error');
+        showToast(err.response.data.ctx_contenido, 'error');
       }
     }
   };
