@@ -1,6 +1,7 @@
+require('dotenv').config();
 const Usuario = require('../models/usuarioModel.js');
 const jwt = require('jsonwebtoken');
-const hash_secret = "Hola mundo";
+const hash_secret = process.env.HASH_SECRET || '3!yH$xd6nsnXwdG?sqm34C$p%tD#7b';
 
 exports.registrar = (req, res) => {
     const { usuario, correo, contrasena } = req.body;
