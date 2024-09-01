@@ -3,17 +3,15 @@ import Cookies from 'js-cookie';
 const token = Cookies.get('session_diadiapp');
 
 const serviceDiario = axios.create({
-    baseURL: 'http://localhost:3010/api/v1',
+    baseURL: process.env.REACT_APP_API_BASE_URL,
     headers: {
-        'Origin': 'http://localhost:3000',
+        'Origin': process.env.REACT_APP_ORIGIN,
         'Content-Type': 'application/json',
         'Accept': 'application/json',
+        'Referer': window.location.href,
         'Authorization': `Bearer ${token}`
     }
 });
-
-
-//serviceDiario.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
 export const crearDiario = (diario) => {
     return serviceDiario.post('/diario', diario);
