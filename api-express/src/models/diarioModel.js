@@ -1,13 +1,13 @@
-const { DataTypes  } = require('sequelize');
-const { sequelize } = require('../sequelize');
-const Usuario = require('./Usuario');
+const { DataTypes } = require('sequelize');
+const sequelizeConfig = require('../config/sequelizeConfig.js');
+const usuario = require('./usuarioModel');
 
-const Diario = sequelize.define('Diario', {
+const diario = sequelizeConfig.define('diario', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
-    }, 
+    },
     titulo: {
         type: DataTypes.STRING,
         defaultValue: 'N/A',
@@ -18,19 +18,18 @@ const Diario = sequelize.define('Diario', {
         defaultValue: 'N/A',
         allowNull: true,
     }
-},{
+}, {
     tableName: 'diario',
     freezeTableName: true,
     timestamps: true,
     underscored: true,
-    timestamps: true,
-    alter: false,
+    alter: true,
     createdAt: true,
     updatedAt: true,
 });
 
 // Definir la relación: Un Usuario tiene muchos Diaro
-Usuario.hasMany(Diario, { foreignKey: 'usuario_id' });
-Diario.belongsTo(Usuario, { foreignKey: 'usuario_id' });
+usuario.hasMany(diario, { foreignKey: 'usuario_id' });
+diario.belongsTo(usuario, { foreignKey: 'usuario_id' });
 
-module.exports = Diario;
+module.exports = diario;

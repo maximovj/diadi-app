@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
-const { sequelize } = require('../sequelize');
+const sequelizeConfig = require('../config/sequelizeConfig.js');
 
-const Usuario = sequelize.define('Usuario', {
+const usuario = sequelizeConfig.define('usuario', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -14,7 +14,7 @@ const Usuario = sequelize.define('Usuario', {
     },
     correo: {
         type: DataTypes.STRING,
-        allowNull: false, 
+        allowNull: false,
         unique: true,
     },
     contrasena: {
@@ -26,10 +26,9 @@ const Usuario = sequelize.define('Usuario', {
     freezeTableName: true,
     timestamps: true,
     underscored: true,
-    timestamps: true,
-    alter: false,
+    alter: true,
     createdAt: true,
     updatedAt: true,
 });
 
-module.exports = Usuario;
+module.exports = usuario;

@@ -5,25 +5,26 @@ import { crearDiario, listarDiario } from "../services/service_diario";
 
 import { ToastContainer, Bounce, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useAuth } from '../context/AuthContext';
 
 export function Diarios() {
   const [notas, setNotas] = useState([]);
   const [textoNota, setTextoNota] = useState("");
+  const { logout } = useAuth();
 
-  useEffect(()=>{
+  useEffect(() => {
     const fetchDiarios = async () => {
-      try{
+      try {
         const response = await listarDiario(1);
         setNotas(response.data);
         console.log(response.data);
-      }catch(err){
+      } catch (err) {
         if (err.response) {
-          //console.log('Código de estado:', err.response.status);
-          //console.log('Error de respuesta del servidor:', err.response.data);
+          logout();
         }
       }
     }
-    
+
     fetchDiarios();
   }, []);
 
@@ -37,26 +38,27 @@ export function Diarios() {
         const response = await crearDiario({
           titulo: "Diario",
           contenido: textoNota,
-          usuario_id: 1,
         });
-        setTextoNota("");
-        setNotas([...notas, response.data]);
-        toast.success("Dario registrado correctamente.", {
-          position: "bottom-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-          transition: Bounce,
-        });
-        //console.log('nuevo diario registrado.')
+
+        if (response.data) {
+          setTextoNota("");
+          setNotas([...notas, response.data.data]);
+          toast.success(response.data.ctx_contenido, {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            transition: Bounce,
+          });
+        }
+
       } catch (err) {
         if (err.response) {
-          //console.log('Código de estado:', err.response.status);
-          //console.log('Error de respuesta del servidor:', err.response.data);
+          logout();
         }
       }
     }
