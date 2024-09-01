@@ -68,7 +68,6 @@ export function NavBar() {
 
             </ul>
             <div className="d-flex flex-column justify-content-end align-items-end">
-              <span className="txt-span-version-css">v1.0Alpha</span>
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 {/* Solo se muestra si el usuario a iniciado sesión  */}
                 {isAuthenticated && (
