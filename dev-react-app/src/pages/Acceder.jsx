@@ -10,6 +10,9 @@ import { Boton } from "../components/Boton";
 import { ToastContainer, Bounce, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+// Cookies 
+import Cookies from 'js-cookie';
+
 // Servicios
 import { acceder } from '../services/service_auth';
 
@@ -60,6 +63,7 @@ export function Acceder({ onLogin }) {
         setEmail('');
         setPassword('');
         showToast(data.ctx_contenido, 'success');
+        Cookies.set('session_diadiapp', JSON.stringify(data.data), { expires: 7 })
         //navigate("/home");
       }
 
