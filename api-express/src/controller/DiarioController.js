@@ -7,7 +7,7 @@ const Diario = require('../models/diarioModel.js');
 // @see https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#simple-select-queries
 
 exports.listarDiario = async (req, res) => {
-    const { usuario_id } = req.query;
+    const usuario_id = req.session_payload.id;
     try {
         const diario_listar = await Diario.findAll({ where: { usuario_id }, limit: 15 });
         res.status(201).json(diario_listar);
