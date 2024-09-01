@@ -3,6 +3,7 @@ import { TaskModal } from "../components/TodoList/TaskModal";
 import { TaskDetailsModal } from "../components/TodoList/TaskModelDetails";
 import { Tarjeta } from "../components/Tarjeta";
 import { Boton } from "../components/Boton";
+import { getBorderColor, groupTasksByDate} from "../utils/fnTaskList";
 
 export function Tareas() {
   const [currentUser, setCurrentUser] = useState("admin"); // Usuario estático por ahora
@@ -46,6 +47,7 @@ export function Tareas() {
       startDate: "",
       inProgress: false,
       completed: false,
+      category: 'to-do',
     });
   };
 
