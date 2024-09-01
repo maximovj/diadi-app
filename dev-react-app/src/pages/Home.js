@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { TaskModal } from "../components/TodoList/TaskModal";
 import { TaskDetailsModal } from "../components/TodoList/TaskModelDetails";
 
-export function Home(){
+export function Home() {
   const [tasks, setTasks] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showDetailsModal, setShowDetailsModal] = useState(false);
@@ -85,7 +85,7 @@ export function Home(){
     setTasks(updatedTasks);
     handleCloseDetailsModal();
   };
-{/* <Sidebar>
+  {/* <Sidebar>
       <div className="container">
         <div className="d-flex justify-content-between align-items-center">
           <h2>Lista de Tareas</h2>

@@ -64,7 +64,7 @@ export function Acceder({ onLogin }) {
         setPassword('');
         showToast(data.ctx_contenido, 'success');
         Cookies.set('session_diadiapp', JSON.stringify(data.data), { expires: 7 })
-        //navigate("/home");
+        navigate("/panel");
       }
 
     } catch (err) {
