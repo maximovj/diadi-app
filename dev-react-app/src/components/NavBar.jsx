@@ -48,10 +48,16 @@ export function NavBar() {
               {/* Solo se muestra si el usuario a iniciado sesión  */}
               {isAuthenticated && (
                 <>
-                  <li className="nav-item" onClick={logout}>
-                    <a className="nav-link" aria-current="page" href="/tareas">
-                      Cerrar sesión
+                  <li className="nav-item dropdown">
+                    <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Cuenta
                     </a>
+                    <ul className="dropdown-menu">
+                      <li><a className="dropdown-item" href="#">Ver información</a></li>
+                      <li><a className="dropdown-item" href="#">Configurar</a></li>
+                      <li><hr className="dropdown-divider" /></li>
+                      <li><a className="dropdown-item" type='button' onClick={logout} >Cerrar sesión</a></li>
+                    </ul>
                   </li>
                   <li className="nav-item">
                     <a className="nav-link" aria-current="page" href="/tareas">
