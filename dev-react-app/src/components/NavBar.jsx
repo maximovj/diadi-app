@@ -1,10 +1,10 @@
+import { useAuth } from '../context/AuthContext';
 import Cookies from 'js-cookie';
 import SwitchModoOscuro from "./SwitchModoOscuro";
 
-
 export function NavBar() {
   const sessionData = Cookies.get('session_diadiapp');
-  const isAuthenticated = Boolean(sessionData);
+  const { isAuthenticated, logout } = useAuth();
 
   return (
     <>
@@ -48,6 +48,11 @@ export function NavBar() {
               {/* Solo se muestra si el usuario a iniciado sesión  */}
               {isAuthenticated && (
                 <>
+                  <li className="nav-item" onClick={logout}>
+                    <a className="nav-link" aria-current="page" href="/tareas">
+                      Cerrar sesión
+                    </a>
+                  </li>
                   <li className="nav-item">
                     <a className="nav-link" aria-current="page" href="/tareas">
                       Lista de tareas

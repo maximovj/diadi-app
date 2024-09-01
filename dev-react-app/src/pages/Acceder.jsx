@@ -10,17 +10,16 @@ import { Boton } from "../components/Boton";
 import { ToastContainer, Bounce, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// Cookies 
-import Cookies from 'js-cookie';
-
 // Servicios
 import { acceder } from '../services/service_auth';
+import { useAuth } from '../context/AuthContext';
 
 
 export function Acceder({ onLogin }) {
   const navigate = useNavigate();
   const [userName, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useAuth();
 
   const showToast = (message, type) => {
     toast[type](message, {
@@ -63,7 +62,7 @@ export function Acceder({ onLogin }) {
         setEmail('');
         setPassword('');
         showToast(data.ctx_contenido, 'success');
-        Cookies.set('session_diadiapp', JSON.stringify(data.data), { expires: 7 })
+        login(JSON.stringify(data.data));
         navigate("/panel");
       }
 
@@ -71,7 +70,6 @@ export function Acceder({ onLogin }) {
       console.log(err);
       showToast(err.response.data.cxt_contenido, 'error');
     }
-
 
   };
 
