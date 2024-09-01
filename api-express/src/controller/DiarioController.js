@@ -34,10 +34,10 @@ exports.crearDiario = async (req, res) => {
     const { titulo, contenido } = req.body;
     try {
         const usuario_id = req.session_payload.id;
-        const diario_crear = await Diario.create({ titulo, contenido, usuario_id });
-        res.status(201).json(diario_crear);
+        const crear_diario = await Diario.create({ titulo, contenido, usuario_id });
+        res.status(201).json({ ctx_contenido: 'Diario creado exitosamente.', success: true, data: crear_diario });
     } catch (err) {
-        res.status(404).json({ err: err.message });
+        res.status(400).json({ ctx_contenido: 'Diario no creado en el sistema.', success: false, data: null });
     }
 }
 

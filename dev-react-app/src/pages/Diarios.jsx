@@ -21,8 +21,6 @@ export function Diarios() {
       } catch (err) {
         if (err.response) {
           logout();
-          //console.log('Código de estado:', err.response.status);
-          //console.log('Error de respuesta del servidor:', err.response.data);
         }
       }
     }
@@ -41,24 +39,25 @@ export function Diarios() {
           titulo: "Diario",
           contenido: textoNota,
         });
-        setTextoNota("");
-        setNotas([...notas, response.data]);
-        toast.success("Dario registrado correctamente.", {
-          position: "bottom-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-          transition: Bounce,
-        });
-        //console.log('nuevo diario registrado.')
+
+        if (response.data) {
+          setTextoNota("");
+          setNotas([...notas, response.data.data]);
+          toast.success(response.data.ctx_contenido, {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            transition: Bounce,
+          });
+        }
+
       } catch (err) {
         if (err.response) {
-          //console.log('agregarNota - Código de estado:', err.response.status);
-          //console.log('agregarNota - Error de respuesta del servidor:', err.response.data);
           logout();
         }
       }
