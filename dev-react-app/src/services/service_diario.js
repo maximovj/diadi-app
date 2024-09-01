@@ -8,7 +8,6 @@ const serviceDiario = axios.create({
         'Origin': process.env.REACT_APP_ORIGIN,
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Referer': window.location.href,
         'Authorization': `Bearer ${token}`
     }
 });
