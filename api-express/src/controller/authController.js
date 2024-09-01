@@ -3,7 +3,7 @@ const Usuario = require('../models/usuarioModel.js');
 exports.registrar = (req, res) => {
     const { usuario, correo, contrasena } = req.body;
     Usuario.create({ usuario, correo, contrasena })
-        .then(() => res.status(201).json({ cxt_contenido: 'Usuario registrado', success: true, }))
+        .then(() => res.status(201).json({ ctx_contenido: 'Usuario registrado', success: true, }))
         .catch((err) => {
             console.log(Object.keys(err), err.name, err.origina, err.sql, err.errors);
             if (err.name === 'SequelizeUniqueConstraintError') {
