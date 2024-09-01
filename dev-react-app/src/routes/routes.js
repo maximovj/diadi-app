@@ -13,8 +13,8 @@ import { AuthProvider } from '../context/AuthContext';
 
 export function RoutePage() {
     return (
-        <AuthProvider>
-            <BrowserRouter>
+        <BrowserRouter>
+            <AuthProvider>
                 <NavBar />
                 <div className='container container-css my-4'>
                     <Routes>
@@ -31,7 +31,7 @@ export function RoutePage() {
                     </Routes>
                 </div>
                 <Pie />
-            </BrowserRouter>
-        </AuthProvider>
+            </AuthProvider>
+        </BrowserRouter>
     );
 }

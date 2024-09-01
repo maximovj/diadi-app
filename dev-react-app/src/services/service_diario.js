@@ -1,4 +1,6 @@
 import axios from "axios";
+import Cookies from 'js-cookie';
+const token = Cookies.get('session_diadiapp');
 
 const serviceDiario = axios.create({
     baseURL: 'http://localhost:3010/api/v1',
@@ -6,6 +8,7 @@ const serviceDiario = axios.create({
         'Origin': 'http://localhost:3000',
         'Content-Type': 'application/json',
         'Accept': 'application/json',
+        'Authorization': `Bearer ${token}`
     }
 });
 

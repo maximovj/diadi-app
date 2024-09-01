@@ -61,7 +61,7 @@ export function Acceder({ onLogin }) {
       if (response_data?.success) {
         setEmail('');
         setPassword('');
-        login(JSON.stringify(response_data.data));
+        login(response_data.data);
         showToast(response_data.ctx_contenido, 'success');
         setTimeout(() => {
           navigate("/panel");

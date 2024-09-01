@@ -16,7 +16,8 @@ export function AuthProvider({ children }) {
 
     const logout = () => {
         Cookies.remove('session_diadiapp');
-        setIsAuthenticated(Cookies.get('session_diadiapp'));
+        setIsAuthenticated(null);
+        window.location.href = "/acceder";
     };
 
     return (
