@@ -59,15 +59,23 @@ export function NavBar() {
                       <li><a className="dropdown-item" type='button' onClick={logout} >Cerrar sesión</a></li>
                     </ul>
                   </li>
-                  <li className="nav-item">
-                    <a className="nav-link" aria-current="page" href="/tareas">
-                      Lista de tareas
+                  <li className="nav-item dropdown">
+                    <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Tareas
                     </a>
+                    <ul className="dropdown-menu">
+                      <li><a className="dropdown-item" href="/tareas">Panel</a></li>
+                      <li><a className="dropdown-item" href="#">Crear una tarea</a></li>
+                    </ul>
                   </li>
-                  <li className="nav-item">
-                    <a className="nav-link" aria-current="page" href="/diarios">
-                      Diario
+                  <li className="nav-item dropdown">
+                    <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Diarios
                     </a>
+                    <ul className="dropdown-menu">
+                      <li><a className="dropdown-item" href="/diarios">Panel</a></li>
+                      <li><a className="dropdown-item" href="#">Crear una tarea</a></li>
+                    </ul>
                   </li>
                 </>
               )}
