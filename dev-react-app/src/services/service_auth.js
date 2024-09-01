@@ -1,11 +1,14 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
+const token = Cookies.get('session_diadiapp');
 
 const serviceUsuario = axios.create({
-    baseURL: 'http://localhost:3010/api/v1',
+    baseURL: process.env.REACT_APP_API_BASE_URL,
     headers: {
-        'Origin': 'http://localhost:3000',
+        'Origin': process.env.REACT_APP_ORIGIN,
         'Content-Type': 'application/json',
         'Accept': 'application/json',
+        'Authorization': `Bearer ${token}`
     }
 });
 
