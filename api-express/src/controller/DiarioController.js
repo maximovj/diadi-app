@@ -31,8 +31,9 @@ exports.verDiario = async (req, res) => {
 }
 
 exports.crearDiario = async (req, res) => {
-    const { titulo, contenido, usuario_id } = req.body;
+    const { titulo, contenido } = req.body;
     try {
+        const usuario_id = req.session_payload.id;
         const diario_crear = await Diario.create({ titulo, contenido, usuario_id });
         res.status(201).json(diario_crear);
     } catch (err) {

@@ -1,6 +1,7 @@
 require('dotenv').config();
 const sequelizeConfig = require('./config/sequelizeConfig.js');
 const corsConfig = require('./config/corsConfig.js');
+const jwtConfig = require('./config/jwtConfig.js');
 const express = require('express');
 const app = express();
 
@@ -27,10 +28,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(corsConfig);
 
 // Usar las rutas
-app.use('/api/v1', rutas_usuario);
-app.use('/api/v1', rutas_diario);
-app.use('/api/v1', rutas_tarea);
 app.use('/api/v1', rutas_auth);
+app.use('/api/v1', jwtConfig, rutas_usuario);
+app.use('/api/v1', jwtConfig, rutas_diario);
+app.use('/api/v1', jwtConfig, rutas_tarea);
 
 sequelizeConfig.sync({ alter: false, force: false });
 
