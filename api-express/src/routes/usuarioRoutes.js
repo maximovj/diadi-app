@@ -5,6 +5,7 @@ const {
     eliminarUsuario,
     listarUsuarios,
     modificarUsuario,
+    actualizarContrasenaUsuario,
     verUsuario } = require('../controller/usuarioController.js');
 
 // @see https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#limits-and-pagination
@@ -18,6 +19,9 @@ router.get('/usuario/:id', verUsuario);
 
 // Esta ruta es para crear o registrar un nuevo usuario
 router.post('/usuario', crearUsuario);
+
+// Esta ruta es para editar o modificar un usuario registrado
+router.put('/usuario/actualizar-contrasena', actualizarContrasenaUsuario);
 
 // Esta ruta es para editar o modificar un usuario registrado
 router.put('/usuario/:id', modificarUsuario);
