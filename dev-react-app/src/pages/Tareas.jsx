@@ -3,7 +3,14 @@ import { TaskModal } from "../components/TodoList/TaskModal";
 import { TaskDetailsModal } from "../components/TodoList/TaskModelDetails";
 import { Tarjeta } from "../components/Tarjeta";
 import { Boton } from "../components/Boton";
-import { getBorderColor, groupTasksByDate} from "../utils/fnTaskList";
+import { getBorderColor, groupTasksByDate } from "../utils/fnTaskList";
+
+// Modulo de notificaciones toast
+import { ToastContainer, Bounce, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+// Servicios
+import { serviceTareaCrear } from "../services/service_tarea";
 
 export function Tareas() {
   const [currentUser, setCurrentUser] = useState("admin"); // Usuario estático por ahora
@@ -20,6 +27,30 @@ export function Tareas() {
     inProgress: false,
     completed: false,
   });
+
+  const [tarea, setTarea] = useState({
+    titulo: '',
+    descripcion: '',
+    estado: 'pendiente',
+    importancia: 'baja',
+    fecha_inicio: new Date().toISOString().split('T')[0],
+    fecha_limite: new Date().toISOString().split('T')[0],
+  });
+
+  // Mostrar notificaciones de toast
+  const showToast = (message, type) => {
+    toast[type](message, {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Bounce,
+    });
+  };
 
   // Función para obtener las tareas desde el localStorage
   const fetchTasks = useCallback(() => {
@@ -38,39 +69,45 @@ export function Tareas() {
   // Función para cerrar el modal de nueva tarea
   const handleCloseModal = () => {
     setShowModal(false);
-    // Reiniciar el estado de newTask
-    setNewTask({
-      title: "",
-      description: "",
-      importance: "normal",
-      deadline: "",
-      startDate: "",
-      inProgress: false,
-      completed: false,
-      category: 'to-do',
+    setTarea({
+      titulo: '',
+      descripcion: '',
+      estado: 'pendiente',
+      importancia: 'baja',
+      fecha_inicio: new Date().toISOString().split('T')[0],
+      fecha_limite: new Date().toISOString().split('T')[0],
     });
   };
 
   // Función para manejar los cambios en el formulario de nueva tarea
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setNewTask({
-      ...newTask,
+    setTarea({
+      ...tarea,
       [name]: value,
     });
   };
 
   // Función para manejar el submit del formulario de nueva tarea
   const handleSubmit = () => {
-    const updatedTasks = [
-      ...tasks,
-      {
-        ...newTask,
-        id: tasks.length + 1, // Generar un ID único para la nueva tarea
-      },
-    ];
-    saveTasksToLocalStorage(updatedTasks); // Guardar las tareas actualizadas en el localStorage
-    handleCloseModal(); // Cerrar el modal después de guardar
+    if (!tarea.titulo || !tarea.descripcion) {
+      showToast('Verifica que los campos sean correctos.', 'error');
+      return;
+    }
+
+    serviceTareaCrear(tarea)
+      .then((response) => {
+        if (response.data?.success) {
+          showToast(response.data.ctx_contenido, 'success');
+          handleCloseModal(); // Cerrar el modal después de guardar
+        }
+      })
+      .catch((err) => {
+        if (err.response && err.response.data) {
+          showToast(err.response.data.ctx_contenido, 'error');
+        }
+      });
+
   };
 
   // Función para abrir el modal de detalles de tarea
@@ -140,9 +177,8 @@ export function Tareas() {
             onClick={() => handleViewDetails(task)}
           >
             <div
-              className={`card h-100 ${
-                document.modoOscuroActivo ? "card-dark-mode" : ""
-              }`}
+              className={`card h-100 ${document.modoOscuroActivo ? "card-dark-mode" : ""
+                }`}
             >
               <h5>{task.title}</h5>
               <p>{task.description}</p>
@@ -166,56 +202,6 @@ export function Tareas() {
           + Nueva Tarea
         </Boton>
       </div>
-      <div className="row">
-        <div className="col-lg-4 mb-4">
-          <Tarjeta className={`m-auto card-dark-mode h-100`}>
-            <div className="card-header">
-              <h1 className="txt-h1-css">Para hacer</h1>
-            </div>
-            <div className="card-body">
-              {tasks.filter((task) => !task.inProgress && !task.completed)
-                .length > 0 ? (
-                renderTasksByDate(
-                  tasks.filter((task) => !task.inProgress && !task.completed)
-                )
-              ) : (
-                <p>Sin tareas asignadas</p>
-              )}
-            </div>
-          </Tarjeta>
-        </div>
-        <div className="col-lg-4 mb-4">
-          <Tarjeta className={`m-auto card-dark-mode h-100`}>
-            <div className="card-header">
-              <h1 className="txt-h1-css">En proceso</h1>
-            </div>
-            <div className="card-body">
-              {tasks.filter((task) => task.inProgress && !task.completed)
-                .length > 0 ? (
-                renderTasksByDate(
-                  tasks.filter((task) => task.inProgress && !task.completed)
-                )
-              ) : (
-                <p>Sin tareas asignadas</p>
-              )}
-            </div>
-          </Tarjeta>
-        </div>
-        <div className="col-lg-4 mb-4">
-          <Tarjeta className={`m-auto card-dark-mode h-100`}>
-            <div className="card-header">
-              <h1 className="txt-h1-css">Hecho</h1>
-            </div>
-            <div className="card-body">
-              {tasks.filter((task) => task.completed).length > 0 ? (
-                renderTasksByDate(tasks.filter((task) => task.completed))
-              ) : (
-                <p>Sin tareas asignadas</p>
-              )}
-            </div>
-          </Tarjeta>
-        </div>
-      </div>
 
       {/* Modal para crear nueva tarea */}
       <TaskModal
@@ -223,6 +209,7 @@ export function Tareas() {
         handleClose={handleCloseModal}
         handleSubmit={handleSubmit}
         newTask={newTask}
+        tarea={tarea}
         handleChange={handleChange}
       />
 
@@ -235,6 +222,8 @@ export function Tareas() {
         handleDelete={handleDeleteTask}
         handleChange={handleSelectedTaskChange}
       />
+
+      <ToastContainer />
     </div>
   );
 }
