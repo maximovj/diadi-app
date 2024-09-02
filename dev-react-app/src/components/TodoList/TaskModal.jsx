@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { ThemeContext } from "../../context/ThemeContext";
 import { Boton } from "../../components/Boton";
 
-export function TaskModal({ show, handleClose, handleSubmit, newTask, handleChange }) {
+export function TaskModal({ show, handleClose, handleSubmit, tarea, handleChange }) {
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -16,65 +16,79 @@ export function TaskModal({ show, handleClose, handleSubmit, newTask, handleChan
           <div className="modal-body">
             <form>
               <div className="mb-3">
-                <label htmlFor="title" className="form-label">Título</label>
+                <label htmlFor="titulo" className="form-label">Título</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="title"
-                  name="title"
-                  value={newTask.title}
+                  id="titulo"
+                  name="titulo"
+                  value={tarea.titulo}
                   onChange={handleChange}
                   placeholder="Ingrese el título de la tarea"
                   required
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="description" className="form-label">Descripción</label>
+                <label htmlFor="descripcion" className="form-label">Descripción</label>
                 <textarea
                   className="form-control"
-                  id="description"
-                  name="description"
+                  id="descripcion"
+                  name="descripcion"
                   rows="3"
-                  value={newTask.description}
+                  value={tarea.descripcion}
                   onChange={handleChange}
                   placeholder="Ingrese la descripción de la tarea"
                   required
                 ></textarea>
               </div>
               <div className="mb-3">
-                <label htmlFor="importance" className="form-label">Importancia</label>
+                <label htmlFor="importancia" className="form-label">Importancia</label>
                 <select
                   className="form-select"
-                  id="importance"
-                  name="importance"
-                  value={newTask.importance}
+                  id="importancia"
+                  name="importancia"
+                  value={tarea.importancia}
                   onChange={handleChange}
                 >
-                  <option value="Baja">Baja</option>
-                  <option value="Normal">Normal</option>
-                  <option value="Alta">Alta</option>
+                  <option value="baja">Baja</option>
+                  <option value="normal">Normal</option>
+                  <option value="alta">Alta</option>
+                </select>
+              </div>
+              <div className="mb-3">
+                <label htmlFor="estado" className="form-label">Estado</label>
+                <select
+                  className="form-select"
+                  id="estado"
+                  name="estado"
+                  value={tarea.estado}
+                  onChange={handleChange}
+                >
+                  <option value="pendiente">Pendiente</option>
+                  <option value="en_progreso">En progreso</option>
+                  <option value="finalizado">Finalizado</option>
                 </select>
               </div>
               <div className="row mb-3">
                 <div className="col-md-6">
-                  <label htmlFor="startDate" className="form-label">Fecha de Inicio</label>
+                  <label htmlFor="fecha_inicio" className="form-label">Fecha de Inicio</label>
                   <input
                     type="date"
                     className="form-control"
-                    id="startDate"
-                    name="startDate"
-                    value={newTask.startDate}
+                    id="fecha_inicio"
+                    name="fecha_inicio"
+                    value={tarea.fecha_inicio}
                     onChange={handleChange}
                   />
                 </div>
                 <div className="col-md-6">
-                  <label htmlFor="deadline" className="form-label">Fecha Límite</label>
+                  <label htmlFor="fecha_limite" className="form-label">Fecha Límite</label>
                   <input
                     type="date"
                     className="form-control"
-                    id="deadline"
-                    name="deadline"
-                    value={newTask.deadline}
+                    id="fecha_limite"
+                    name="fecha_limite"
+                    value={tarea.fecha_limite}
                     onChange={handleChange}
                   />
                 </div>
@@ -83,7 +97,7 @@ export function TaskModal({ show, handleClose, handleSubmit, newTask, handleChan
           </div>
           <div className="modal-footer">
             <Boton tipo="secondary" onClick={handleClose}>Cancelar</Boton>
-            <Boton tipo="success" onClick={handleClose}>Guardar Tarea</Boton>
+            <Boton tipo="success" onClick={handleSubmit}>Guardar Tarea</Boton>
           </div>
         </div>
       </div>

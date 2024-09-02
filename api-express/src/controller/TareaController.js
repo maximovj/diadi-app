@@ -7,9 +7,13 @@ const Tarea = require('../models/tareaModel.js');
 // @see https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#simple-select-queries
 
 exports.listarTareas = async (req, res) => {
-    const usuario_id = req.query.usuario_id;
+    const usuario_id = req.session_payload.id;
     const tareas_15 = await Tarea.findAll({ where: { usuario_id: usuario_id }, limit: 15 });
-    res.status(200).json({ test: 'Endpoint /GET', tareas_15 });
+    res.status(200).json({
+        ctx_contenido: 'Tarea creado exitosamente.',
+        success: true,
+        data: tareas_15,
+    });
 };
 
 exports.verTarea = async (req, res) => {
@@ -25,15 +29,21 @@ exports.verTarea = async (req, res) => {
 
 exports.crearTarea = async (req, res) => {
     const { titulo, descripcion, estado, importancia, fecha_inicio, fecha_limite } = req.body;
+    const usuario_id = req.session_payload.id;
     const crear_tarea = await Tarea.create({
         titulo,
         descripcion,
         estado,
         importancia,
         fecha_inicio,
-        fecha_limite
+        fecha_limite,
+        usuario_id
     });
-    res.status(200).json({ test: 'Endpoint /GET', crear_tarea });
+    res.status(200).json({
+        ctx_contenido: 'Tarea creado exitosamente.',
+        success: true,
+        data: crear_tarea,
+    });
 };
 
 exports.modificarTarea = async (req, res) => {

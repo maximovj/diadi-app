@@ -1,9 +1,6 @@
 import { useAuth } from '../context/AuthContext';
-import Cookies from 'js-cookie';
-import SwitchModoOscuro from "./SwitchModoOscuro";
 
 export function NavBar() {
-  const sessionData = Cookies.get('session_diadiapp');
   const { isAuthenticated, logout } = useAuth();
 
   return (
@@ -50,17 +47,6 @@ export function NavBar() {
                 <>
                   <li className="nav-item dropdown">
                     <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Cuenta
-                    </a>
-                    <ul className="dropdown-menu">
-                      <li><a className="dropdown-item" href="#">Ver información</a></li>
-                      <li><a className="dropdown-item" href="#">Configurar</a></li>
-                      <li><hr className="dropdown-divider" /></li>
-                      <li><a className="dropdown-item" type='button' onClick={logout} >Cerrar sesión</a></li>
-                    </ul>
-                  </li>
-                  <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Tareas
                     </a>
                     <ul className="dropdown-menu">
@@ -79,10 +65,26 @@ export function NavBar() {
                   </li>
                 </>
               )}
+
             </ul>
             <div className="d-flex flex-column justify-content-end align-items-end">
-              <span className="txt-span-version-css">v1.0Alpha</span>
-              <SwitchModoOscuro></SwitchModoOscuro>
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                {/* Solo se muestra si el usuario a iniciado sesión  */}
+                {isAuthenticated && (
+                  <>
+                    <li className="nav-item dropdown dropstart">
+                      <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Cuenta
+                      </a>
+                      <ul className="dropdown-menu">
+                        <li><a className="dropdown-item" href="/cuenta/configurar">Configurar</a></li>
+                        <li><hr className="dropdown-divider" /></li>
+                        <li><a className="dropdown-item" type='button' onClick={logout}>Cerrar sesión</a></li>
+                      </ul>
+                    </li>
+                  </>
+                )}
+              </ul>
             </div>
           </div>
         </div>

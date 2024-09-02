@@ -42,7 +42,7 @@ export function Registrarme() {
       const response = await registrar({
         usuario: usernameTrimmed,
         contrasena: password.trim(),
-        correo: `${usernameTrimmed}@diadiapp.com`,
+        correo: `${usernameTrimmed}`,
       });
 
       const data = response.data;
