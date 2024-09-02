@@ -9,6 +9,10 @@ import { getBorderColor, groupTasksByDate } from "../utils/fnTaskList";
 import { ToastContainer, Bounce, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+// Modulo para manipular la fecha
+import moment from 'moment';
+import 'moment/locale/es-mx';
+
 // Servicios
 import { serviceTareaCrear, serviceTareaListar } from "../services/service_tarea";
 
@@ -108,6 +112,7 @@ export function Tareas() {
       .then((response) => {
         if (response.data?.success) {
           showToast(response.data.ctx_contenido, 'success');
+          setTareas([...tareas, response.data.data]);
           handleCloseModal(); // Cerrar el modal después de guardar
         }
       })
@@ -222,10 +227,16 @@ export function Tareas() {
               </div>
               <div className="card-body">
                 {itemTarea.descripcion}
+                <hr className="dropdown-divider" />
+                <h6>
+                  <span className="badge bg-success">{itemTarea.estado}</span> &nbsp;
+                  <span className="badge bg-warning">{itemTarea.importancia}</span>
+                </h6>
+                <div><small className="text-muted" style={{ fontSize: '9px' }}>{moment(itemTarea.fecha_inicio).format('LL')} - {moment(itemTarea.fecha_limite).format('LL')}</small></div>
               </div>
               <div className="card-footer">
                 <small className="text-muted">
-                  Creada: {itemTarea.createdAt}
+                  {moment(itemTarea.createdAt).fromNow()}
                 </small>
               </div>
             </Tarjeta>
