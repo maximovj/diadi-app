@@ -10,11 +10,12 @@ import { ToastContainer, Bounce, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // Servicios
-import { serviceTareaCrear } from "../services/service_tarea";
+import { serviceTareaCrear, serviceTareaListar } from "../services/service_tarea";
 
 export function Tareas() {
   const [currentUser, setCurrentUser] = useState("admin"); // Usuario estático por ahora
   const [tasks, setTasks] = useState([]);
+  const [tareas, setTareas] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
@@ -56,6 +57,14 @@ export function Tareas() {
   const fetchTasks = useCallback(() => {
     const storedTasks = JSON.parse(localStorage.getItem(currentUser)) || [];
     setTasks(storedTasks);
+
+    serviceTareaListar()
+      .then(response => {
+        if (response.data?.success) {
+          setTareas(response.data.data);
+        }
+      });
+
   }, [currentUser]);
 
   // Cargar las tareas al cargar el componente
@@ -201,6 +210,27 @@ export function Tareas() {
         <Boton tipo={`primary`} onClick={handleOpenModal}>
           + Nueva Tarea
         </Boton>
+      </div>
+
+      {/* Se muestran todas las tareas */}
+      <div className="row row-cols-1 row-cols-md-3 g-4 mt-2">
+        {tareas.map((itemTarea) => (
+          <div className="col" key={itemTarea.id}>
+            <Tarjeta className={`m-auto card-dark-mode h-100`}>
+              <div className="card-header">
+                <h6>{itemTarea.titulo}</h6>
+              </div>
+              <div className="card-body">
+                {itemTarea.descripcion}
+              </div>
+              <div className="card-footer">
+                <small className="text-muted">
+                  Creada: {itemTarea.createdAt}
+                </small>
+              </div>
+            </Tarjeta>
+          </div>
+        ))}
       </div>
 
       {/* Modal para crear nueva tarea */}

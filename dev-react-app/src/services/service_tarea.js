@@ -15,3 +15,7 @@ const serviceTarea = axios.create({
 export function serviceTareaCrear(data) {
     return serviceTarea.post('/tarea', data);
 }
+
+export function serviceTareaListar() {
+    return serviceTarea.get('/tarea/mio');
+}
