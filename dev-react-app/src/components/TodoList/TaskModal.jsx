@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { ThemeContext } from "../../context/ThemeContext";
 import { Boton } from "../../components/Boton";
 
-export function TaskModal({ show, handleClose, handleSubmit, tarea, newTask, handleChange }) {
+export function TaskModal({ show, handleClose, handleSubmit, tarea, handleChange }) {
   const { theme } = useContext(ThemeContext);
 
   return (
