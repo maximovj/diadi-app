@@ -77,7 +77,6 @@ export function NavBar() {
                         Cuenta
                       </a>
                       <ul className="dropdown-menu">
-                        <li><a className="dropdown-item" href="#">Ver información</a></li>
                         <li><a className="dropdown-item" href="/cuenta/configurar">Configurar</a></li>
                         <li><hr className="dropdown-divider" /></li>
                         <li><a className="dropdown-item" type='button' onClick={logout}>Cerrar sesión</a></li>

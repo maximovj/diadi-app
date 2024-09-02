@@ -74,7 +74,7 @@ export function ConfigurarCuenta() {
 
     return (<>
         <div className="container my-4">
-            <Tarjeta className={`card-dark-mode w-50 m-auto h-100 mb-4`}>
+            <Tarjeta className={`card-dark-mode w-50 h-100 mb-4`}>
                 <div className="card-header">
                     <h1 className="txt-h1-css">Cambiar contraseña</h1>
                 </div>
@@ -126,7 +126,7 @@ export function ConfigurarCuenta() {
                     </div>
                 </div>
             </Tarjeta>
-            <Tarjeta className={`card-dark-mode w-50 m-auto h-100 mb-4`}>
+            <Tarjeta className={`card-dark-mode w-50 h-100 mb-4`}>
                 <div className="card-header">
                     <h1 className="txt-h1-css">Configurar modo oscuro</h1>
                 </div>
@@ -137,7 +137,7 @@ export function ConfigurarCuenta() {
                     </div>
                 </div>
             </Tarjeta>
-            <Tarjeta className={`card-dark-mode w-50 m-auto h-100 mb-4`}>
+            <Tarjeta className={`card-dark-mode w-50 h-100 mb-4`}>
                 <div className="card-header">
                     <h1 className="txt-h1-css">Configurar cuenta</h1>
                 </div>
