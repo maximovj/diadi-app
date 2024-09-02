@@ -148,8 +148,8 @@ export function Tareas() {
         show={showModal}
         handleClose={handleCloseModal}
         handleSubmit={handleSubmit}
-        tarea={tarea}
         handleChange={handleChange}
+        tarea={tarea}
       />
 
       <ToastContainer />
