@@ -42,7 +42,7 @@ exports.crearTarea = async (req, res) => {
     res.status(200).json({
         ctx_contenido: 'Tarea creado exitosamente.',
         success: true,
-        data: null,
+        data: crear_tarea,
     });
 };
 
