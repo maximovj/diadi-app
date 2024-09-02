@@ -121,10 +121,8 @@ export function Tareas() {
         {tareas.map((itemTarea) => (
           <div className="col" key={itemTarea.id}>
             <Tarjeta className={`m-auto card-dark-mode h-100`}>
-              <div className="card-header">
-                <h6>{itemTarea.titulo}</h6>
-              </div>
               <div className="card-body">
+                <h5>{itemTarea.titulo}</h5>
                 {itemTarea.descripcion}
                 <hr className="dropdown-divider" />
                 <h6>
