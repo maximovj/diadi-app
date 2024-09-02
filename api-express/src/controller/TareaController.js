@@ -25,15 +25,21 @@ exports.verTarea = async (req, res) => {
 
 exports.crearTarea = async (req, res) => {
     const { titulo, descripcion, estado, importancia, fecha_inicio, fecha_limite } = req.body;
+    const usuario_id = req.session_payload.id;
     const crear_tarea = await Tarea.create({
         titulo,
         descripcion,
         estado,
         importancia,
         fecha_inicio,
-        fecha_limite
+        fecha_limite,
+        usuario_id
     });
-    res.status(200).json({ test: 'Endpoint /GET', crear_tarea });
+    res.status(200).json({
+        ctx_contenido: 'Tarea creado exitosamente.',
+        success: true,
+        data: null,
+    });
 };
 
 exports.modificarTarea = async (req, res) => {
