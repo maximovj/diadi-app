@@ -4,35 +4,13 @@ export function Pie() {
       <footer className="text-white py-5 mt-auto">
         <div className="container">
           <div className="row">
-            <div className="col-md-4">
-              <h3 className="texto-titulo-css">Preguntas frecuentes</h3>
-              <ul className="list-unstyled">
-                <li>
-                  <a href="#">¿Cómo usar el sistema?</a>
-                </li>
-                <li>
-                  <a href="#">¿Los datos son reales?</a>
-                </li>
-                <li>
-                  <a href="#">¿Las empresas son reales?</a>
-                </li>
-                <li>
-                  <a href="#">
-                    ¿Los archivos generados se almacenan en la nube/servidor?
-                  </a>
-                </li>
-                <li>
-                  <a href="#">¿Puedo insertar datos de prueba?</a>
-                </li>
-              </ul>
-            </div>
 
-            <div className="col-md-4">
+            <div className="col-md-6">
               <h3 className="texto-titulo-css">Acerca de</h3>
-              <p>Sin descripcion</p>
+              <p>Este portal es para organizar tareas y escribir diarios.</p>
             </div>
 
-            <div className="col-md-4">
+            <div className="col-md-6">
               <h3 className="texto-titulo-css">Colaboradores</h3>
               <ul className="list-unstyled">
                 <li>
