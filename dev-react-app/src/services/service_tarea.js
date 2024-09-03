@@ -19,3 +19,15 @@ export function serviceTareaCrear(data) {
 export function serviceTareaListar() {
     return serviceTarea.get('/tarea/mio');
 }
+
+export function serviceTareaVer(id) {
+    return serviceTarea.get(`/tarea/${id}`);
+}
+
+export function serviceTareaActualizar(tarea, id) {
+    return serviceTarea.put(`/tarea/${id}`, tarea);
+}
+
+export function serviceTareaEliminar(id) {
+    return serviceTarea.delete(`/tarea/${id}`);
+}

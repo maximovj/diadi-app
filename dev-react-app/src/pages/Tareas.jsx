@@ -121,10 +121,8 @@ export function Tareas() {
         {tareas.map((itemTarea) => (
           <div className="col" key={itemTarea.id}>
             <Tarjeta className={`m-auto card-dark-mode h-100`}>
-              <div className="card-header">
-                <h6>{itemTarea.titulo}</h6>
-              </div>
               <div className="card-body">
+                <h5>{itemTarea.titulo}</h5>
                 {itemTarea.descripcion}
                 <hr className="dropdown-divider" />
                 <h6>
@@ -134,9 +132,14 @@ export function Tareas() {
                 <div><small className="text-muted" style={{ fontSize: '9px' }}>{moment(itemTarea.fecha_inicio).format('LL')} - {moment(itemTarea.fecha_limite).format('LL')}</small></div>
               </div>
               <div className="card-footer">
-                <small className="text-muted">
-                  {moment(itemTarea.createdAt).fromNow()}
-                </small>
+                <div className="d-flex align-content-center justify-content-between">
+                  <small className="text-muted">
+                    {moment(itemTarea.createdAt).fromNow()}
+                  </small>
+                  <a href={`/tareas/editar?id=${itemTarea.id}`}>
+                    <i className="la la-pencil-square-o"></i>
+                  </a>
+                </div>
               </div>
             </Tarjeta>
           </div>

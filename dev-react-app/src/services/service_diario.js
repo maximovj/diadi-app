@@ -23,3 +23,15 @@ export const listarDiario = (usuario_id) => {
         }
     });
 }
+
+export const serviceDiarioVer = (id) => {
+    return serviceDiario.get(`/diario/${id}`);
+}
+
+export const serviceDiarioActualizar = (diario, id) => {
+    return serviceDiario.put(`/diario/${id}`, diario);
+}
+
+export const serviceDiarioEliminar = (id) => {
+    return serviceDiario.delete(`/diario/${id}`);
+}

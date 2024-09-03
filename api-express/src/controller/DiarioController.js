@@ -21,10 +21,10 @@ exports.verDiario = async (req, res) => {
         const diario = await Diario.findByPk(req.params.id);
 
         if (!diario) {
-            return res.status(404).json({ err: 'Diario no encontrado en el sistema.' });
+            return res.status(404).json({ ctx_contenido: 'Diario no encontrado en el sistema.', success: false, data: null });
         }
 
-        return res.status(200).json(diario);
+        return res.status(200).json({ ctx_contenido: 'Diario creado exitosamente.', success: true, data: diario });
     } catch (err) {
         return res.status(500).json({ err: err.message });
     }
@@ -50,10 +50,10 @@ exports.modificarDiario = async (req, res) => {
             return res.status(404).json({ err: 'Diario no encontrado en el sistema.' });
         }
 
-        await diario.update({ titulo, contenido });
-        return res.status(200).json({ msg_title: 'Diario', msg_content: 'Diario modificado exitosamente.' });
+        const actualizar_diario = await diario.update({ titulo, contenido });
+        return res.status(200).json({ ctx_contenido: 'Diario modificado exitosamente.', success: true, data: actualizar_diario });
     } catch (err) {
-        return res.status(500).json({ err: err.message });
+        return res.status(500).json({ ctx_contenido: 'Diario no actualizado en el sistema.', success: false, data: null });
     }
 }
 
@@ -62,12 +62,12 @@ exports.eliminarDiario = async (req, res) => {
         const diario = await Diario.findByPk(req.params.id);
 
         if (!diario) {
-            return res.status(404).json({ err: 'Diario no encontrado en el sistema.' });
+            return res.status(404).json({ ctx_contenido: 'Diario no encontrado en el sistema.', success: false, data: null });
         }
 
         await diario.destroy();
-        return res.status(200).json({ msg_title: 'Diario', msg_content: 'Diario eliminado exitosamente.' });
+        return res.status(200).json({ ctx_contenido: 'Diario eliminado exitosamente.', success: true, data: diario });
     } catch (err) {
-        return res.status(500).json({ err: err.message });
+        return res.status(500).json({ ctx_contenido: err.message, success: false, data: null });
     }
 }

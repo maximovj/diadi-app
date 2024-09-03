@@ -120,9 +120,14 @@ export function Diarios() {
                   <div><small className="text-muted" style={{ fontSize: '9px' }}>{moment(diario.createdAt).format('LL')}</small></div>
                 </div>
                 <div className="card-footer">
-                  <small className="text-muted">
-                    {moment(diario.createdAt).fromNow()}
-                  </small>
+                  <div className="d-flex justify-content-between align-content-center align-items-center">
+                    <small className="text-muted">
+                      {moment(diario.createdAt).fromNow()}
+                    </small>
+                    <a href={'/diario/editar?id=' + diario.id} role="button">
+                      <i className="la la-pencil-square-o" ></i>
+                    </a>
+                  </div>
                 </div>
               </Tarjeta>
             </div>
