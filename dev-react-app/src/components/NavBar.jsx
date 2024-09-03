@@ -1,4 +1,5 @@
 import { useAuth } from '../context/AuthContext';
+import { Link } from 'react-router-dom'; // Asegúrate de importar Link
 
 export function NavBar() {
   const { isAuthenticated, logout } = useAuth();
@@ -10,15 +11,15 @@ export function NavBar() {
         style={{ backgroundColor: "#363636" }}
       >
         <div className="container-fluid">
-          <a className="navbar-brand" href="/">
+          <Link className="navbar-brand" to="/">
             DiaDiApp
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
             data-bs-toggle="offcanvas"
             data-bs-target="#offcanvasExample"
-            aria-controls="offcanvasExampleLabel"
+            aria-controls="offcanvasExample"
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
@@ -30,56 +31,55 @@ export function NavBar() {
               {!isAuthenticated && (
                 <>
                   <li className="nav-item">
-                    <a className="nav-link" aria-current="page" href="/acceder">
+                    <Link className="nav-link" to="/acceder">
                       Acceder
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" aria-current="page" href="/registrarme">
+                    <Link className="nav-link" to="/registrarme">
                       Registrarme
-                    </a>
+                    </Link>
                   </li>
                 </>
               )}
 
-              {/* Solo se muestra si el usuario a iniciado sesión  */}
+              {/* Solo se muestra si el usuario ha iniciado sesión  */}
               {isAuthenticated && (
                 <>
                   <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Tareas
-                    </a>
+                    </Link>
                     <ul className="dropdown-menu">
-                      <li><a className="dropdown-item" href="/tareas">Panel</a></li>
-                      <li><a className="dropdown-item" href="#">Crear una tarea</a></li>
+                      <li><Link className="dropdown-item" to="/tareas">Panel</Link></li>
+                      <li><Link className="dropdown-item" to="#">Crear una tarea</Link></li>
                     </ul>
                   </li>
                   <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Diarios
-                    </a>
+                    </Link>
                     <ul className="dropdown-menu">
-                      <li><a className="dropdown-item" href="/diarios">Panel</a></li>
-                      <li><a className="dropdown-item" href="#">Crear una tarea</a></li>
+                      <li><Link className="dropdown-item" to="/diarios">Panel</Link></li>
+                      <li><Link className="dropdown-item" to="#">Crear un diario</Link></li>
                     </ul>
                   </li>
                 </>
               )}
-
             </ul>
             <div className="d-flex flex-column justify-content-end align-items-end">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                {/* Solo se muestra si el usuario a iniciado sesión  */}
+                {/* Solo se muestra si el usuario ha iniciado sesión  */}
                 {isAuthenticated && (
                   <>
                     <li className="nav-item dropdown dropstart">
-                      <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Cuenta
-                      </a>
+                      </Link>
                       <ul className="dropdown-menu">
-                        <li><a className="dropdown-item" href="/cuenta/configurar">Configurar</a></li>
+                        <li><Link className="dropdown-item" to="/cuenta/configurar">Configurar</Link></li>
                         <li><hr className="dropdown-divider" /></li>
-                        <li><a className="dropdown-item" type='button' onClick={logout}>Cerrar sesión</a></li>
+                        <li><button className="dropdown-item" type='button' onClick={logout}>Cerrar sesión</button></li>
                       </ul>
                     </li>
                   </>
@@ -99,10 +99,9 @@ export function NavBar() {
       >
         <div className="offcanvas-header">
           <h5 className="offcanvas-title" id="offcanvasExampleLabel">
-            <a href="/" style={{ textDecoration: 'none' }}>
-              <img src="/diadiapp_60x60.png" alt="" width="32" height="32" class="d-inline-block align-text-top" />
-              &nbsp;DiaDiApp
-            </a>
+            <Link to="/" style={{ textDecoration: 'none' }}>
+              <img src="/diadiapp_60x60.png" alt="" width="32" height="32" className="d-inline-block align-text-top" />&nbsp;DiaDiApp
+            </Link>
           </h5>
           <button
             type="button"
@@ -119,17 +118,17 @@ export function NavBar() {
                   {/* Solo se muestra cuando el usuario no está autenticado  */}
                   {!isAuthenticated && (
                     <>
-                      <a className="nav-link" href="/acceder">Acceder</a>
-                      <a className="nav-link" href="/registrarme">Registrarme</a>
+                      <Link className="nav-link" to="/acceder">Acceder</Link>
+                      <Link className="nav-link" to="/registrarme">Registrarme</Link>
                     </>
                   )}
 
-                  {/* Solo se muestra si el usuario a iniciado sesión  */}
+                  {/* Solo se muestra si el usuario ha iniciado sesión  */}
                   {isAuthenticated && (
                     <>
-                      <a className="nav-link" href="/tareas">Tareas</a>
-                      <a className="nav-link" href="/diarios">Diarios</a>
-                      <a className="nav-link" href="/cuenta/configurar">Cuenta</a>
+                      <Link className="nav-link" to="/tareas">Tareas</Link>
+                      <Link className="nav-link" to="/diarios">Diarios</Link>
+                      <Link className="nav-link" to="/cuenta/configurar">Cuenta</Link>
                     </>
                   )}
                 </div>
