@@ -1,5 +1,6 @@
 // Hooks react
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 
 // Contexto 
 import { useAuth } from '../../context/AuthContext';
@@ -12,6 +13,7 @@ import { Contenedor } from "../../components/Contenedor";
 
 // Servicios 
 import { serviceDiarioCrear, serviceDiarioListar } from "../../services/service_diario";
+import { Rutas } from '../../routes/routes';
 
 // Modulo de notificación toast
 import { ToastContainer, Bounce, toast } from 'react-toastify';
@@ -121,9 +123,14 @@ export function Diarios() {
                       <small className="text-muted">
                         {moment(diario.createdAt).fromNow()}
                       </small>
-                      <a href={'/diario/editar?id=' + diario.id} role="button">
-                        <i className="la la-pencil-square-o" ></i>
-                      </a>
+                      <Link
+                        to={{
+                          pathname: `${Rutas.DIARIOS_EDITAR}`,
+                          search: `?id=${diario.id}`
+                        }}
+                      >
+                        <i className="la la-pencil-square-o"></i>
+                      </Link>
                     </div>
                   </div>
                 </Tarjeta>
