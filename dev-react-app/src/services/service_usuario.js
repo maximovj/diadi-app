@@ -12,10 +12,12 @@ const serviceUsuario = axios.create({
     }
 });
 
+// Servicio para actualizar un usuario
 export function serviceUsuarioActualizar(data) {
     return serviceUsuario.put('/usuario/actualizar-contrasena', data);
 }
 
+// Servicio para verificar un usuario
 export function serviceUsuarioVerificar() {
     return serviceUsuario.post('/usuario/verificar');
 }

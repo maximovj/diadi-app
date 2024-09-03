@@ -12,22 +12,27 @@ const serviceDiario = axios.create({
     }
 });
 
-export const crearDiario = (diario) => {
+// Servicio para crear un diario
+export const serviceDiarioCrear = (diario) => {
     return serviceDiario.post('/diario', diario);
 }
 
-export const listarDiario = () => {
+// Servicio para listar 15 diarios
+export const serviceDiarioListar = () => {
     return serviceDiario.get('/diario/mio');
 }
 
+// Servicio para ver un diario
 export const serviceDiarioVer = (id) => {
     return serviceDiario.get(`/diario/${id}`);
 }
 
+// Servicio para actualizar un diario
 export const serviceDiarioActualizar = (diario, id) => {
     return serviceDiario.put(`/diario/${id}`, diario);
 }
 
+// Servicio para eliminar un diario
 export const serviceDiarioEliminar = (id) => {
     return serviceDiario.delete(`/diario/${id}`);
 }

@@ -12,7 +12,6 @@ const serviceAuth = axios.create({
     }
 });
 
-
 // Servicio para registrarme en el sistema
 export const registrar = (usuario) => {
     return serviceAuth.post('/auth/registrar', usuario);

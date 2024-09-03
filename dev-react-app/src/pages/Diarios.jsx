@@ -7,7 +7,7 @@ import { useAuth } from '../context/AuthContext';
 // Componentes
 import { Tarjeta } from "../components/Tarjeta";
 import { Boton } from "../components/Boton";
-import { crearDiario, listarDiario } from "../services/service_diario";
+import { serviceDiarioCrear, serviceDiarioListar } from "../services/service_diario";
 import { ModalCrear } from "../components/diario/ModalCrear";
 
 // Modulo de notificación toast
@@ -27,7 +27,7 @@ export function Diarios() {
   });
 
   useEffect(() => {
-    listarDiario()
+    serviceDiarioListar()
       .then(response => {
         if (response.data?.success) {
           setDiarios(response.data.data);
@@ -68,7 +68,7 @@ export function Diarios() {
     }
 
     try {
-      const response = await crearDiario(diario);
+      const response = await serviceDiarioCrear(diario);
 
       if (response.data) {
         setDiarios([...diarios, response.data.data]);
