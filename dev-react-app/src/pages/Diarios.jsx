@@ -18,15 +18,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import moment from "moment";
 
 export function Diarios() {
-  // Crear estados
+  const { logout } = useAuth();
   const [showModal, setShowModal] = useState(false);
   const [diarios, setDiarios] = useState([]);
   const [diario, setDiario] = useState({
     titulo: '',
     contenido: '',
   });
-
-  const { logout } = useAuth();
 
   useEffect(() => {
     const fetchDiarios = async () => {
@@ -42,7 +40,7 @@ export function Diarios() {
     }
 
     fetchDiarios();
-  }, []);
+  }, [logout]);
 
   // Mostrar notificaciones de toast
   const showToast = (message, type) => {

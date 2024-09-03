@@ -16,6 +16,9 @@ import 'react-toastify/dist/ReactToastify.css';
 // Modulo de alert usando sweetalert2
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+
+// Contexto 
+import { useAuth } from '../../context/AuthContext';
 const mySwal = withReactContent(Swal);
 
 // Hooks personalizados
@@ -23,9 +26,9 @@ const useQuery = () => {
     return new URLSearchParams(useLocation().search);
 }
 
-
 // Componente funcional de ReactJS
 export function EditarDiario() {
+    const { logout } = useAuth();
     const [diario, setDiario] = useState({});
     const navigate = useNavigate();
     const query = useQuery();
@@ -38,9 +41,11 @@ export function EditarDiario() {
                     setDiario(response.data.data);
                 }
             })
-            .catch((err) => console.log(err))
+            .catch((err) => {
+                logout();
+            })
 
-    }, [id]);
+    }, [id, logout]);
 
     const showToast = (message, type) => {
         toast[type](message, {

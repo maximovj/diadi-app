@@ -15,3 +15,7 @@ const serviceUsuario = axios.create({
 export function serviceUsuarioActualizar(data) {
     return serviceUsuario.put('/usuario/actualizar-contrasena', data);
 }
+
+export function serviceUsuarioVerificar() {
+    return serviceUsuario.post('/usuario/verificar');
+}
