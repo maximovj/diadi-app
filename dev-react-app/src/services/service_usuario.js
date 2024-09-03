@@ -21,3 +21,8 @@ export function serviceUsuarioActualizar(data) {
 export function serviceUsuarioVerificar() {
     return serviceUsuario.post('/usuario/verificar');
 }
+
+// Servicio para eliminar un usuario 
+export function servicioUsuarioEliminar() {
+    return serviceUsuario.delete('usuario/eliminar');
+}
