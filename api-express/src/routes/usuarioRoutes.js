@@ -6,7 +6,7 @@ const {
     listarUsuarios,
     modificarUsuario,
     actualizarContrasenaUsuario,
-    verUsuario } = require('../controller/usuarioController.js');
+    verUsuario } = require('../controller/_usuarioController.js');
 
 // @see https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#limits-and-pagination
 // @see https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#simple-select-queries

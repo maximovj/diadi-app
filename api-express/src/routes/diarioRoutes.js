@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const diarioController = require('../controller/diarioController');
+const diarioController = require('../controller/_diarioController');
 
 // Esta ruta es para listar todos los diarios registrados
 router.get('/diario/mio', diarioController.listarDiario);

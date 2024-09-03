@@ -5,7 +5,7 @@ const {
     eliminarTarea,
     listarTareas,
     modificarTarea,
-    verTarea } = require('../controller/tareaController.js');
+    verTarea } = require('../controller/_tareaController.js');
 
 // Esta ruta es para listar todas las tareas registrados
 routers.get('/tarea/mio', listarTareas);
