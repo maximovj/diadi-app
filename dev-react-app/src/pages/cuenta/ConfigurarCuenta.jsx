@@ -5,6 +5,7 @@ import { useState } from "react";
 // Componentes
 import { Tarjeta } from "../../components/Tarjeta";
 import { Boton } from "../../components/Boton";
+import { Contenedor } from "../../components/Contenedor";
 import SwitchModoOscuro from "../../components/SwitchModoOscuro";
 
 // Modulo de notificaciones toast
@@ -71,7 +72,7 @@ export function ConfigurarCuenta() {
     }
 
     return (<>
-        <div className="container my-4">
+        <Contenedor>
             <Tarjeta className={`card-dark-mode w-50 h-100 mb-4`}>
                 <div className="card-header">
                     <h1 className="txt-h1-css">Cambiar contraseña</h1>
@@ -151,7 +152,7 @@ export function ConfigurarCuenta() {
                     </div>
                 </div>
             </Tarjeta>
-        </div>
+        </Contenedor>
         <ToastContainer />
     </>);
 }

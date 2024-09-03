@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 // Componentes
 import { Boton } from '../../components/Boton';
 import { Tarjeta } from "../../components/Tarjeta";
+import { Contenedor } from '../../components/Contenedor';
 
 // Servicios
 import { serviceDiarioVer, serviceDiarioActualizar, serviceDiarioEliminar } from '../../services/service_diario';
@@ -112,7 +113,7 @@ export function EditarDiario() {
     }
 
     return (<>
-        <div className="container h-100 d-flex flex-column align-items-start">
+        <Contenedor>
             <Tarjeta className="w-50 h-100">
                 <div className="card-body">
                     <div className="mb-3">
@@ -145,7 +146,7 @@ export function EditarDiario() {
                     </div>
                 </div>
             </Tarjeta>
-        </div>
+        </Contenedor>
         <ToastContainer />
     </>);
 }

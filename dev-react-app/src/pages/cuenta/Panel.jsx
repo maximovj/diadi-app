@@ -1,9 +1,11 @@
+import { Contenedor } from "../../components/Contenedor";
+
 export function Panel() {
     return (<>
-        <div className="container my-4">
+        <Contenedor>
             <h1>Bienvenido a DiadiApp</h1>
             <h6>Este es el panel principal</h6>
-        </div>
+        </Contenedor>
         <div></div>
     </>);
 }

@@ -7,8 +7,11 @@ import { useAuth } from '../../context/AuthContext';
 // Componentes
 import { Tarjeta } from "../../components/Tarjeta";
 import { Boton } from "../../components/Boton";
-import { serviceDiarioCrear, serviceDiarioListar } from "../../services/service_diario";
 import { ModalCrear } from "../../components/diario/ModalCrear";
+import { Contenedor } from "../../components/Contenedor";
+
+// Servicios 
+import { serviceDiarioCrear, serviceDiarioListar } from "../../services/service_diario";
 
 // Modulo de notificación toast
 import { ToastContainer, Bounce, toast } from 'react-toastify';
@@ -95,38 +98,40 @@ export function Diarios() {
 
   return (
     <>
-      <div className="container my-4">
-        <div className="d-flex justify-content-between align-items-center">
-          <h2>Lista de diarios</h2>
-          <Boton tipo={`primary`} onClick={handleOnOpenModal}>
-            + Nuevo diario
-          </Boton>
-        </div>
-        <div className="row row-cols-1 row-cols-md-3 g-4 mt-2">
-          {diarios.map((diario, index) => (
-            <div className="col" key={index}>
-              <Tarjeta className={`m-auto card-dark-mode h-100`}>
-                <div className="card-body">
-                  <h5 className="card-title">{diario.titulo}</h5>
-                  <p className="card-text">{diario.contenido}</p>
-                  <hr className="dropdown-divider" />
-                  <div><small className="text-muted" style={{ fontSize: '9px' }}>{moment(diario.createdAt).format('LL')}</small></div>
-                </div>
-                <div className="card-footer">
-                  <div className="d-flex justify-content-between align-content-center align-items-center">
-                    <small className="text-muted">
-                      {moment(diario.createdAt).fromNow()}
-                    </small>
-                    <a href={'/diario/editar?id=' + diario.id} role="button">
-                      <i className="la la-pencil-square-o" ></i>
-                    </a>
+      <Contenedor alignItems="align-items-stretch">
+        <div>
+          <div className="d-flex justify-content-between align-items-center">
+            <h2>Lista de diarios</h2>
+            <Boton tipo={`primary`} onClick={handleOnOpenModal}>
+              + Nuevo diario
+            </Boton>
+          </div>
+          <div className="row row-cols-1 row-cols-md-3 g-4 mt-2">
+            {diarios.map((diario, index) => (
+              <div className="col" key={index}>
+                <Tarjeta className={`m-auto card-dark-mode h-100`}>
+                  <div className="card-body">
+                    <h5 className="card-title">{diario.titulo}</h5>
+                    <p className="card-text">{diario.contenido}</p>
+                    <hr className="dropdown-divider" />
+                    <div><small className="text-muted" style={{ fontSize: '9px' }}>{moment(diario.createdAt).format('LL')}</small></div>
                   </div>
-                </div>
-              </Tarjeta>
-            </div>
-          ))}
+                  <div className="card-footer">
+                    <div className="d-flex justify-content-between align-content-center align-items-center">
+                      <small className="text-muted">
+                        {moment(diario.createdAt).fromNow()}
+                      </small>
+                      <a href={'/diario/editar?id=' + diario.id} role="button">
+                        <i className="la la-pencil-square-o" ></i>
+                      </a>
+                    </div>
+                  </div>
+                </Tarjeta>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      </Contenedor>
 
       <ModalCrear
         show={showModal}

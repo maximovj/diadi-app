@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import { TaskModal } from "../../components/TodoList/TaskModal";
 import { Tarjeta } from "../../components/Tarjeta";
 import { Boton } from "../../components/Boton";
+import { Contenedor } from "../../components/Contenedor";
 
 // Modulo de notificaciones toast
 import { ToastContainer, Bounce, toast } from 'react-toastify';
@@ -114,7 +115,7 @@ export function Tareas() {
 
   // Componente principal de la página de tareas
   return (
-    <div className="container">
+    <Contenedor alignItems="align-items-stretch">
       <div className="d-flex justify-content-between align-items-center">
         <h2>Lista de Tareas</h2>
         <Boton tipo={`primary`} onClick={handleOpenModal}>
@@ -162,6 +163,6 @@ export function Tareas() {
       />
 
       <ToastContainer />
-    </div>
+    </Contenedor>
   );
 }
