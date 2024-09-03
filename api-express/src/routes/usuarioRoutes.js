@@ -11,6 +11,10 @@ const {
 // @see https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#limits-and-pagination
 // @see https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#simple-select-queries
 
+
+// Esta ruta es para validar un usuario autenticado
+router.post('/usuario/verificar',);
+
 // Esta ruta es para listar todos los usuarios registrados
 router.get('/usuario', listarUsuarios);
 
