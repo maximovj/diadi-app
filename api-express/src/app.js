@@ -33,6 +33,7 @@ app.use('/api/v1', jwtConfig, rutas_usuario);
 app.use('/api/v1', jwtConfig, rutas_diario);
 app.use('/api/v1', jwtConfig, rutas_tarea);
 
+// Sincronizar la base de datos
 sequelizeConfig.sync({ alter: false, force: false });
 
 module.exports = app;

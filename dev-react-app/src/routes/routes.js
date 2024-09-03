@@ -1,18 +1,18 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Acceder } from '../pages/Acceder'
-import { Registrarme } from '../pages/Registrarme'
-import { Home } from '../pages/Home'
-import { Diarios } from '../pages/Diarios'
-import { Tareas } from '../pages/Tareas'
-import { NavBar } from '../components/NavBar'
-import { Pie } from '../components/Pie'
-import { Panel } from '../pages/Panel'
-import { RutaProtegida } from '../components/RutaProtegida'
-import { RutaPublica } from '../components/RutaPublica'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { RutaProtegida } from '../components/RutaProtegida';
+import { RutaPublica } from '../components/RutaPublica';
+import { Acceder } from '../pages/auth/Acceder';
+import { Registrarme } from '../pages/auth/Registrarme';
+import { Inicio } from '../pages/Inicio';
+import { NavBar } from '../components/NavBar';
+import { Pie } from '../components/Pie';
 import { AuthProvider } from '../context/AuthContext';
+import { Panel } from '../pages/cuenta/Panel';
 import { ConfigurarCuenta } from '../pages/cuenta/ConfigurarCuenta';
-import { EditarDiario } from '../pages/diario/EditarDiario'
-import { EditarTarea } from '../pages/tareas/EditarTarea'
+import { EditarDiario } from '../pages/diario/EditarDiario';
+import { Diarios } from '../pages/diario/Diarios';
+import { Tareas } from '../pages/tareas/Tareas';
+import { EditarTarea } from '../pages/tareas/EditarTarea';
 
 export function RoutePage() {
     return (
@@ -22,8 +22,8 @@ export function RoutePage() {
                 <div className='container container-css my-4'>
                     <Routes>
                         {/* Rutas públicas */}
-                        <Route path="/" element={<RutaPublica><Home /></RutaPublica>} />
-                        <Route path="/inicio" element={<RutaPublica><Home /></RutaPublica>} />
+                        <Route path="/" element={<RutaPublica><Inicio /></RutaPublica>} />
+                        <Route path="/inicio" element={<RutaPublica><Inicio /></RutaPublica>} />
                         <Route path="/acceder" element={<RutaPublica><Acceder /></RutaPublica>} />
                         <Route path="/registrarme" element={<RutaPublica><Registrarme /></RutaPublica>} />
 

@@ -2,9 +2,10 @@
 import { useCallback, useEffect, useState } from "react";
 
 // Componentes
-import { TaskModal } from "../components/TodoList/TaskModal";
-import { Tarjeta } from "../components/Tarjeta";
-import { Boton } from "../components/Boton";
+import { TaskModal } from "../../components/TodoList/TaskModal";
+import { Tarjeta } from "../../components/Tarjeta";
+import { Boton } from "../../components/Boton";
+import { Contenedor } from "../../components/Contenedor";
 
 // Modulo de notificaciones toast
 import { ToastContainer, Bounce, toast } from 'react-toastify';
@@ -15,10 +16,10 @@ import moment from 'moment';
 import 'moment/locale/es-mx';
 
 // Servicios
-import { serviceTareaCrear, serviceTareaListar } from "../services/service_tarea";
+import { serviceTareaCrear, serviceTareaListar } from "../../services/service_tarea";
 
 // Contexto 
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 
 export function Tareas() {
   const { logout } = useAuth();
@@ -106,19 +107,17 @@ export function Tareas() {
           handleCloseModal(); // Cerrar el modal después de guardar
         }
       })
-      .catch((err) => {
-        if (err.response && err.response.data) {
-          showToast(err.response.data.ctx_contenido, 'error');
-        }
+      .catch(() => {
+        logout();
       });
 
   };
 
   // Componente principal de la página de tareas
   return (
-    <div className="container">
+    <Contenedor alignItems="align-items-stretch">
       <div className="d-flex justify-content-between align-items-center">
-        <h2>Lista de Tareas</h2>
+        <h2>Lista de tareas</h2>
         <Boton tipo={`primary`} onClick={handleOpenModal}>
           + Nueva Tarea
         </Boton>
@@ -164,6 +163,6 @@ export function Tareas() {
       />
 
       <ToastContainer />
-    </div>
+    </Contenedor>
   );
 }

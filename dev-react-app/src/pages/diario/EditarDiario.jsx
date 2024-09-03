@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 // Componentes
 import { Boton } from '../../components/Boton';
 import { Tarjeta } from "../../components/Tarjeta";
+import { Contenedor } from '../../components/Contenedor';
 
 // Servicios
 import { serviceDiarioVer, serviceDiarioActualizar, serviceDiarioEliminar } from '../../services/service_diario';
@@ -41,7 +42,7 @@ export function EditarDiario() {
                     setDiario(response.data.data);
                 }
             })
-            .catch((err) => {
+            .catch(() => {
                 logout();
             })
 
@@ -79,7 +80,9 @@ export function EditarDiario() {
                     showToast(response.data.ctx_contenido, 'success');
                 }
             })
-            .catch((err) => console.log(err));
+            .catch(() => {
+                logout();
+            });
     }
 
     const handleBtnEliminar = () => {
@@ -98,18 +101,19 @@ export function EditarDiario() {
                         if (response.data?.success) {
                             showToast(response.data.ctx_contenido, 'success');
                             setTimeout(() => {
-                                //window.location.href = "/diarios";
                                 navigate('/diarios');
                             }, 1000);
                         }
                     })
-                    .catch(err => console.log(err));
+                    .catch(() => {
+                        logout();
+                    });
             }
         });
     }
 
     return (<>
-        <div className="container h-100 d-flex flex-column align-items-start">
+        <Contenedor>
             <Tarjeta className="w-50 h-100">
                 <div className="card-body">
                     <div className="mb-3">
@@ -142,7 +146,7 @@ export function EditarDiario() {
                     </div>
                 </div>
             </Tarjeta>
-        </div>
+        </Contenedor>
         <ToastContainer />
     </>);
 }

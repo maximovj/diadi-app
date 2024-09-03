@@ -2,6 +2,8 @@ const { DataTypes } = require('sequelize');
 const sequelizeConfig = require('../config/sequelizeConfig.js');
 const usuario = require('./usuarioModel');
 
+// Configura un modelo asociado a una tabla 
+// de la base de datos  
 const tarea = sequelizeConfig.define('tarea', {
     id: {
         type: DataTypes.INTEGER,
@@ -46,7 +48,7 @@ const tarea = sequelizeConfig.define('tarea', {
     updatedAt: true,
 });
 
-// Definir la relación: Un Usuario tiene muchos Diaro
+// Definir la relación: Un Usuario tiene muchos Tarea
 usuario.hasMany(tarea, { foreignKey: 'usuario_id', onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 tarea.belongsTo(usuario, { foreignKey: 'usuario_id' });
 

@@ -1,25 +1,14 @@
-// Hooks ReactJS
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Boton } from "../../components/Boton";
+import { Tarjeta } from "../../components/Tarjeta";
+import { registrar } from "../../services/service_auth";
 
-// Componentes
-import { Tarjeta } from "../components/Tarjeta";
-import { Boton } from "../components/Boton";
-
-// Hooks para Notificaciones
 import { ToastContainer, Bounce, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// Servicios
-import { acceder } from '../services/service_auth';
-import { useAuth } from '../context/AuthContext';
-
-
-export function Acceder({ onLogin }) {
-  const navigate = useNavigate();
-  const [userName, setEmail] = useState("");
+export function Registrarme() {
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = useAuth();
 
   const showToast = (message, type) => {
     toast[type](message, {
@@ -35,8 +24,8 @@ export function Acceder({ onLogin }) {
     });
   };
 
-  const handleLogin = async () => {
-    const usernameTrimmed = userName.trim();
+  const handleRegister = async () => {
+    const usernameTrimmed = username.trim();
     const usernameRegex = /^[a-zA-Z0-9_-]+$/;
 
     if (!usernameTrimmed || !password.trim()) {
@@ -50,44 +39,38 @@ export function Acceder({ onLogin }) {
     }
 
     try {
-
-      const response = await acceder({
+      const response = await registrar({
         usuario: usernameTrimmed,
         contrasena: password.trim(),
+        correo: `${usernameTrimmed}`,
       });
 
-      const response_data = response.data;
-
-      if (response_data?.success) {
-        setEmail('');
+      if (response.data?.success) {
+        const response_data = response.data;
         setPassword('');
-        login(response_data.data);
+        setUsername('');
         showToast(response_data.ctx_contenido, 'success');
-        setTimeout(() => {
-          navigate("/panel");
-        }, 1600);
       }
 
     } catch (err) {
       showToast(err.response.data.ctx_contenido, 'error');
     }
-
   };
 
   return (
     <div className="d-flex vh-100">
       <Tarjeta className={`m-auto p-4 card-dark-mode`}>
-        <h2 className="mb-4">Acceder</h2>
+        <h2 className="mb-4">Registrarme</h2>
         <div className="mb-3">
-          <label htmlFor="email" className="form-label">
+          <label htmlFor="username" className="form-label">
             Nombre de usuario
           </label>
           <input
             type="text"
             className="form-control"
-            id="email"
-            value={userName}
-            onChange={(e) => setEmail(e.target.value)}
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
         </div>
         <div className="mb-3">
@@ -104,7 +87,9 @@ export function Acceder({ onLogin }) {
         </div>
         <div className="d-flex justify-content-between align-items-center">
           <div></div>
-          <Boton tipo="success" onClick={handleLogin}>Acceder</Boton>
+          <Boton tipo="success" onClick={handleRegister}>
+            Registrarme
+          </Boton>
         </div>
       </Tarjeta>
       <ToastContainer />

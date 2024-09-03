@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 // Componentes 
 import { Tarjeta } from "../../components/Tarjeta";
 import { Boton } from "../../components/Boton";
+import { Contenedor } from "../../components/Contenedor";
 
 // Modulo para notificaciones con toastify
 import { toast, Bounce, ToastContainer } from 'react-toastify';
@@ -64,9 +65,7 @@ export function EditarTarea() {
                     setTarea(response.data.data);
                 }
             })
-            .catch(err => {
-                logout();
-            });
+            .catch(() => { logout(); });
     }, [id, logout]);
 
     const handleBtnActualizar = () => {
@@ -76,7 +75,7 @@ export function EditarTarea() {
                     showToast(response.data.ctx_contenido, 'success');
                 }
             })
-            .catch(err => console.log(err));
+            .catch(() => { logout(); });
     }
 
     const handleBtnEliminar = () => {
@@ -94,16 +93,18 @@ export function EditarTarea() {
                     .then(response => {
                         if (response.data?.success) {
                             showToast(response.data.ctx_contenido, 'success');
-                            setTimeout(() => navigate('/tareas'), 1000);
+                            setTimeout(() => {
+                                navigate('/tareas')
+                            }, 1000);
                         }
                     })
-                    .catch(err => console.log(err));
+                    .catch(() => { logout(); });
             }
         });
     }
 
     return (<>
-        <div className="container mt-2 h-100 d-flex flex-column align-items-start">
+        <Contenedor>
             <Tarjeta className={'w-50 h-100'}>
                 <div className="card-body">
                     <div className="mb-4">
@@ -137,8 +138,7 @@ export function EditarTarea() {
                             id="estado"
                             name="estado"
                             onChange={handleOnChangeFieldInput}
-                            value={tarea.estado}
-                        >
+                            value={tarea.estado}>
                             <option value="pendiente">Pendiente</option>
                             <option value="en_progreso">En progreso</option>
                             <option value="finalizado">Finalizado</option>
@@ -189,7 +189,7 @@ export function EditarTarea() {
                     </div>
                 </div>
             </Tarjeta>
-        </div>
+        </Contenedor>
         <ToastContainer />
     </>);
 }

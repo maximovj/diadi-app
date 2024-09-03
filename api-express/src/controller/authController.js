@@ -11,17 +11,23 @@ function fncGenerarCorreo(length) {
     return `${Date.now()}.${randomString}`;
 }
 
+// @author Víctor J.
+// @created 31/08/2024
+// @updated 31/08/2024
+// @see https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#limits-and-pagination
+// @see https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#simple-select-queries
+
 exports.registrar = async (req, res) => {
     const { usuario, contrasena } = req.body;
     const crypt_contrasena = await bcryptjs.hash(contrasena, 10);
     const correo_generado = `${fncGenerarCorreo(7)}@${dominio}`;
     Usuario.create({ usuario, correo: correo_generado, contrasena: crypt_contrasena })
-        .then(() => res.status(201).json({ ctx_contenido: 'Usuario registrado', success: true, }))
+        .then(() => res.status(201).json({ ctx_contenido: 'Usuario registrado', success: true, data: null }))
         .catch((err) => {
             if (err.name === 'SequelizeUniqueConstraintError') {
-                return res.status(409).json({ ctx_contenido: 'El usuario ya esta registrado', success: false, });
+                return res.status(409).json({ ctx_contenido: 'El usuario ya esta registrado', success: false, data: null });
             } else {
-                return res.status(500).json({ ctx_contenido: err.message, success: false, });
+                return res.status(500).json({ ctx_contenido: err.message, success: false, data: null });
             }
         });
 };
