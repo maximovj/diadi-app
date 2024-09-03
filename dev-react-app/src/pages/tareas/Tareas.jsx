@@ -2,9 +2,9 @@
 import { useCallback, useEffect, useState } from "react";
 
 // Componentes
-import { TaskModal } from "../components/TodoList/TaskModal";
-import { Tarjeta } from "../components/Tarjeta";
-import { Boton } from "../components/Boton";
+import { TaskModal } from "../../components/TodoList/TaskModal";
+import { Tarjeta } from "../../components/Tarjeta";
+import { Boton } from "../../components/Boton";
 
 // Modulo de notificaciones toast
 import { ToastContainer, Bounce, toast } from 'react-toastify';
@@ -15,10 +15,10 @@ import moment from 'moment';
 import 'moment/locale/es-mx';
 
 // Servicios
-import { serviceTareaCrear, serviceTareaListar } from "../services/service_tarea";
+import { serviceTareaCrear, serviceTareaListar } from "../../services/service_tarea";
 
 // Contexto 
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 
 export function Tareas() {
   const { logout } = useAuth();
@@ -106,10 +106,8 @@ export function Tareas() {
           handleCloseModal(); // Cerrar el modal después de guardar
         }
       })
-      .catch((err) => {
-        if (err.response && err.response.data) {
-          showToast(err.response.data.ctx_contenido, 'error');
-        }
+      .catch(() => {
+        logout();
       });
 
   };

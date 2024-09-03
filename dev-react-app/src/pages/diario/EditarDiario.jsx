@@ -41,7 +41,7 @@ export function EditarDiario() {
                     setDiario(response.data.data);
                 }
             })
-            .catch((err) => {
+            .catch(() => {
                 logout();
             })
 
@@ -79,7 +79,9 @@ export function EditarDiario() {
                     showToast(response.data.ctx_contenido, 'success');
                 }
             })
-            .catch((err) => console.log(err));
+            .catch(() => {
+                logout();
+            });
     }
 
     const handleBtnEliminar = () => {
@@ -98,12 +100,13 @@ export function EditarDiario() {
                         if (response.data?.success) {
                             showToast(response.data.ctx_contenido, 'success');
                             setTimeout(() => {
-                                //window.location.href = "/diarios";
                                 navigate('/diarios');
                             }, 1000);
                         }
                     })
-                    .catch(err => console.log(err));
+                    .catch(() => {
+                        logout();
+                    });
             }
         });
     }

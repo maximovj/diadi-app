@@ -64,9 +64,7 @@ export function EditarTarea() {
                     setTarea(response.data.data);
                 }
             })
-            .catch(err => {
-                logout();
-            });
+            .catch(() => { logout(); });
     }, [id, logout]);
 
     const handleBtnActualizar = () => {
@@ -76,7 +74,7 @@ export function EditarTarea() {
                     showToast(response.data.ctx_contenido, 'success');
                 }
             })
-            .catch(err => console.log(err));
+            .catch(() => { logout(); });
     }
 
     const handleBtnEliminar = () => {
@@ -94,10 +92,12 @@ export function EditarTarea() {
                     .then(response => {
                         if (response.data?.success) {
                             showToast(response.data.ctx_contenido, 'success');
-                            setTimeout(() => navigate('/tareas'), 1000);
+                            setTimeout(() => {
+                                navigate('/tareas')
+                            }, 1000);
                         }
                     })
-                    .catch(err => console.log(err));
+                    .catch(() => { logout(); });
             }
         });
     }

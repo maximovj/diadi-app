@@ -2,13 +2,13 @@
 import React, { useState, useEffect } from "react";
 
 // Contexto 
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 
 // Componentes
-import { Tarjeta } from "../components/Tarjeta";
-import { Boton } from "../components/Boton";
-import { serviceDiarioCrear, serviceDiarioListar } from "../services/service_diario";
-import { ModalCrear } from "../components/diario/ModalCrear";
+import { Tarjeta } from "../../components/Tarjeta";
+import { Boton } from "../../components/Boton";
+import { serviceDiarioCrear, serviceDiarioListar } from "../../services/service_diario";
+import { ModalCrear } from "../../components/diario/ModalCrear";
 
 // Modulo de notificación toast
 import { ToastContainer, Bounce, toast } from 'react-toastify';
@@ -33,7 +33,7 @@ export function Diarios() {
           setDiarios(response.data.data);
         }
       })
-      .catch(err => {
+      .catch(() => {
         logout();
       });
   }, [logout]);
@@ -71,8 +71,9 @@ export function Diarios() {
       const response = await serviceDiarioCrear(diario);
 
       if (response.data) {
-        setDiarios([...diarios, response.data.data]);
-        showToast(response.data.ctx_contenido, 'success');
+        const response_data = response.data;
+        setDiarios([...diarios, response_data.data]);
+        showToast(response_data.ctx_contenido, 'success');
         setDiario({
           titulo: '',
           contenido: '',
@@ -81,9 +82,7 @@ export function Diarios() {
       }
 
     } catch (err) {
-      if (err.response) {
-        logout();
-      }
+      logout();
     }
   };
 

@@ -65,10 +65,8 @@ export function ConfigurarCuenta() {
                     });
                 }
             })
-            .catch((err) => {
-                if (err.response && err.response.data) {
-                    showToast(err.response.data.ctx_contenido, 'error');
-                }
+            .catch(() => {
+                logout();
             });
     }
 

@@ -1,14 +1,25 @@
+// Hooks ReactJS
 import { useState } from "react";
-import { Boton } from "../components/Boton";
-import { Tarjeta } from "../components/Tarjeta";
-import { registrar } from "../services/service_auth";
+import { useNavigate } from "react-router-dom";
 
+// Componentes
+import { Tarjeta } from "../../components/Tarjeta";
+import { Boton } from "../../components/Boton";
+
+// Hooks para Notificaciones
 import { ToastContainer, Bounce, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export function Registrarme() {
-  const [username, setUsername] = useState("");
+// Servicios
+import { acceder } from '../../services/service_auth';
+import { useAuth } from '../../context/AuthContext';
+
+
+export function Acceder() {
+  const navigate = useNavigate();
+  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useAuth();
 
   const showToast = (message, type) => {
     toast[type](message, {
@@ -24,8 +35,8 @@ export function Registrarme() {
     });
   };
 
-  const handleRegister = async () => {
-    const usernameTrimmed = username.trim();
+  const handleLogin = async () => {
+    const usernameTrimmed = userName.trim();
     const usernameRegex = /^[a-zA-Z0-9_-]+$/;
 
     if (!usernameTrimmed || !password.trim()) {
@@ -39,41 +50,39 @@ export function Registrarme() {
     }
 
     try {
-      const response = await registrar({
+      const response = await acceder({
         usuario: usernameTrimmed,
         contrasena: password.trim(),
-        correo: `${usernameTrimmed}`,
       });
 
-      const data = response.data;
-
-      if (data?.success) {
+      if (response.data?.success) {
+        const response_data = response.data;
+        setUserName('');
         setPassword('');
-        setUsername('');
-        showToast(data.ctx_contenido, 'success');
+        login(response_data.data);
+        showToast(response_data.ctx_contenido, 'success');
+        navigate("/panel");
       }
-
     } catch (err) {
-      if (err.response?.status === 409) {
-        showToast(err.response.data.ctx_contenido, 'error');
-      }
+      showToast(err.response.data.ctx_contenido, 'error');
     }
+
   };
 
   return (
     <div className="d-flex vh-100">
       <Tarjeta className={`m-auto p-4 card-dark-mode`}>
-        <h2 className="mb-4">Registrarme</h2>
+        <h2 className="mb-4">Acceder</h2>
         <div className="mb-3">
-          <label htmlFor="username" className="form-label">
+          <label htmlFor="email" className="form-label">
             Nombre de usuario
           </label>
           <input
             type="text"
             className="form-control"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            id="email"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
           />
         </div>
         <div className="mb-3">
@@ -90,9 +99,7 @@ export function Registrarme() {
         </div>
         <div className="d-flex justify-content-between align-items-center">
           <div></div>
-          <Boton tipo="success" onClick={handleRegister}>
-            Registrarme
-          </Boton>
+          <Boton tipo="success" onClick={handleLogin}>Acceder</Boton>
         </div>
       </Tarjeta>
       <ToastContainer />
