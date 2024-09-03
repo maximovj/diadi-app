@@ -1,12 +1,13 @@
 require('dotenv').config();
 const cors = require('cors');
 
-// Permitir todos los cors CORS_ORIGIN_* from .env file
+// Permitir todos los cors CORS_ORIGIN_* del archivo .env
 const getAllEnv = Object.keys(process.env);
 const getCorsOrigin = getAllEnv.filter(variable => variable.startsWith('CORS_ORIGIN_'));
 const cors_origins = getCorsOrigin.map(variable => process.env[variable]);
 const allowedOrigins = cors_origins;
 
+// Configuración para CORS
 const corsConfig = cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     optionsSuccessStatus: 200,

@@ -1,6 +1,8 @@
 const { DataTypes } = require('sequelize');
 const sequelizeConfig = require('../config/sequelizeConfig.js');
 
+// Configura un modelo asociado a una tabla 
+// de la base de datos
 const usuario = sequelizeConfig.define('usuario', {
     id: {
         type: DataTypes.INTEGER,
