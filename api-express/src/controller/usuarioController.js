@@ -165,7 +165,7 @@ exports.actualizarContrasenaUsuario = async (req, res) => {
 
 exports.eliminarUsuario = async (req, res) => {
     try {
-        const id = req.params.id;
+        const id = req.session_payload.id;
         const buscar_usuario = await Usuario.findByPk(id);
 
         if (!buscar_usuario) {
@@ -177,7 +177,11 @@ exports.eliminarUsuario = async (req, res) => {
         }
 
         await buscar_usuario.destroy();
-        res.status(201).json(eliminar_usuario);
+        res.status(200).json({
+            ctx_contenido: 'Usuario eliminado exitosamente.',
+            success: true,
+            data: null,
+        });
     } catch (err) {
         return res.status(500).json({
             ctx_contenido: err.message,
