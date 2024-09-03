@@ -21,9 +21,17 @@ exports.verTarea = async (req, res) => {
     const buscar_tarea = await Tarea.findByPk(id);
 
     if (buscar_tarea) {
-        res.status(200).json({ test: 'Endpoint /GET', buscar_tarea });
+        res.status(200).json({
+            ctx_contenido: 'Tarea encontrado en el sistema.',
+            success: true,
+            data: buscar_tarea,
+        });
     } else {
-        return res.status(404).json({ test: 'Tarea no encontrada' });
+        return res.status(404).json({
+            ctx_contenido: 'Tarea no encontrado en el sistema.',
+            success: false,
+            data: null,
+        });
     }
 };
 
@@ -61,9 +69,17 @@ exports.modificarTarea = async (req, res) => {
             fecha_inicio,
             fecha_limite
         });
-        return res.status(200).json({ test: 'Endpoint /GET', actualizar_tarea });
+        return res.status(200).json({
+            ctx_contenido: 'Tarea actualizado exitosamente.',
+            success: true,
+            data: actualizar_tarea,
+        });
     } else {
-        return res.status(404).json({ test: 'tarea no encontrada' });
+        return res.status(404).json({
+            ctx_contenido: 'Tarea no encontrada en el sistema.',
+            success: false,
+            data: null,
+        });
     }
 };
 
@@ -73,8 +89,16 @@ exports.eliminarTarea = async (req, res) => {
 
     if (buscar_tarea) {
         await buscar_tarea.destroy();
-        return res.status(200).json({ test: 'Tarea eliminado' });
+        return res.status(200).json({
+            ctx_contenido: 'Tarea eliminado exitosamente.',
+            success: true,
+            data: buscar_tarea,
+        });
     } else {
-        return res.status(404).json({ test: 'Tarea no encontrada' });
+        return res.status(404).json({
+            ctx_contenido: 'Tarea no encontrada en el sistema.',
+            success: false,
+            data: null,
+        });
     }
 };
