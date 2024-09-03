@@ -8,6 +8,9 @@ const {
     actualizarContrasenaUsuario,
     verUsuario } = require('../controller/usuarioController.js');
 
+// Esta ruta es para eliminar un usuario registrado
+router.delete('/usuario/eliminar', eliminarUsuario);
+
 // Esta ruta es para validar un usuario autenticado
 router.post('/usuario/verificar',);
 
@@ -25,8 +28,5 @@ router.put('/usuario/actualizar-contrasena', actualizarContrasenaUsuario);
 
 // Esta ruta es para editar o modificar un usuario registrado
 router.put('/usuario/:id', modificarUsuario);
-
-// Esta ruta es para eliminar un usuario registrado
-router.delete('/usuario/:id', eliminarUsuario);
 
 module.exports = router;

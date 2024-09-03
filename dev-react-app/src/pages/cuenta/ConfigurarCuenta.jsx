@@ -12,8 +12,15 @@ import SwitchModoOscuro from "../../components/SwitchModoOscuro";
 import { ToastContainer, Bounce, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+// Modulo para manejar alertas y caja modal 
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
 // Servicios
-import { serviceUsuarioActualizar } from "../../services/service_usuario";
+import { serviceUsuarioActualizar, servicioUsuarioEliminar } from "../../services/service_usuario";
+
+// Variables globales
+const mySwal = withReactContent(Swal);
 
 export function ConfigurarCuenta() {
     const { logout } = useAuth();
@@ -70,6 +77,33 @@ export function ConfigurarCuenta() {
                 logout();
             });
     }
+
+    const handleBtnEliminarCuenta = () => {
+        mySwal.fire({
+            icon: 'question',
+            title: '¿Estás seguro?',
+            html: 'No podrás revertir esto',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, eliminarlo',
+            cancelButtonText: 'No, cancelarlo',
+            reverseButtons: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                servicioUsuarioEliminar()
+                    .then((response) => {
+                        if (response.data?.success) {
+                            showToast(response.data.ctx_contenido, 'success');
+                            setTimeout(() => {
+                                logout();
+                            }, 1000);
+                        }
+                    })
+                    .catch(() => {
+                        logout();
+                    })
+            }
+        });
+    };
 
     return (<>
         <Contenedor>
@@ -148,7 +182,7 @@ export function ConfigurarCuenta() {
                     <hr className="dropdown-divider" />
                     <div>
                         <h6>Eliminar cuenta</h6>
-                        <Boton tipo="danger">Eliminar cuenta</Boton>
+                        <Boton tipo="danger" onClick={handleBtnEliminarCuenta}>Eliminar cuenta</Boton>
                     </div>
                 </div>
             </Tarjeta>

@@ -90,6 +90,7 @@ export function NavBar() {
         </div>
       </nav>
 
+      {/* Este es navbar para móviles */}
       <div
         className="offcanvas offcanvas-start"
         tabIndex="-1"
@@ -98,7 +99,10 @@ export function NavBar() {
       >
         <div className="offcanvas-header">
           <h5 className="offcanvas-title" id="offcanvasExampleLabel">
-            DiaDiApp
+            <a href="/" style={{ textDecoration: 'none' }}>
+              <img src="/diadiapp_60x60.png" alt="" width="32" height="32" class="d-inline-block align-text-top" />
+              &nbsp;DiaDiApp
+            </a>
           </h5>
           <button
             type="button"
@@ -108,19 +112,30 @@ export function NavBar() {
           ></button>
         </div>
         <div className="offcanvas-body">
-          <span>Menu</span>
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <a className="nav-link" aria-current="page" href="#">
-                Lista de tareas
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" aria-current="page" href="#">
-                Diario
-              </a>
-            </li>
-          </ul>
+          <nav className="navbar navbar-light bg-light">
+            <div className="container-fluid">
+              <div className="collapse navbar-collapse show" id="navbarNavAltMarkup">
+                <div className="navbar-nav">
+                  {/* Solo se muestra cuando el usuario no está autenticado  */}
+                  {!isAuthenticated && (
+                    <>
+                      <a className="nav-link" href="/acceder">Acceder</a>
+                      <a className="nav-link" href="/registrarme">Registrarme</a>
+                    </>
+                  )}
+
+                  {/* Solo se muestra si el usuario a iniciado sesión  */}
+                  {isAuthenticated && (
+                    <>
+                      <a className="nav-link" href="/tareas">Tareas</a>
+                      <a className="nav-link" href="/diarios">Diarios</a>
+                      <a className="nav-link" href="/cuenta/configurar">Cuenta</a>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+          </nav>
         </div>
       </div>
     </>
