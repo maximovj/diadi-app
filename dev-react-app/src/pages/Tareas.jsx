@@ -132,9 +132,14 @@ export function Tareas() {
                 <div><small className="text-muted" style={{ fontSize: '9px' }}>{moment(itemTarea.fecha_inicio).format('LL')} - {moment(itemTarea.fecha_limite).format('LL')}</small></div>
               </div>
               <div className="card-footer">
-                <small className="text-muted">
-                  {moment(itemTarea.createdAt).fromNow()}
-                </small>
+                <div className="d-flex align-content-center justify-content-between">
+                  <small className="text-muted">
+                    {moment(itemTarea.createdAt).fromNow()}
+                  </small>
+                  <a href={`/tareas/editar?id=${itemTarea.id}`}>
+                    <i className="la la-pencil-square-o"></i>
+                  </a>
+                </div>
               </div>
             </Tarjeta>
           </div>

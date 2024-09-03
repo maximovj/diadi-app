@@ -32,7 +32,6 @@ export function EditarDiario() {
     const id = query.get('id');
 
     useEffect(() => {
-        console.log('Hola, ' + id);
         serviceDiarioVer(id)
             .then((response) => {
                 if (response.data?.success) {

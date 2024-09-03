@@ -12,6 +12,7 @@ import { RutaPublica } from '../components/RutaPublica'
 import { AuthProvider } from '../context/AuthContext';
 import { ConfigurarCuenta } from '../pages/cuenta/ConfigurarCuenta';
 import { EditarDiario } from '../pages/diario/EditarDiario'
+import { EditarTarea } from '../pages/tareas/EditarTarea'
 
 export function RoutePage() {
     return (
@@ -29,6 +30,7 @@ export function RoutePage() {
                         {/* Rutas protegidas */}
                         <Route path="/panel" element={<RutaProtegida><Panel /></RutaProtegida>} />
                         <Route path='/diario/editar' element={<RutaProtegida> <EditarDiario /> </RutaProtegida>} />
+                        <Route path='/tareas/editar' element={<RutaProtegida> <EditarTarea /> </RutaProtegida>} />
                         <Route path="/cuenta/configurar" element={<RutaProtegida><ConfigurarCuenta /></RutaProtegida>} />
                         <Route path="/diarios" element={<RutaProtegida><Diarios /></RutaProtegida>} />
                         <Route path="/tareas" element={<RutaProtegida><Tareas /></RutaProtegida>} />
