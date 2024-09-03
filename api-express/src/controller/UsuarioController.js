@@ -1,5 +1,8 @@
+const jwt = require('jsonwebtoken');
 const bcryptjs = require('bcryptjs');
 const Usuario = require('../models/usuarioModel.js');
+const hash_secret = process.env.HASH_SECRET || '3!yH$xd6nsnXwdG?sqm34C$p%tD#7b';
+
 
 // @author Víctor J.
 // @created 31/08/2024
@@ -112,3 +115,23 @@ exports.eliminarUsuario = async (req, res) => {
         res.status(404).json({ error: err.errors[0] });
     }
 };
+
+exports.verificarUsuario = (req, res) => {
+    const { id, correo } = req.session_payload;
+    Usuario.findByPk(id)
+        .then(data => {
+            if (!data?.id || data?.correo !== correo) {
+                return res.status(401).json({ ctx_contenido: 'Usuario no verificado.', success: false, data: null });
+            } else {
+                const token = jwt.sign({ id: data.id, correo: data.correo }, hash_secret, { expiresIn: '1h' });
+                return res.status(200).json({
+                    ctx_contenido: 'Usuario verificado correctamente.',
+                    success: true,
+                    data: token
+                });
+            }
+        })
+        .catch(err => res.status(401).json({
+            ctx_contenido: 'Usuario no verificado.', success: false, data: null
+        }));
+}

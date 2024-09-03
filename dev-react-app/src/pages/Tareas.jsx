@@ -1,9 +1,10 @@
+// Hooks de react js 
 import { useCallback, useEffect, useState } from "react";
+
+// Componentes
 import { TaskModal } from "../components/TodoList/TaskModal";
-import { TaskDetailsModal } from "../components/TodoList/TaskModelDetails";
 import { Tarjeta } from "../components/Tarjeta";
 import { Boton } from "../components/Boton";
-import { getBorderColor, groupTasksByDate } from "../utils/fnTaskList";
 
 // Modulo de notificaciones toast
 import { ToastContainer, Bounce, toast } from 'react-toastify';
@@ -16,7 +17,11 @@ import 'moment/locale/es-mx';
 // Servicios
 import { serviceTareaCrear, serviceTareaListar } from "../services/service_tarea";
 
+// Contexto 
+import { useAuth } from "../context/AuthContext";
+
 export function Tareas() {
+  const { logout } = useAuth();
   const [tareas, setTareas] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
@@ -50,8 +55,11 @@ export function Tareas() {
         if (response.data?.success) {
           setTareas(response.data.data);
         }
+      })
+      .catch(() => {
+        logout();
       });
-  }, []);
+  }, [logout]);
 
   // Cargar las tareas al cargar el componente
   useEffect(() => {

@@ -19,8 +19,10 @@ import withReactContent from "sweetalert2-react-content";
 
 // Servicios 
 import { serviceTareaVer, serviceTareaActualizar, serviceTareaEliminar } from "../../services/service_tarea";
-const mySwal = withReactContent(Swal);
 
+// Contexto 
+import { useAuth } from "../../context/AuthContext";
+const mySwal = withReactContent(Swal);
 
 // Hooks personalizado
 const useQuery = () => {
@@ -28,6 +30,7 @@ const useQuery = () => {
 }
 
 export function EditarTarea() {
+    const { logout } = useAuth();
     const [tarea, setTarea] = useState({});
     const navigate = useNavigate();
     const query = useQuery();
@@ -61,8 +64,10 @@ export function EditarTarea() {
                     setTarea(response.data.data);
                 }
             })
-            .catch(err => console.log(err));
-    }, [id]);
+            .catch(err => {
+                logout();
+            });
+    }, [id, logout]);
 
     const handleBtnActualizar = () => {
         serviceTareaActualizar(tarea, id)
