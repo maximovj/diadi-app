@@ -27,19 +27,15 @@ export function Diarios() {
   });
 
   useEffect(() => {
-    const fetchDiarios = async () => {
-      try {
-        const response = await listarDiario(1);
-        setDiarios(response.data);
-        console.log(response.data);
-      } catch (err) {
-        if (err.response) {
-          logout();
+    listarDiario()
+      .then(response => {
+        if (response.data?.success) {
+          setDiarios(response.data.data);
         }
-      }
-    }
-
-    fetchDiarios();
+      })
+      .catch(err => {
+        logout();
+      });
   }, [logout]);
 
   // Mostrar notificaciones de toast

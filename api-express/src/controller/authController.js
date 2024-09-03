@@ -16,12 +16,12 @@ exports.registrar = async (req, res) => {
     const crypt_contrasena = await bcryptjs.hash(contrasena, 10);
     const correo_generado = `${fncGenerarCorreo(7)}@${dominio}`;
     Usuario.create({ usuario, correo: correo_generado, contrasena: crypt_contrasena })
-        .then(() => res.status(201).json({ ctx_contenido: 'Usuario registrado', success: true, }))
+        .then(() => res.status(201).json({ ctx_contenido: 'Usuario registrado', success: true, data: null }))
         .catch((err) => {
             if (err.name === 'SequelizeUniqueConstraintError') {
-                return res.status(409).json({ ctx_contenido: 'El usuario ya esta registrado', success: false, });
+                return res.status(409).json({ ctx_contenido: 'El usuario ya esta registrado', success: false, data: null });
             } else {
-                return res.status(500).json({ ctx_contenido: err.message, success: false, });
+                return res.status(500).json({ ctx_contenido: err.message, success: false, data: null });
             }
         });
 };

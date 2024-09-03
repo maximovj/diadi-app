@@ -13,40 +13,97 @@ const hash_secret = process.env.HASH_SECRET || '3!yH$xd6nsnXwdG?sqm34C$p%tD#7b';
 exports.listarUsuarios = async (req, res) => {
     try {
         const usuario_listar = await Usuario.findAll({ limit: 15 });
-        res.status(201).json(usuario_listar);
+
+        res.status(201).json({
+            ctx_contenido: 'Usuario listado exitosamente.',
+            success: true,
+            data: usuario_listar
+        });
     } catch (err) {
-        res.status(404).json({ error: err.errors[0] });
+        return res.status(500).json({
+            ctx_contenido: err.message,
+            success: false,
+            data: null
+        });
     }
 };
 
 exports.verUsuario = async (req, res) => {
-    const { id } = req.params;
     try {
-        const usuario_ver = await Usuario.findOne({ where: { id } });
-        res.status(201).json(usuario_ver);
+        const { id } = req.params;
+        const ver_usuario = await Usuario.findOne({ where: { id } });
+
+        if (!ver_usuario) {
+            return res.status(404).json({
+                ctx_contenido: 'Usuario no encontrado en el sistema.',
+                success: false,
+                data: null
+            });
+        }
+
+        return res.status(201).json({
+            ctx_contenido: 'Usuario listado exitosamente.',
+            success: true,
+            data: ver_usuario
+        });
     } catch (err) {
-        res.status(404).json({ error: err.errors[0] });
+        return res.status(500).json({
+            ctx_contenido: err.message,
+            success: false,
+            data: null
+        });
     }
 };
 
 exports.crearUsuario = async (req, res) => {
-    const { usuario, correo, contrasena } = req.body;
     try {
-        const registrar_usuario = await Usuario.create({ usuario, correo, contrasena });
-        res.status(201).json(registrar_usuario);
+        const { usuario, correo, contrasena } = req.body;
+        const crear_usuario = await Usuario.create({ usuario, correo, contrasena });
+        res.status(201).json({
+            ctx_contenido: 'Usuario creado exitosamente.',
+            success: true,
+            data: crear_usuario
+        });
     } catch (err) {
-        res.status(404).json({ error: err.message });
+        return res.status(500).json({
+            ctx_contenido: err.message,
+            success: false,
+            data: null
+        });
     }
 };
 
 exports.modificarUsuario = async (req, res) => {
-    const { id } = req.params;
-    const { usuario, correo, contrasena } = req.body;
     try {
-        const modificar_usuario = await Usuario.update({ usuario, correo, contrasena }, { where: { id } });
-        res.status(201).json(modificar_usuario);
+        const { usuario, correo, contrasena } = req.body;
+        const id = req.params.id;
+        const buscar_usuario = await Usuario.findByPk(id);
+
+        if (!buscar_usuario) {
+            return res.status(404).json({
+                ctx_contenido: 'Usuario no encontrado en el sistema.',
+                success: false,
+                data: null
+            });
+        }
+
+        const modificar_usuario = buscar_usuario.update({
+            usuario,
+            correo,
+            contrasena
+        });
+
+        return res.status(201).json({
+            ctx_contenido: 'Usuario modificado exitosamente.',
+            success: true,
+            data: modificar_usuario
+        });
     } catch (err) {
-        res.status(404).json({ error: err.errors[0] });
+        return res.status(500).json({
+            ctx_contenido: err.message,
+            success: false,
+            data: null
+        });
     }
 };
 
@@ -107,31 +164,69 @@ exports.actualizarContrasenaUsuario = async (req, res) => {
 };
 
 exports.eliminarUsuario = async (req, res) => {
-    const { id } = req.params;
     try {
-        const eliminar_usuario = await Usuario.destroy({ where: { id } });
+        const id = req.params.id;
+        const buscar_usuario = await Usuario.findByPk(id);
+
+        if (!buscar_usuario) {
+            return res.status(404).json({
+                ctx_contenido: 'Usuario no encontrado en el sistema.',
+                success: false,
+                data: null
+            });
+        }
+
+        await buscar_usuario.destroy();
         res.status(201).json(eliminar_usuario);
     } catch (err) {
-        res.status(404).json({ error: err.errors[0] });
+        return res.status(500).json({
+            ctx_contenido: err.message,
+            success: false,
+            data: null
+        });
     }
 };
 
-exports.verificarUsuario = (req, res) => {
-    const { id, correo } = req.session_payload;
-    Usuario.findByPk(id)
-        .then(data => {
-            if (!data?.id || data?.correo !== correo) {
-                return res.status(401).json({ ctx_contenido: 'Usuario no verificado.', success: false, data: null });
-            } else {
-                const token = jwt.sign({ id: data.id, correo: data.correo }, hash_secret, { expiresIn: '1h' });
-                return res.status(200).json({
-                    ctx_contenido: 'Usuario verificado correctamente.',
-                    success: true,
-                    data: token
-                });
-            }
-        })
-        .catch(err => res.status(401).json({
-            ctx_contenido: 'Usuario no verificado.', success: false, data: null
-        }));
-}
+exports.verificarUsuario = async (req, res) => {
+    try {
+        const id = req.session_payload.id;
+        const correo = req.session_payload.id;
+        const buscar_usuario = await Usuario.findByPk(id);
+
+        if (!buscar_usuario) {
+            return res.status(404).json({
+                ctx_contenido: 'Usuario no encontrado en el sistema.',
+                success: false,
+                data: null
+            });
+        }
+
+        if (buscar_usuario?.id !== id || buscar_usuario?.correo !== correo) {
+            return res.status(401).json({
+                ctx_contenido: 'Usuario no verificado.',
+                success: false,
+                data: null
+            });
+        }
+
+        const token = jwt.sign({
+            id: buscar_usuario.id,
+            correo: buscar_usuario.correo
+        },
+            hash_secret,
+            { expiresIn: '1h' }
+        );
+
+        return res.status(200).json({
+            ctx_contenido: 'Usuario verificado correctamente.',
+            success: true,
+            data: token
+        });
+    } catch (err) {
+        return res.status(500).json({
+            ctx_contenido: err.message,
+            success: false,
+            data: null
+        });
+    }
+};

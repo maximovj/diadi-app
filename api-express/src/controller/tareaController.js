@@ -8,59 +8,90 @@ const Tarea = require('../models/tareaModel.js');
 
 exports.listarTareas = async (req, res) => {
     const usuario_id = req.session_payload.id;
-    const tareas_15 = await Tarea.findAll({ where: { usuario_id: usuario_id }, limit: 15 });
-    res.status(200).json({
-        ctx_contenido: 'Tarea creado exitosamente.',
-        success: true,
-        data: tareas_15,
-    });
+    try {
+        const listar_tareas = await Tarea.findAll({ where: { usuario_id: usuario_id }, limit: 15 });
+        res.status(200).json({
+            ctx_contenido: 'Tarea listado exitosamente.',
+            success: true,
+            data: listar_tareas
+        });
+    } catch (err) {
+        res.status(500).json({
+            ctx_contenido: err.message,
+            success: false,
+            data: null
+        });
+    }
 };
 
 exports.verTarea = async (req, res) => {
-    const id = req.params.id;
-    const buscar_tarea = await Tarea.findByPk(id);
+    try {
+        const id = req.params.id;
+        const buscar_tarea = await Tarea.findByPk(id);
 
-    if (buscar_tarea) {
-        res.status(200).json({
-            ctx_contenido: 'Tarea encontrado en el sistema.',
-            success: true,
-            data: buscar_tarea,
-        });
-    } else {
-        return res.status(404).json({
-            ctx_contenido: 'Tarea no encontrado en el sistema.',
+        if (buscar_tarea) {
+            return res.status(200).json({
+                ctx_contenido: 'Tarea encontrado en el sistema.',
+                success: true,
+                data: buscar_tarea,
+            });
+        } else {
+            return res.status(404).json({
+                ctx_contenido: 'Tarea no encontrado en el sistema.',
+                success: false,
+                data: null,
+            });
+        }
+    } catch (err) {
+        return res.status(500).json({
+            ctx_contenido: err.message,
             success: false,
-            data: null,
+            data: null
         });
     }
 };
 
 exports.crearTarea = async (req, res) => {
-    const { titulo, descripcion, estado, importancia, fecha_inicio, fecha_limite } = req.body;
-    const usuario_id = req.session_payload.id;
-    const crear_tarea = await Tarea.create({
-        titulo,
-        descripcion,
-        estado,
-        importancia,
-        fecha_inicio,
-        fecha_limite,
-        usuario_id
-    });
-    res.status(200).json({
-        ctx_contenido: 'Tarea creado exitosamente.',
-        success: true,
-        data: crear_tarea,
-    });
+    try {
+        const { titulo, descripcion, estado, importancia, fecha_inicio, fecha_limite } = req.body;
+        const usuario_id = req.session_payload.id;
+        const crear_tarea = await Tarea.create({
+            titulo,
+            descripcion,
+            estado,
+            importancia,
+            fecha_inicio,
+            fecha_limite,
+            usuario_id
+        });
+        res.status(200).json({
+            ctx_contenido: 'Tarea creado exitosamente.',
+            success: true,
+            data: crear_tarea,
+        });
+    } catch (err) {
+        return res.status(500).json({
+            ctx_contenido: err.message,
+            success: false,
+            data: null
+        });
+    }
 };
 
 exports.modificarTarea = async (req, res) => {
-    const { titulo, descripcion, estado, importancia, fecha_inicio, fecha_limite } = req.body;
-    const id = req.params.id;
+    try {
+        const { titulo, descripcion, estado, importancia, fecha_inicio, fecha_limite } = req.body;
+        const id = req.params.id;
+        const buscar_tarea = await Tarea.findByPk(id);
 
-    const buscar_tarea = await Tarea.findByPk(id);
+        if (!buscar_tarea) {
+            return res.status(404).json({
+                ctx_contenido: 'Tarea no encontrada en el sistema.',
+                success: false,
+                data: null,
+            });
+        }
 
-    if (buscar_tarea) {
         const actualizar_tarea = await buscar_tarea.update({
             titulo,
             descripcion,
@@ -69,36 +100,46 @@ exports.modificarTarea = async (req, res) => {
             fecha_inicio,
             fecha_limite
         });
+
         return res.status(200).json({
             ctx_contenido: 'Tarea actualizado exitosamente.',
             success: true,
             data: actualizar_tarea,
         });
-    } else {
-        return res.status(404).json({
-            ctx_contenido: 'Tarea no encontrada en el sistema.',
+    } catch (err) {
+        return res.status(500).json({
+            ctx_contenido: err.message,
             success: false,
-            data: null,
+            data: null
         });
     }
 };
 
 exports.eliminarTarea = async (req, res) => {
-    const id = req.params.id;
-    const buscar_tarea = await Tarea.findByPk(id);
+    try {
+        const id = req.params.id;
+        const buscar_tarea = await Tarea.findByPk(id);
 
-    if (buscar_tarea) {
+        if (!buscar_tarea) {
+            return res.status(404).json({
+                ctx_contenido: 'Tarea no encontrada en el sistema.',
+                success: false,
+                data: null,
+            });
+        }
+
         await buscar_tarea.destroy();
+
         return res.status(200).json({
             ctx_contenido: 'Tarea eliminado exitosamente.',
             success: true,
             data: buscar_tarea,
         });
-    } else {
-        return res.status(404).json({
-            ctx_contenido: 'Tarea no encontrada en el sistema.',
+    } catch (err) {
+        return res.status(500).json({
+            ctx_contenido: err.message,
             success: false,
-            data: null,
+            data: null
         });
     }
 };
