@@ -68,10 +68,14 @@ export function Registrarme() {
           <input
             type="text"
             className="form-control"
+            placeholder="Escribe un nuevo usuario"
             id="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
+          <div class="form-text">
+            El nombre de usuario solo puede contener letras, números, guiones (-) y guiones bajos (_).
+          </div>
         </div>
         <div className="mb-3">
           <label htmlFor="password" className="form-label">
@@ -80,6 +84,7 @@ export function Registrarme() {
           <input
             type="password"
             className="form-control"
+            placeholder="Escribe tú contraseña"
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -88,7 +93,7 @@ export function Registrarme() {
         <div className="d-flex justify-content-between align-items-center">
           <div></div>
           <Boton type="success" onClick={handleRegister}>
-            Registrarme
+            <i className="la la-check-double" /> Registrarme
           </Boton>
         </div>
       </Tarjeta>

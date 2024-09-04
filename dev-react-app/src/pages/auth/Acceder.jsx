@@ -80,6 +80,7 @@ export function Acceder() {
           <input
             type="text"
             className="form-control"
+            placeholder="Escribe tú usuario con letras, números, - y _"
             id="email"
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
@@ -92,6 +93,7 @@ export function Acceder() {
           <input
             type="password"
             className="form-control"
+            placeholder="Escribe tú contraseña"
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -99,7 +101,9 @@ export function Acceder() {
         </div>
         <div className="d-flex justify-content-between align-items-center">
           <div></div>
-          <Boton type="success" onClick={handleLogin}>Acceder</Boton>
+          <Boton type="success" onClick={handleLogin}>
+            <i className="la la-sign-in" /> Acceder
+          </Boton>
         </div>
       </Tarjeta>
       <ToastContainer />
