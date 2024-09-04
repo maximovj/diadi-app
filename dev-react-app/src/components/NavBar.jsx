@@ -13,8 +13,9 @@ export function NavBar() {
       >
         <div className="container-fluid">
           <Link className="navbar-brand" to={Rutas.HOME}>
-            DiaDiApp
+            <img src="/diadiapp_60x60.png" alt="" width="32" height="32" className="d-inline-block align-text-top" />&nbsp;DiaDiApp
           </Link>
+          <span className='text-muted'>v1.0Beta</span>
           <button
             className="navbar-toggler"
             type="button"
@@ -28,21 +29,7 @@ export function NavBar() {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              {/* Solo se muestra cuando el usuario no está autenticado  */}
-              {!isAuthenticated && (
-                <>
-                  <li className="nav-item">
-                    <Link className="nav-link" to={Rutas.ACCEDER}>
-                      Acceder
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" to={Rutas.REGISTRARME}>
-                      Registrarme
-                    </Link>
-                  </li>
-                </>
-              )}
+
 
               {/* Solo se muestra si el usuario ha iniciado sesión  */}
               {isAuthenticated && (
@@ -68,6 +55,22 @@ export function NavBar() {
             </ul>
             <div className="d-flex flex-column justify-content-end align-items-end">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                {/* Solo se muestra cuando el usuario no está autenticado  */}
+                {!isAuthenticated && (
+                  <>
+                    <li className="nav-item">
+                      <Link className="nav-link" to={Rutas.ACCEDER}>
+                        Acceder
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link className="nav-link" to={Rutas.REGISTRARME}>
+                        Registrarme
+                      </Link>
+                    </li>
+                  </>
+                )}
+
                 {/* Solo se muestra si el usuario ha iniciado sesión  */}
                 {isAuthenticated && (
                   <li className="nav-item dropdown dropstart">
