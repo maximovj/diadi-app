@@ -59,7 +59,7 @@ export function Registrarme() {
 
   return (
     <div className="d-flex vh-100">
-      <Tarjeta className={`m-auto p-4 card-dark-mode`}>
+      <Tarjeta className={`m-auto p-4 card-dark-mode`} style={{ minWidth: '50%', minHeight: '50%' }}>
         <h2 className="mb-4">Registrarme</h2>
         <div className="mb-3">
           <label htmlFor="username" className="form-label">
