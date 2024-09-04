@@ -148,7 +148,7 @@ export function Tareas() {
                   <Link
                     to={{
                       pathname: `${Rutas.TAREAS_EDITAR}`,
-                      search: `?id=${tarea.id}`
+                      search: `?id=${itemTarea.id}`
                     }}
                   >
                     <i className="la la-pencil-square-o"></i>

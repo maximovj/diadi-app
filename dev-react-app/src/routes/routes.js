@@ -26,7 +26,7 @@ export const Rutas = {
     DIARIOS: '/diarios',
     DIARIOS_EDITAR: '/diario/editar',
     TAREAS: '/tareas',
-    TAREAS_EDITAR: '/acceder',
+    TAREAS_EDITAR: '/tareas/editar',
     CUENTA_CONFIGURAR: '/cuenta/configurar',
 };
 
