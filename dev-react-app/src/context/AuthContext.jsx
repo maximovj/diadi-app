@@ -2,10 +2,9 @@
 import { useNavigate } from 'react-router-dom';
 import { createContext, useContext, useState } from 'react';
 import Cookies from 'js-cookie';
-
+import { Rutas } from '../routes/routes';
 
 const AuthContext = createContext();
-
 export const useAuth = () => useContext(AuthContext);
 
 export function AuthProvider({ children }) {
@@ -15,14 +14,16 @@ export function AuthProvider({ children }) {
     const login = (data) => {
         Cookies.set('session_diadiapp', data, { expires: 7 });
         setIsAuthenticated(true);
-        navigate("/panel");
+        window.location.href = Rutas.PANEL;
+        //navigate(Rutas.PANEL);
     };
 
     const logout = () => {
         Cookies.remove('session_diadiapp');
         localStorage.setItem("theme", "light");
         setIsAuthenticated(false);
-        navigate("/acceder");
+        window.location.href = Rutas.ACCEDER;
+        //navigate(Rutas.ACCEDER);
     };
 
     return (

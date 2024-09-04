@@ -1,5 +1,6 @@
 import { useAuth } from '../context/AuthContext';
-import { Link } from 'react-router-dom'; // Asegúrate de importar Link
+import { Link } from 'react-router-dom';
+import { Rutas } from '../routes/routes';
 
 export function NavBar() {
   const { isAuthenticated, logout } = useAuth();
@@ -11,7 +12,7 @@ export function NavBar() {
         style={{ backgroundColor: "#363636" }}
       >
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
+          <Link className="navbar-brand" to={Rutas.HOME}>
             DiaDiApp
           </Link>
           <button
@@ -31,12 +32,12 @@ export function NavBar() {
               {!isAuthenticated && (
                 <>
                   <li className="nav-item">
-                    <Link className="nav-link" to="/acceder">
+                    <Link className="nav-link" to={Rutas.ACCEDER}>
                       Acceder
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link" to="/registrarme">
+                    <Link className="nav-link" to={Rutas.REGISTRARME}>
                       Registrarme
                     </Link>
                   </li>
@@ -47,21 +48,19 @@ export function NavBar() {
               {isAuthenticated && (
                 <>
                   <li className="nav-item dropdown">
-                    <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <Link className="nav-link dropdown-toggle" to="#" data-bs-toggle="dropdown" aria-expanded="false">
                       Tareas
                     </Link>
                     <ul className="dropdown-menu">
-                      <li><Link className="dropdown-item" to="/tareas">Panel</Link></li>
-                      <li><Link className="dropdown-item" to="#">Crear una tarea</Link></li>
+                      <li><Link className="dropdown-item" to={Rutas.TAREAS}>Panel</Link></li>
                     </ul>
                   </li>
                   <li className="nav-item dropdown">
-                    <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <Link className="nav-link dropdown-toggle" to="#" data-bs-toggle="dropdown" aria-expanded="false">
                       Diarios
                     </Link>
                     <ul className="dropdown-menu">
-                      <li><Link className="dropdown-item" to="/diarios">Panel</Link></li>
-                      <li><Link className="dropdown-item" to="#">Crear un diario</Link></li>
+                      <li><Link className="dropdown-item" to={Rutas.DIARIOS}>Panel</Link></li>
                     </ul>
                   </li>
                 </>
@@ -71,18 +70,16 @@ export function NavBar() {
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 {/* Solo se muestra si el usuario ha iniciado sesión  */}
                 {isAuthenticated && (
-                  <>
-                    <li className="nav-item dropdown dropstart">
-                      <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Cuenta
-                      </Link>
-                      <ul className="dropdown-menu">
-                        <li><Link className="dropdown-item" to="/cuenta/configurar">Configurar</Link></li>
-                        <li><hr className="dropdown-divider" /></li>
-                        <li><button className="dropdown-item" type='button' onClick={logout}>Cerrar sesión</button></li>
-                      </ul>
-                    </li>
-                  </>
+                  <li className="nav-item dropdown dropstart">
+                    <Link className="nav-link dropdown-toggle" to="#" data-bs-toggle="dropdown" aria-expanded="false">
+                      Cuenta
+                    </Link>
+                    <ul className="dropdown-menu">
+                      <li><Link className="dropdown-item" to={Rutas.CUENTA_CONFIGURAR}>Configurar</Link></li>
+                      <li><hr className="dropdown-divider" /></li>
+                      <li><button className="dropdown-item" type='button' onClick={logout}>Cerrar sesión</button></li>
+                    </ul>
+                  </li>
                 )}
               </ul>
             </div>
