@@ -1,4 +1,4 @@
-# DIADI-APP
+# DiadiApp v1.0Beta
 
 Este repositorio contiene un proyecto con arquitectura "frontend y backend desacoplados.
 
@@ -97,7 +97,7 @@ $ npm run dev
 
 # Servicio SPA (FrontEnd)
 
-## Pasos para ejecutar el servicio API
+## Pasos para ejecutar el servicio SPA
 
 * Paso 1)
 
