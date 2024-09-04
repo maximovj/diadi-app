@@ -1,4 +1,4 @@
-// Hooks de react
+// Componentes y Hooks de react
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
@@ -27,7 +27,7 @@ const useQuery = () => {
     return new URLSearchParams(useLocation().search);
 }
 
-// Componente funcional de ReactJS
+// Componente funcional
 export function EditarDiario() {
     const { logout } = useAuth();
     const [diario, setDiario] = useState({});

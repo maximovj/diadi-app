@@ -1,12 +1,18 @@
-// AuthContext.js
+// Componentes y Hooks de ReactJS
 import { useNavigate } from 'react-router-dom';
 import { createContext, useContext, useState } from 'react';
+
+// Modulo para manejar cookies
 import Cookies from 'js-cookie';
+
+// Servicio
 import { Rutas } from '../routes/routes';
 
+// Variables globales (siempre va al final)
 const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 
+// Componentes funcional
 export function AuthProvider({ children }) {
     const navigate = useNavigate();
     const [isAuthenticated, setIsAuthenticated] = useState(Cookies.get('session_diadiapp'));

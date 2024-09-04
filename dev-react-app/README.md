@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+# DiadiApp v1.0Beta
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este repositorio contiene un proyecto con arquitectura "frontend y backend desacoplados.
 
-## Available Scripts
+React JS + Axios + Bootstrap 5 para el FrontEnd.
 
-In the project directory, you can run:
+Node JS + Express + Sequelize + MySQL para el BackEnd.
 
-### `npm start`
+# FrontEnd (ReactJS + Axios + SweetAlert2) 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+El servicio SPA incluye módulos como SweetAlert y Toastify, así también implementa Axios para comunicarse con el servicio API. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Dependencias
 
-### `npm test`
+* axios ^1.7.2
+* js-cookie ^3.0.5
+* moment ^2.30.1
+* react ^18.3.1
+* react-dom ^18.3.1
+* react-router-dom ^6.23.1
+* react-scripts 5.0.1
+* react-toasty ^10.0.5
+* sweetalert2 ^11.12.4
+* sweetalert2-react-content ^5.0.7
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Servicio SPA (FrontEnd)
 
-### `npm run build`
+## Pasos para ejecutar el servicio SPA
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Paso 1)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Accede a la carpeta del servicio SPA usando el sig. comando desde la terminal:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```shell
+$ cd ./dev-react-app
+```
 
-### `npm run eject`
+* Paso 2)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Crear una copia del archivo `.env.example` con nombre `.env` para establecer variables de entorno.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+* Paso 3)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Ejecutar el sig. comando para descargar dependencias de NodeJS.
 
-## Learn More
+```shell
+$ npm install
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* Paso 4)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Ejecutar el sig. comando para correr el servicio SPA.
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```shell
+$ npm start
+```

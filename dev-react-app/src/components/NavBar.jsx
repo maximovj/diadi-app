@@ -1,7 +1,13 @@
-import { useAuth } from '../context/AuthContext';
+// Componentes y Hooks de ReactJS
 import { Link } from 'react-router-dom';
+
+// Contexto
+import { useAuth } from '../context/AuthContext';
+
+// Servicios
 import { Rutas } from '../routes/routes';
 
+// Componente funcional
 export function NavBar() {
   const { isAuthenticated, logout } = useAuth();
 
@@ -13,7 +19,7 @@ export function NavBar() {
       >
         <div className="container-fluid">
           <Link className="navbar-brand" to={Rutas.HOME}>
-            <img src="/diadiapp_60x60.png" alt="" width="32" height="32" className="d-inline-block align-text-top" />&nbsp;DiaDiApp
+            <img src="/diadiapp_60x60.png" alt="" width="32" height="32" className="d-inline-block align-text-top" />&nbsp;DiadiApp
           </Link>
           <span className='text-muted'>v1.0Beta</span>
           <button
@@ -100,7 +106,7 @@ export function NavBar() {
         <div className="offcanvas-header">
           <h5 className="offcanvas-title" id="offcanvasExampleLabel">
             <Link to="/" style={{ textDecoration: 'none' }}>
-              <img src="/diadiapp_60x60.png" alt="" width="32" height="32" className="d-inline-block align-text-top" />&nbsp;DiaDiApp
+              <img src="/diadiapp_60x60.png" alt="" width="32" height="32" className="d-inline-block align-text-top" />&nbsp;DiadiApp
             </Link>
           </h5>
           <button

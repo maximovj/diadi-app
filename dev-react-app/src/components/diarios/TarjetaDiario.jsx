@@ -7,6 +7,8 @@ import { Rutas } from "../../routes/routes";
 
 // Modulo moment para manejar fechas 
 import moment from "moment";
+import 'moment/locale/es-mx';
+
 
 export function TarjetaDiario({ diario }) {
     return (<div className="col-12 col-lg-4 mb-4" key={diario.id}>

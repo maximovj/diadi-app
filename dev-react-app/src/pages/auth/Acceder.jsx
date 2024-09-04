@@ -2,6 +2,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+// Servicios
+import { acceder } from '../../services/service_auth';
+import { useAuth } from '../../context/AuthContext';
+
 // Componentes
 import { Tarjeta } from "../../components/Tarjeta";
 import { Boton } from "../../components/Boton";
@@ -9,11 +13,6 @@ import { Boton } from "../../components/Boton";
 // Hooks para Notificaciones
 import { ToastContainer, Bounce, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-// Servicios
-import { acceder } from '../../services/service_auth';
-import { useAuth } from '../../context/AuthContext';
-
 
 export function Acceder() {
   const navigate = useNavigate();

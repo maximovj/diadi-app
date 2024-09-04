@@ -1,5 +1,7 @@
+// Componentes y Hooks de ReactJS
 import { useState, useEffect } from "react";
 
+// Hook personalizado
 function useModoOscuro() {
   const [isModoOscuro, setIsModoOscuro] = useState(() => {
     const savedMode = localStorage.getItem("darkMode");

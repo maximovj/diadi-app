@@ -1,5 +1,7 @@
+// Componentes
 import { Contenedor } from "../../components/Contenedor";
 
+// Componente funcional
 export function Panel() {
     return (
         <Contenedor>

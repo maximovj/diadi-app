@@ -2,6 +2,9 @@
 import { useAuth } from "../../context/AuthContext";
 import { useState } from "react";
 
+// Servicios
+import { serviceUsuarioActualizar, servicioUsuarioEliminar } from "../../services/service_usuario";
+
 // Componentes
 import { Tarjeta } from "../../components/Tarjeta";
 import { Boton } from "../../components/Boton";
@@ -16,12 +19,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
-// Servicios
-import { serviceUsuarioActualizar, servicioUsuarioEliminar } from "../../services/service_usuario";
-
-// Variables globales
+// Variables globales (Siempre va al final)
 const mySwal = withReactContent(Swal);
 
+// Componente funcional
 export function ConfigurarCuenta() {
     const { logout } = useAuth();
     const [fields, setFields] = useState({
