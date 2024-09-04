@@ -2,6 +2,12 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
+// Servicios 
+import { serviceTareaVer, serviceTareaActualizar, serviceTareaEliminar } from "../../services/service_tarea";
+
+// Contexto 
+import { useAuth } from "../../context/AuthContext";
+
 // Componentes 
 import { Tarjeta } from "../../components/Tarjeta";
 import { Boton } from "../../components/Boton";
@@ -18,18 +24,15 @@ import 'moment/locale/es-mx';
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
-// Servicios 
-import { serviceTareaVer, serviceTareaActualizar, serviceTareaEliminar } from "../../services/service_tarea";
-
-// Contexto 
-import { useAuth } from "../../context/AuthContext";
-const mySwal = withReactContent(Swal);
-
-// Hooks personalizado
+// Hooks personalizado (Siempre se va al final)
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
 }
 
+// Variables globales (Siempre se va al final)
+const mySwal = withReactContent(Swal);
+
+// Componente funcional
 export function EditarTarea() {
     const { logout } = useAuth();
     const [tarea, setTarea] = useState({});

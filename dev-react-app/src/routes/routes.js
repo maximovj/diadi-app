@@ -1,4 +1,7 @@
+// Componentes y Hooks de ReactJS
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+// Componentes
 import { RutaProtegida } from '../components/RutaProtegida';
 import { RutaPublica } from '../components/RutaPublica';
 import { Acceder } from '../pages/auth/Acceder';
@@ -30,6 +33,7 @@ export const Rutas = {
     CUENTA_CONFIGURAR: '/cuenta/configurar',
 };
 
+// Componentes funcional
 export function RoutePage() {
     return (
         <BrowserRouter>

@@ -1,7 +1,9 @@
+// Componentes
 import { Rutas } from '../routes/routes';
 import { Contenedor } from '../components/Contenedor';
 import { Link } from 'react-router-dom';
 
+// Componentes funcional
 export function Inicio() {
   return (
     <Contenedor alignItems='align-items-stretch'>

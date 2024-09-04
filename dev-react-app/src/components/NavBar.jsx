@@ -1,7 +1,13 @@
-import { useAuth } from '../context/AuthContext';
+// Componentes y Hooks de ReactJS
 import { Link } from 'react-router-dom';
+
+// Contexto
+import { useAuth } from '../context/AuthContext';
+
+// Servicios
 import { Rutas } from '../routes/routes';
 
+// Componente funcional
 export function NavBar() {
   const { isAuthenticated, logout } = useAuth();
 

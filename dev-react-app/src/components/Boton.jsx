@@ -1,6 +1,10 @@
+// Hooks y Componentes de ReactJS
 import React, { useContext } from 'react';
+
+// Contexto
 import { ThemeContext } from "../context/ThemeContext";
 
+// Componente funcional
 export function Boton({ children, onClick, className, size, type, ...props }) {
   const { theme } = useContext(ThemeContext);
 
@@ -15,4 +19,4 @@ export function Boton({ children, onClick, className, size, type, ...props }) {
       {children}
     </button>
   );
-}
+};

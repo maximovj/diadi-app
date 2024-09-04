@@ -1,7 +1,13 @@
+// Hooks y Componentes de ReactJS
 import { useContext } from "react";
+
+// Contexto
 import { ThemeContext } from "../context/ThemeContext";
+
+// Componentes
 import { Boton } from "./Boton";
 
+// Componente funcional
 export function Modal({ children, show, handleOnBtnCancel, handleOnBtnOk, tituloModal, textBtnCancel, textBtnOk }) {
     const { theme } = useContext(ThemeContext);
 

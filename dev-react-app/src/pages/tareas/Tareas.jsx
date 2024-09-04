@@ -1,6 +1,9 @@
 // Hooks de react js 
 import { useCallback, useEffect, useState } from "react";
 
+// Servicios
+import { serviceTareaCrear, serviceTareaListar } from "../../services/service_tarea";
+
 // Componentes
 import { ModalCrear } from "../../components/tareas/ModalCrear";
 import { Boton } from "../../components/Boton";
@@ -12,12 +15,10 @@ import { TarjetaTarea } from "../../components/tareas/TarjetaTarea";
 import { ToastContainer, Bounce, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// Servicios
-import { serviceTareaCrear, serviceTareaListar } from "../../services/service_tarea";
-
 // Contexto 
 import { useAuth } from "../../context/AuthContext";
 
+// Componentes funcional
 export function Tareas() {
   const { logout } = useAuth();
   const [tareas, setTareas] = useState([]);

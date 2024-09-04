@@ -1,8 +1,10 @@
-// ThemeContext.js
+// Componentes y Hooks de ReactJS
 import React, { createContext, useState, useEffect } from 'react';
 
+// Contexto
 export const ThemeContext = createContext();
 
+// Provider personalizado
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('theme') || 'light';

@@ -1,6 +1,9 @@
 // Hooks react
 import React, { useState, useEffect } from "react";
 
+// Servicios 
+import { serviceDiarioCrear, serviceDiarioListar } from "../../services/service_diario";
+
 // Contexto 
 import { useAuth } from '../../context/AuthContext';
 
@@ -11,14 +14,11 @@ import { TarjetaDiario } from "../../components/diarios/TarjetaDiario";
 import { SinDiarios } from "../../components/diarios/SinDiarios";
 import { Contenedor } from "../../components/Contenedor";
 
-// Servicios 
-import { serviceDiarioCrear, serviceDiarioListar } from "../../services/service_diario";
-
 // Modulo de notificación toast
 import { ToastContainer, Bounce, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
+// Componentes funcional
 export function Diarios() {
   const { logout } = useAuth();
   const [showModal, setShowModal] = useState(false);
@@ -27,8 +27,6 @@ export function Diarios() {
     titulo: '',
     contenido: '',
   });
-
-
 
   // Mostrar notificaciones de toast
   const showToast = (message, type) => {

@@ -1,7 +1,11 @@
+// Modulo para hacer peticiones HTTP/S
 import axios from 'axios';
+
+// Modulo para manejar cookies
 import Cookies from 'js-cookie';
 const token = Cookies.get('session_diadiapp');
 
+// Configurar petición axios
 const serviceAuth = axios.create({
     baseURL: process.env.REACT_APP_API_BASE_URL,
     headers: {

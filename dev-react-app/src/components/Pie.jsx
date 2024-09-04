@@ -1,3 +1,4 @@
+// Componente funcional
 export function Pie() {
   return (
     <>

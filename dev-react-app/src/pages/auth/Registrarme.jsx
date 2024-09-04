@@ -1,11 +1,16 @@
+// Hooks y Componentes de ReactJS
 import { useState } from "react";
+
+// Componentes
 import { Boton } from "../../components/Boton";
 import { Tarjeta } from "../../components/Tarjeta";
 import { registrar } from "../../services/service_auth";
 
+// Hooks para Notificaciones
 import { ToastContainer, Bounce, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+// Componente funcional
 export function Registrarme() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

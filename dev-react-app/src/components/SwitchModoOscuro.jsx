@@ -1,6 +1,10 @@
+// Componentes y Hooks de ReactJS
 import React, { useContext } from 'react';
+
+// Contexto
 import { ThemeContext } from "../context/ThemeContext";
 
+// Componente funcional
 export default function SwitchModoOscuro() {
   const { theme, toggleTheme } = useContext(ThemeContext);
 
