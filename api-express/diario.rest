@@ -1,0 +1,55 @@
+@baseUrl=http://localhost:3010/api/v1
+@token=aqui.va.tu.token.secreto
+
+###
+
+# @name todosDiario
+# Ruta para obtener todos los diarios
+GET {{baseUrl}}/diario/mio?usuario_id=2
+Origin: {{baseUrl}}
+Authorization: Bearer {{token}}
+
+### 
+
+# @name crearDiario
+# Ruta para crear una diario
+POST {{baseUrl}}/diario
+Content-Type: application/json
+Origin: {{baseUrl}}
+Authorization: Bearer {{token}}
+
+{
+    "titulo":"Desarrollar un CRUD",
+    "contenido":"Utilizar ReactJS + SpringBoot",
+    "usuario_id":2
+}
+
+###
+
+# @name verDiario
+# Ruta para obtener ver una diario
+GET {{baseUrl}}/diario/1
+Origin: {{baseUrl}}
+Authorization: Bearer {{token}}
+
+### 
+
+# @name actualizarDiario
+# Ruta para actualizar una diario mediante su id
+PUT {{baseUrl}}/diario/1
+Content-Type: application/json
+Origin: {{baseUrl}}
+Authorization: Bearer {{token}}
+
+{
+    "titulo":"CRUD",
+    "contendio":"ReactJS + SpringBoot"
+}
+
+### 
+
+# @name eliminarDiario
+# Ruta para actualizar una diario mediante su id
+DELETE {{baseUrl}}/diario/1
+Origin: {{baseUrl}}
+Authorization: Bearer {{token}}

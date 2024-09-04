@@ -1,3 +1,18 @@
+# Ignorar para NodeJS + Express
 /dev-react-app/node_modules
+/dev-react-app/.env
+/dev-react-app/*-lock.json
+/dev-react-app/*-lock.yaml
+
+# Ignorar para ReactJS
 /api-express/node_modules
+/api-express/.env
+/api-express/*-lock.json
+/api-express/*-lock.yaml
 .my-codes
+
+# Ignorar archivos y carpetas en general
+/**/*-lock.json
+/**/*-lock.yaml
+/**/.env
+.vscode

@@ -1,27 +1,59 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Acceder } from '../pages/Acceder'
-import { Registrarme } from '../pages/Registrarme'
-import { Home } from '../pages/Home'
-import { Diarios } from '../pages/Diarios'
-import { Tareas } from '../pages/Tareas'
-import { NavBar } from '../components/NavBar'
-import { Pie } from '../components/Pie'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { RutaProtegida } from '../components/RutaProtegida';
+import { RutaPublica } from '../components/RutaPublica';
+import { Acceder } from '../pages/auth/Acceder';
+import { Registrarme } from '../pages/auth/Registrarme';
+import { Inicio } from '../pages/Inicio';
+import { NavBar } from '../components/NavBar';
+import { Pie } from '../components/Pie';
+import { AuthProvider } from '../context/AuthContext';
+import { Panel } from '../pages/cuenta/Panel';
+import { ConfigurarCuenta } from '../pages/cuenta/ConfigurarCuenta';
+import { EditarDiario } from '../pages/diarios/EditarDiario';
+import { Diarios } from '../pages/diarios/Diarios';
+import { Tareas } from '../pages/tareas/Tareas';
+import { EditarTarea } from '../pages/tareas/EditarTarea';
 
-export function RoutePage (){
-    return(
+export const Rutas = {
+    // Se define rutas, para rutas publicas
+    HOME: '/',
+    INICIO: '/inicio',
+    ACCEDER: '/acceder',
+    REGISTRARME: '/registrarme',
+
+    // Se define rutas, para rutas protegidas
+    PANEL: '/panel',
+    DIARIOS: '/diarios',
+    DIARIOS_EDITAR: '/diario/editar',
+    TAREAS: '/tareas',
+    TAREAS_EDITAR: '/tareas/editar',
+    CUENTA_CONFIGURAR: '/cuenta/configurar',
+};
+
+export function RoutePage() {
+    return (
         <BrowserRouter>
-            <NavBar></NavBar>
-            <div className='container container-css my-4'>
-            <Routes>
-                <Route path="/" element={<Home/>}/>
-                <Route path="/inicio" element={<Home/>}/>
-                <Route path="/acceder" element={<Acceder/>}/>
-                <Route path="/registrarme" element={<Registrarme/>}/>
-                <Route path="/diarios" element={<Diarios/>}/>
-                <Route path="/tareas" element={<Tareas/>}/>
-            </Routes>
-            </div>
-            <Pie></Pie>
-        </BrowserRouter>   
-    )
+            <AuthProvider>
+                <NavBar />
+                <div className='container container-css my-4'>
+                    <Routes>
+                        {/* Rutas públicas */}
+                        <Route path={Rutas.HOME} element={<RutaPublica><Inicio /></RutaPublica>} />
+                        <Route path={Rutas.INICIO} element={<RutaPublica><Inicio /></RutaPublica>} />
+                        <Route path={Rutas.ACCEDER} element={<RutaPublica><Acceder /></RutaPublica>} />
+                        <Route path={Rutas.REGISTRARME} element={<RutaPublica><Registrarme /></RutaPublica>} />
+
+                        {/* Rutas protegidas */}
+                        <Route path={Rutas.PANEL} element={<RutaProtegida><Panel /></RutaProtegida>} />
+                        <Route path={Rutas.DIARIOS_EDITAR} element={<RutaProtegida> <EditarDiario /> </RutaProtegida>} />
+                        <Route path={Rutas.TAREAS_EDITAR} element={<RutaProtegida> <EditarTarea /> </RutaProtegida>} />
+                        <Route path={Rutas.CUENTA_CONFIGURAR} element={<RutaProtegida><ConfigurarCuenta /></RutaProtegida>} />
+                        <Route path={Rutas.DIARIOS} element={<RutaProtegida><Diarios /></RutaProtegida>} />
+                        <Route path={Rutas.TAREAS} element={<RutaProtegida><Tareas /></RutaProtegida>} />
+                    </Routes>
+                </div>
+                <Pie />
+            </AuthProvider>
+        </BrowserRouter>
+    );
 }
