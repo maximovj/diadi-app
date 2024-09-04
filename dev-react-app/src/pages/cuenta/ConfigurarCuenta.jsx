@@ -73,8 +73,12 @@ export function ConfigurarCuenta() {
                     });
                 }
             })
-            .catch(() => {
-                logout();
+            .catch((err) => {
+                if (err.response.status !== 500) {
+                    showToast(err.response.data.ctx_contenido || err.response.statusText, 'error');
+                } else {
+                    logout();
+                }
             });
     }
 
@@ -107,85 +111,85 @@ export function ConfigurarCuenta() {
 
     return (<>
         <Contenedor>
-            <Tarjeta className={`card-dark-mode w-50 h-100 mb-4`}>
-                <div className="card-header">
-                    <h1 className="txt-h1-css">Cambiar contraseña</h1>
-                </div>
-                <div className="card-body">
-                    <div className="mb-3">
-                        <label htmlFor="contrasena_actual" className="form-label">
-                            Contraseña actual
-                        </label>
-                        <input
-                            type="password"
-                            className="form-control"
-                            id="contrasena_actual"
-                            name="contrasena_actual"
-                            onChange={handleChangePasswd}
-                            value={fields.contrasena_actual}
-                        />
+            <div className="col-12 col-lg-6">
+                <Tarjeta className={`card-dark-mode w-100 h-100 mb-4`}>
+                    <div className="card-header">
+                        <h1 className="txt-h1-css">Cambiar contraseña</h1>
                     </div>
-                    <div className="mb-3">
-                        <label htmlFor="contrasena_nueva" className="form-label">
-                            Contraseña nueva
-                        </label>
-                        <input
-                            type="password"
-                            className="form-control"
-                            id="contrasena_nueva"
-                            name="contrasena_nueva"
-                            onChange={handleChangePasswd}
-                            value={fields.contrasena_nueva}
-                        />
+                    <div className="card-body">
+                        <div className="mb-3">
+                            <label htmlFor="contrasena_actual" className="form-label">
+                                Contraseña actual
+                            </label>
+                            <input
+                                type="password"
+                                className="form-control"
+                                id="contrasena_actual"
+                                name="contrasena_actual"
+                                onChange={handleChangePasswd}
+                                value={fields.contrasena_actual}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="contrasena_nueva" className="form-label">
+                                Contraseña nueva
+                            </label>
+                            <input
+                                type="password"
+                                className="form-control"
+                                id="contrasena_nueva"
+                                name="contrasena_nueva"
+                                onChange={handleChangePasswd}
+                                value={fields.contrasena_nueva}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="repetir_contrasena_nueva" className="form-label">
+                                Repetir contraseña nueva
+                            </label>
+                            <input
+                                type="password"
+                                className="form-control"
+                                id="repetir_contrasena_nueva"
+                                name="repetir_contrasena_nueva"
+                                onChange={handleChangePasswd}
+                                value={fields.repetir_contrasena_nueva}
+                            />
+                        </div>
                     </div>
-                    <div className="mb-3">
-                        <label htmlFor="repetir_contrasena_nueva" className="form-label">
-                            Repetir contraseña nueva
-                        </label>
-                        <input
-                            type="password"
-                            className="form-control"
-                            id="repetir_contrasena_nueva"
-                            name="repetir_contrasena_nueva"
-                            onChange={handleChangePasswd}
-                            value={fields.repetir_contrasena_nueva}
-                        />
+                    <div className="card-footer">
+                        <div className="d-flex justify-content-between align-items-start">
+                            <Boton tipo="warning" onClick={handleSubmitChangePassword}>Cambiar contraseña</Boton>
+                        </div>
                     </div>
-                </div>
-                <div className="card-footer">
-                    <div className="d-flex justify-content-between align-items-center">
-                        <div></div>
-                        <Boton tipo="success" onClick={handleSubmitChangePassword}>Cambiar contraseña</Boton>
+                </Tarjeta>
+                <Tarjeta className={`card-dark-mode w-100 h-100 mb-4`}>
+                    <div className="card-header">
+                        <h1 className="txt-h1-css">Configurar modo oscuro</h1>
                     </div>
-                </div>
-            </Tarjeta>
-            <Tarjeta className={`card-dark-mode w-50 h-100 mb-4`}>
-                <div className="card-header">
-                    <h1 className="txt-h1-css">Configurar modo oscuro</h1>
-                </div>
-                <div className="card-body">
-                    <div>
-                        <p>Activar modo oscuro</p>
-                        <SwitchModoOscuro></SwitchModoOscuro>
+                    <div className="card-body">
+                        <div>
+                            <p>Activar modo oscuro</p>
+                            <SwitchModoOscuro></SwitchModoOscuro>
+                        </div>
                     </div>
-                </div>
-            </Tarjeta>
-            <Tarjeta className={`card-dark-mode w-50 h-100 mb-4`}>
-                <div className="card-header">
-                    <h1 className="txt-h1-css">Configurar cuenta</h1>
-                </div>
-                <div className="card-body">
-                    <div>
-                        <h6>Cerrar sesión</h6>
-                        <Boton tipo="danger" onClick={logout}>Cerrar sesión</Boton>
+                </Tarjeta>
+                <Tarjeta className={`card-dark-mode w-100 h-100 mb-4`}>
+                    <div className="card-header">
+                        <h1 className="txt-h1-css">Configurar cuenta</h1>
                     </div>
-                    <hr className="dropdown-divider" />
-                    <div>
-                        <h6>Eliminar cuenta</h6>
-                        <Boton tipo="danger" onClick={handleBtnEliminarCuenta}>Eliminar cuenta</Boton>
+                    <div className="card-body">
+                        <div className="d-flex flex-row gap-4  justify-content-start">
+                            <div>
+                                <Boton tipo="danger" onClick={logout}>Cerrar sesión</Boton>
+                            </div>
+                            <div>
+                                <Boton tipo="danger" onClick={handleBtnEliminarCuenta}>Eliminar cuenta</Boton>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </Tarjeta>
+                </Tarjeta>
+            </div>
         </Contenedor>
         <ToastContainer />
     </>);

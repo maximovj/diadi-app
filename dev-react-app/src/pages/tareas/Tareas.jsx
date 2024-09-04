@@ -1,24 +1,19 @@
 // Hooks de react js 
 import { useCallback, useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
 
 // Componentes
-import { TaskModal } from "../../components/TodoList/TaskModal";
-import { Tarjeta } from "../../components/Tarjeta";
+import { ModalCrear } from "../../components/tareas/ModalCrear";
 import { Boton } from "../../components/Boton";
 import { Contenedor } from "../../components/Contenedor";
+import { SinTareas } from "../../components/tareas/SinTareas";
+import { TarjetaTarea } from "../../components/tareas/TarjetaTarea";
 
 // Modulo de notificaciones toast
 import { ToastContainer, Bounce, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// Modulo para manipular la fecha
-import moment from 'moment';
-import 'moment/locale/es-mx';
-
 // Servicios
 import { serviceTareaCrear, serviceTareaListar } from "../../services/service_tarea";
-import { Rutas } from "../../routes/routes";
 
 // Contexto 
 import { useAuth } from "../../context/AuthContext";
@@ -115,6 +110,16 @@ export function Tareas() {
 
   };
 
+  const renderizarTareas = () => {
+    if (tareas.length <= 0) {
+      return <SinTareas />
+    } else {
+      return tareas.map((tarea) => (
+        <TarjetaTarea itemTarea={tarea} key={`${tarea.id + Date.now()}`} />
+      ));
+    }
+  }
+
   // Componente principal de la página de tareas
   return (
     <Contenedor alignItems="align-items-stretch">
@@ -126,42 +131,12 @@ export function Tareas() {
       </div>
 
       {/* Se muestran todas las tareas */}
-      <div className="row row-cols-1 row-cols-md-3 g-4 mt-2">
-        {tareas.map((itemTarea) => (
-          <div className="col" key={itemTarea.id}>
-            <Tarjeta className={`m-auto card-dark-mode h-100`}>
-              <div className="card-body">
-                <h5>{itemTarea.titulo}</h5>
-                {itemTarea.descripcion}
-                <hr className="dropdown-divider" />
-                <h6>
-                  <span className="badge bg-success">{itemTarea.estado}</span> &nbsp;
-                  <span className="badge bg-warning">{itemTarea.importancia}</span>
-                </h6>
-                <div><small className="text-muted" style={{ fontSize: '9px' }}>{moment(itemTarea.fecha_inicio).format('LL')} - {moment(itemTarea.fecha_limite).format('LL')}</small></div>
-              </div>
-              <div className="card-footer">
-                <div className="d-flex align-content-center justify-content-between">
-                  <small className="text-muted">
-                    {moment(itemTarea.createdAt).fromNow()}
-                  </small>
-                  <Link
-                    to={{
-                      pathname: `${Rutas.TAREAS_EDITAR}`,
-                      search: `?id=${itemTarea.id}`
-                    }}
-                  >
-                    <i className="la la-pencil-square-o"></i>
-                  </Link>
-                </div>
-              </div>
-            </Tarjeta>
-          </div>
-        ))}
+      <div className="row mt-4 g-2">
+        {renderizarTareas()}
       </div>
 
       {/* Modal para crear nueva tarea */}
-      <TaskModal
+      <ModalCrear
         show={showModal}
         handleClose={handleCloseModal}
         handleSubmit={handleSubmit}
