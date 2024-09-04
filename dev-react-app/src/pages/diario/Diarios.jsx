@@ -108,10 +108,10 @@ export function Diarios() {
               + Nuevo diario
             </Boton>
           </div>
-          <div className="row row-cols-1 row-cols-md-3 g-4 mt-2">
+          <div className="row mt-4 g-2">
             {diarios.map((diario, index) => (
-              <div className="col" key={index}>
-                <Tarjeta className={`m-auto card-dark-mode h-100`}>
+              <div className="col-12 col-lg-4 mb-4" key={index}>
+                <Tarjeta className={`card-dark-mode w-100 h-100`}>
                   <div className="card-body">
                     <h5 className="card-title">{diario.titulo}</h5>
                     <p className="card-text">{diario.contenido}</p>

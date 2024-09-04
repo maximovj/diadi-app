@@ -126,10 +126,10 @@ export function Tareas() {
       </div>
 
       {/* Se muestran todas las tareas */}
-      <div className="row row-cols-1 row-cols-md-3 g-4 mt-2">
+      <div className="row mt-4 g-2">
         {tareas.map((itemTarea) => (
-          <div className="col" key={itemTarea.id}>
-            <Tarjeta className={`m-auto card-dark-mode h-100`}>
+          <div className="col-12 col-lg-4 mb-4" key={itemTarea.id}>
+            <Tarjeta className={`card-dark-mode w-100 h-100`}>
               <div className="card-body">
                 <h5>{itemTarea.titulo}</h5>
                 {itemTarea.descripcion}

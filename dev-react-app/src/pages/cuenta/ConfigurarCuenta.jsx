@@ -179,14 +179,13 @@ export function ConfigurarCuenta() {
                         <h1 className="txt-h1-css">Configurar cuenta</h1>
                     </div>
                     <div className="card-body">
-                        <div>
-                            <h6>Cerrar sesión</h6>
-                            <Boton tipo="danger" onClick={logout}>Cerrar sesión</Boton>
-                        </div>
-                        <hr className="dropdown-divider" />
-                        <div>
-                            <h6>Eliminar cuenta</h6>
-                            <Boton tipo="danger" onClick={handleBtnEliminarCuenta}>Eliminar cuenta</Boton>
+                        <div className="d-flex flex-row gap-4  justify-content-start">
+                            <div>
+                                <Boton tipo="danger" onClick={logout}>Cerrar sesión</Boton>
+                            </div>
+                            <div>
+                                <Boton tipo="danger" onClick={handleBtnEliminarCuenta}>Eliminar cuenta</Boton>
+                            </div>
                         </div>
                     </div>
                 </Tarjeta>
