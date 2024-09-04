@@ -1,4 +1,6 @@
+import { Rutas } from '../routes/routes';
 import { Contenedor } from '../components/Contenedor';
+import { Link } from 'react-router-dom';
 
 export function Inicio() {
   return (
@@ -14,7 +16,7 @@ export function Inicio() {
         <div className="card-body">
           <h5 className="card-title">Tareas</h5>
           <p className="card-text">Empieza a ordenar tus tareas y/o actividades</p>
-          <a href="/tareas" role='button' className='btn btn-sm btn-success'>Mis tareas</a>
+          <Link to={Rutas.TAREAS} relative='path' className='btn btn-sm btn-success'>Mis tareas</Link>
         </div>
       </div>
 
@@ -23,7 +25,7 @@ export function Inicio() {
         <div className="card-body">
           <h5 className="card-title">Lista de diarios</h5>
           <p className="card-text">Empieza a registrar tus momentos felices con un diario.</p>
-          <a href="/diarios" role='button' className='btn btn-sm btn-success'>Mis diarios</a>
+          <Link to={Rutas.DIARIOS} relative='path' className='btn btn-sm btn-success'>Mis diarios</Link>
         </div>
       </div>
     </Contenedor>

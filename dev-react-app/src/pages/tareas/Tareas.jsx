@@ -1,5 +1,6 @@
 // Hooks de react js 
 import { useCallback, useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 
 // Componentes
 import { TaskModal } from "../../components/TodoList/TaskModal";
@@ -17,6 +18,7 @@ import 'moment/locale/es-mx';
 
 // Servicios
 import { serviceTareaCrear, serviceTareaListar } from "../../services/service_tarea";
+import { Rutas } from "../../routes/routes";
 
 // Contexto 
 import { useAuth } from "../../context/AuthContext";
@@ -143,9 +145,14 @@ export function Tareas() {
                   <small className="text-muted">
                     {moment(itemTarea.createdAt).fromNow()}
                   </small>
-                  <a href={`/tareas/editar?id=${itemTarea.id}`}>
+                  <Link
+                    to={{
+                      pathname: `${Rutas.TAREAS_EDITAR}`,
+                      search: `?id=${itemTarea.id}`
+                    }}
+                  >
                     <i className="la la-pencil-square-o"></i>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </Tarjeta>

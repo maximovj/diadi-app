@@ -14,6 +14,22 @@ import { Diarios } from '../pages/diario/Diarios';
 import { Tareas } from '../pages/tareas/Tareas';
 import { EditarTarea } from '../pages/tareas/EditarTarea';
 
+export const Rutas = {
+    // Se define rutas, para rutas publicas
+    HOME: '/',
+    INICIO: '/inicio',
+    ACCEDER: '/acceder',
+    REGISTRARME: '/registrarme',
+
+    // Se define rutas, para rutas protegidas
+    PANEL: '/panel',
+    DIARIOS: '/diarios',
+    DIARIOS_EDITAR: '/diario/editar',
+    TAREAS: '/tareas',
+    TAREAS_EDITAR: '/tareas/editar',
+    CUENTA_CONFIGURAR: '/cuenta/configurar',
+};
+
 export function RoutePage() {
     return (
         <BrowserRouter>
@@ -22,18 +38,18 @@ export function RoutePage() {
                 <div className='container container-css my-4'>
                     <Routes>
                         {/* Rutas públicas */}
-                        <Route path="/" element={<RutaPublica><Inicio /></RutaPublica>} />
-                        <Route path="/inicio" element={<RutaPublica><Inicio /></RutaPublica>} />
-                        <Route path="/acceder" element={<RutaPublica><Acceder /></RutaPublica>} />
-                        <Route path="/registrarme" element={<RutaPublica><Registrarme /></RutaPublica>} />
+                        <Route path={Rutas.HOME} element={<RutaPublica><Inicio /></RutaPublica>} />
+                        <Route path={Rutas.INICIO} element={<RutaPublica><Inicio /></RutaPublica>} />
+                        <Route path={Rutas.ACCEDER} element={<RutaPublica><Acceder /></RutaPublica>} />
+                        <Route path={Rutas.REGISTRARME} element={<RutaPublica><Registrarme /></RutaPublica>} />
 
                         {/* Rutas protegidas */}
-                        <Route path="/panel" element={<RutaProtegida><Panel /></RutaProtegida>} />
-                        <Route path='/diario/editar' element={<RutaProtegida> <EditarDiario /> </RutaProtegida>} />
-                        <Route path='/tareas/editar' element={<RutaProtegida> <EditarTarea /> </RutaProtegida>} />
-                        <Route path="/cuenta/configurar" element={<RutaProtegida><ConfigurarCuenta /></RutaProtegida>} />
-                        <Route path="/diarios" element={<RutaProtegida><Diarios /></RutaProtegida>} />
-                        <Route path="/tareas" element={<RutaProtegida><Tareas /></RutaProtegida>} />
+                        <Route path={Rutas.PANEL} element={<RutaProtegida><Panel /></RutaProtegida>} />
+                        <Route path={Rutas.DIARIOS_EDITAR} element={<RutaProtegida> <EditarDiario /> </RutaProtegida>} />
+                        <Route path={Rutas.TAREAS_EDITAR} element={<RutaProtegida> <EditarTarea /> </RutaProtegida>} />
+                        <Route path={Rutas.CUENTA_CONFIGURAR} element={<RutaProtegida><ConfigurarCuenta /></RutaProtegida>} />
+                        <Route path={Rutas.DIARIOS} element={<RutaProtegida><Diarios /></RutaProtegida>} />
+                        <Route path={Rutas.TAREAS} element={<RutaProtegida><Tareas /></RutaProtegida>} />
                     </Routes>
                 </div>
                 <Pie />
