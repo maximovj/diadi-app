@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from "../context/ThemeContext";
 
-export function Boton({ tipo, onClick, children, className, size, ...props }) {
+export function Boton({ children, onClick, className, size, type, ...props }) {
   const { theme } = useContext(ThemeContext);
 
-  const classNames = `btn btn-${tipo} 
-  ${theme === "light" ? `bg-${tipo} text-light` : "bg-dark text-light"}
+  const classNames = `btn btn-${type} 
+  ${theme === "light" ? `bg-${type} text-light` : "bg-dark text-light"}
   ${size ? `btn-${size}` : ""} 
   ${className}
   `;

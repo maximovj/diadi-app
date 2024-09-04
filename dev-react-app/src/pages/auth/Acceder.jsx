@@ -71,7 +71,7 @@ export function Acceder() {
 
   return (
     <div className="d-flex vh-100">
-      <Tarjeta className={`m-auto p-4 card-dark-mode`}>
+      <Tarjeta className={`m-auto p-4 card-dark-mode`} style={{ minWidth: '50%', minHeight: '50%' }} >
         <h2 className="mb-4">Acceder</h2>
         <div className="mb-3">
           <label htmlFor="email" className="form-label">
@@ -80,10 +80,14 @@ export function Acceder() {
           <input
             type="text"
             className="form-control"
+            placeholder="Escribe tú usuario"
             id="email"
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
           />
+          <div class="form-text">
+            El nombre de usuario solo puede contener letras, números, guiones (-) y guiones bajos (_).
+          </div>
         </div>
         <div className="mb-3">
           <label htmlFor="password" className="form-label">
@@ -92,6 +96,7 @@ export function Acceder() {
           <input
             type="password"
             className="form-control"
+            placeholder="Escribe tú contraseña"
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -99,10 +104,12 @@ export function Acceder() {
         </div>
         <div className="d-flex justify-content-between align-items-center">
           <div></div>
-          <Boton tipo="success" onClick={handleLogin}>Acceder</Boton>
+          <Boton type="success" onClick={handleLogin}>
+            <i className="la la-sign-in" /> Acceder
+          </Boton>
         </div>
       </Tarjeta>
       <ToastContainer />
-    </div>
+    </div >
   );
 }

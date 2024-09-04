@@ -105,90 +105,96 @@ export function EditarTarea() {
 
     return (<>
         <Contenedor>
-            <Tarjeta className={'w-50 h-100'}>
-                <div className="card-body">
-                    <div className="mb-4">
-                        <label htmlFor="titulo" className="form-label">Título</label>
-                        <input
-                            className="form-control"
-                            placeholder="Escribe el título"
-                            type="text"
-                            id="titulo"
-                            name="titulo"
-                            onChange={handleOnChangeFieldInput}
-                            value={tarea.titulo}
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label htmlFor="descripcion" className="form-label">Descripción</label>
-                        <input
-                            className="form-control"
-                            placeholder="Escribe la descripción"
-                            type="text"
-                            id="descripcion"
-                            name="descripcion"
-                            onChange={handleOnChangeFieldInput}
-                            value={tarea.descripcion}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="estado" className="form-label">Estado</label>
-                        <select
-                            className="form-select"
-                            id="estado"
-                            name="estado"
-                            onChange={handleOnChangeFieldInput}
-                            value={tarea.estado}>
-                            <option value="pendiente">Pendiente</option>
-                            <option value="en_progreso">En progreso</option>
-                            <option value="finalizado">Finalizado</option>
-                        </select>
-                    </div>
-                    <div className="mb-4">
-                        <label htmlFor="importancia">Estado</label>
-                        <select
-                            className="form-select"
-                            name="importancia"
-                            id="importancia"
-                            onChange={handleOnChangeFieldInput}
-                            value={tarea.importancia}>
-                            <option value="baja">Baja</option>
-                            <option value="normal">Normal</option>
-                            <option value="alta">Alta</option>
-                        </select>
-                    </div>
-                    <div className="row mb-3">
-                        <div className="col-md-6">
-                            <label htmlFor="fecha_inicio" className="form-label">Fecha de Inicio</label>
+            <div className="col-12 col-lg-6 mx-auto">
+                <Tarjeta className={'w-100 h-100'}>
+                    <div className="card-body">
+                        <div className="mb-4">
+                            <label htmlFor="titulo" className="form-label">Título</label>
                             <input
-                                type="date"
                                 className="form-control"
-                                id="fecha_inicio"
-                                name="fecha_inicio"
+                                placeholder="Escribe el título"
+                                type="text"
+                                id="titulo"
+                                name="titulo"
                                 onChange={handleOnChangeFieldInput}
-                                value={moment(tarea.fecha_inicio).format('YYYY-MM-DD')}
+                                value={tarea.titulo}
                             />
                         </div>
-                        <div className="col-md-6">
-                            <label htmlFor="fecha_limite" className="form-label">Fecha Límite</label>
+                        <div className="mb-4">
+                            <label htmlFor="descripcion" className="form-label">Descripción</label>
                             <input
-                                type="date"
                                 className="form-control"
-                                id="fecha_limite"
-                                name="fecha_limite"
+                                placeholder="Escribe la descripción"
+                                type="text"
+                                id="descripcion"
+                                name="descripcion"
                                 onChange={handleOnChangeFieldInput}
-                                value={moment(tarea.fecha_limite).format('YYYY-MM-DD')}
+                                value={tarea.descripcion}
                             />
                         </div>
+                        <div className="mb-3">
+                            <label htmlFor="estado" className="form-label">Estado</label>
+                            <select
+                                className="form-select"
+                                id="estado"
+                                name="estado"
+                                onChange={handleOnChangeFieldInput}
+                                value={tarea.estado}>
+                                <option value="pendiente">Pendiente</option>
+                                <option value="en_progreso">En progreso</option>
+                                <option value="finalizado">Finalizado</option>
+                            </select>
+                        </div>
+                        <div className="mb-4">
+                            <label htmlFor="importancia">Estado</label>
+                            <select
+                                className="form-select"
+                                name="importancia"
+                                id="importancia"
+                                onChange={handleOnChangeFieldInput}
+                                value={tarea.importancia}>
+                                <option value="baja">Baja</option>
+                                <option value="normal">Normal</option>
+                                <option value="alta">Alta</option>
+                            </select>
+                        </div>
+                        <div className="row mb-3">
+                            <div className="col-md-6">
+                                <label htmlFor="fecha_inicio" className="form-label">Fecha de Inicio</label>
+                                <input
+                                    type="date"
+                                    className="form-control"
+                                    id="fecha_inicio"
+                                    name="fecha_inicio"
+                                    onChange={handleOnChangeFieldInput}
+                                    value={moment(tarea.fecha_inicio).format('YYYY-MM-DD')}
+                                />
+                            </div>
+                            <div className="col-md-6">
+                                <label htmlFor="fecha_limite" className="form-label">Fecha Límite</label>
+                                <input
+                                    type="date"
+                                    className="form-control"
+                                    id="fecha_limite"
+                                    name="fecha_limite"
+                                    onChange={handleOnChangeFieldInput}
+                                    value={moment(tarea.fecha_limite).format('YYYY-MM-DD')}
+                                />
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div className="card-footer">
-                    <div className="d-flex gap-2">
-                        <Boton size={'sm'} tipo={'success'} onClick={handleBtnActualizar} >Actualizar</Boton>
-                        <Boton size={'sm'} tipo={'danger'} onClick={handleBtnEliminar}>Eliminar</Boton>
+                    <div className="card-footer">
+                        <div className="d-flex gap-2">
+                            <Boton size={'sm'} type={'success'} onClick={handleBtnActualizar} >
+                                <i className="la la-check-circle-o" /> Actualizar
+                            </Boton>
+                            <Boton size={'sm'} type={'danger'} onClick={handleBtnEliminar}>
+                                <i className="la la-trash-o" /> Eliminar
+                            </Boton>
+                        </div>
                     </div>
-                </div>
-            </Tarjeta>
+                </Tarjeta>
+            </div>
         </Contenedor>
         <ToastContainer />
     </>);

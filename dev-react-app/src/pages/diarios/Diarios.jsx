@@ -113,8 +113,8 @@ export function Diarios() {
         <div>
           <div className="d-flex justify-content-between align-items-center">
             <h2>Lista de diarios</h2>
-            <Boton tipo={`primary`} onClick={handleOnOpenModal}>
-              + Nuevo diario
+            <Boton type={`primary`} onClick={handleOnOpenModal}>
+              <i className='la la-plus-circle' /> Nuevo diario
             </Boton>
           </div>
           <div className="row mt-4 g-2">

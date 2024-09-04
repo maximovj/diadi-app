@@ -159,7 +159,9 @@ export function ConfigurarCuenta() {
                     </div>
                     <div className="card-footer">
                         <div className="d-flex justify-content-between align-items-start">
-                            <Boton tipo="warning" onClick={handleSubmitChangePassword}>Cambiar contraseña</Boton>
+                            <Boton type={'success'} size={'sm'} onClick={handleSubmitChangePassword}>
+                                <i className="la la-check-circle-o" /> Cambiar contraseña
+                            </Boton>
                         </div>
                     </div>
                 </Tarjeta>
@@ -181,10 +183,14 @@ export function ConfigurarCuenta() {
                     <div className="card-body">
                         <div className="d-flex flex-row gap-4  justify-content-start">
                             <div>
-                                <Boton tipo="danger" onClick={logout}>Cerrar sesión</Boton>
+                                <Boton type={'danger'} size={'sm'} onClick={logout}>
+                                    <i className="la la-sign-out" /> Cerrar sesión
+                                </Boton>
                             </div>
                             <div>
-                                <Boton tipo="danger" onClick={handleBtnEliminarCuenta}>Eliminar cuenta</Boton>
+                                <Boton type={'danger'} size={'sm'} onClick={handleBtnEliminarCuenta}>
+                                    <i className="la la-trash-restore" /> Eliminar cuenta
+                                </Boton>
                             </div>
                         </div>
                     </div>

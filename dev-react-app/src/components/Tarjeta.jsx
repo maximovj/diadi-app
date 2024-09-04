@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from "../context/ThemeContext";
 
-export function Tarjeta({ tipo, onClick, children, className, size, ...props }) {
+export function Tarjeta({ children, tipo, onClick, className, ...props }) {
   const { theme } = useContext(ThemeContext);
 
   // className={`m-auto card card-css p-4 ${document.modoOscuroActivo ? 'card-dark-mode' : ''}`}
@@ -12,7 +12,7 @@ export function Tarjeta({ tipo, onClick, children, className, size, ...props }) 
   `;
 
   return (
-    <div className={classNames}>
+    <div className={classNames} {...props}>
       {children}
     </div>
   );

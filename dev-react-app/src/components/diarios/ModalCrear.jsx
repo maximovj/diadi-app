@@ -1,12 +1,17 @@
-import { Boton } from "../Boton";
+// Componentes
 import { Modal } from "../Modal";
 
 export function ModalCrear({ show, handleClose, handleSubmit, handleChange, tituloModal, diario }) {
     return (
         <Modal
             show={show}
-            handleClose={handleClose}
-            tituloModal={tituloModal}>
+            tituloModal={'Nuevo diario'}
+            handleOnBtnCancel={handleClose}
+            handleOnBtnOk={handleSubmit}
+            handleSubmit={handleSubmit}
+            textBtnCancel={'Cancelar'}
+            textBtnOk={'Crear'}
+        >
             <div className="mb-3">
                 <label htmlFor="titulo" className="form-label">Título</label>
                 <input
@@ -30,16 +35,6 @@ export function ModalCrear({ show, handleClose, handleSubmit, handleChange, titu
                     placeholder="Ingrese el contenido"
                     value={diario.contenido}
                     required></textarea>
-            </div>
-            <div className="card-footer">
-                <div className="d-flex justify-content-between align-content-center">
-                    <Boton tipo={'secondary'} onClick={handleClose}>
-                        Cancelar
-                    </Boton>
-                    <Boton tipo={'success'} onClick={handleSubmit}>
-                        Crear
-                    </Boton>
-                </div>
             </div>
         </Modal>
     );

@@ -59,7 +59,7 @@ export function Registrarme() {
 
   return (
     <div className="d-flex vh-100">
-      <Tarjeta className={`m-auto p-4 card-dark-mode`}>
+      <Tarjeta className={`m-auto p-4 card-dark-mode`} style={{ minWidth: '50%', minHeight: '50%' }}>
         <h2 className="mb-4">Registrarme</h2>
         <div className="mb-3">
           <label htmlFor="username" className="form-label">
@@ -68,10 +68,14 @@ export function Registrarme() {
           <input
             type="text"
             className="form-control"
+            placeholder="Escribe un nuevo usuario"
             id="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
+          <div class="form-text">
+            El nombre de usuario solo puede contener letras, números, guiones (-) y guiones bajos (_).
+          </div>
         </div>
         <div className="mb-3">
           <label htmlFor="password" className="form-label">
@@ -80,6 +84,7 @@ export function Registrarme() {
           <input
             type="password"
             className="form-control"
+            placeholder="Escribe tú contraseña"
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -87,8 +92,8 @@ export function Registrarme() {
         </div>
         <div className="d-flex justify-content-between align-items-center">
           <div></div>
-          <Boton tipo="success" onClick={handleRegister}>
-            Registrarme
+          <Boton type="success" onClick={handleRegister}>
+            <i className="la la-check-double" /> Registrarme
           </Boton>
         </div>
       </Tarjeta>

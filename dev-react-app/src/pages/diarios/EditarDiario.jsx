@@ -114,38 +114,44 @@ export function EditarDiario() {
 
     return (<>
         <Contenedor>
-            <Tarjeta className="w-50 h-100">
-                <div className="card-body">
-                    <div className="mb-3">
-                        <label htmlFor="titulo" className="form-label">Título</label>
-                        <input
-                            className="form-control"
-                            placeholder="Escribe un título"
-                            type="text"
-                            id="titulo"
-                            name="titulo"
-                            onChange={handleOnChangeFieldInput}
-                            value={diario.titulo || ''}
-                        />
+            <div className='col-12 col-lg-6 mx-auto'>
+                <Tarjeta className="w-100 h-100">
+                    <div className="card-body">
+                        <div className="mb-3">
+                            <label htmlFor="titulo" className="form-label">Título</label>
+                            <input
+                                className="form-control"
+                                placeholder="Escribe un título"
+                                type="text"
+                                id="titulo"
+                                name="titulo"
+                                onChange={handleOnChangeFieldInput}
+                                value={diario.titulo || ''}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="contenido" className="form-label">Descripción</label>
+                            <textarea
+                                className="form-control"
+                                placeholder="Escribe una descripción"
+                                name="contenido"
+                                id="contenido"
+                                onChange={handleOnChangeFieldInput}
+                                value={diario.contenido || ''} />
+                        </div>
                     </div>
-                    <div className="mb-3">
-                        <label htmlFor="contenido" className="form-label">Descripción</label>
-                        <textarea
-                            className="form-control"
-                            placeholder="Escribe una descripción"
-                            name="contenido"
-                            id="contenido"
-                            onChange={handleOnChangeFieldInput}
-                            value={diario.contenido || ''} />
+                    <div className="card-footer">
+                        <div className='d-flex gap-2'>
+                            <Boton type={'success'} size={'sm'} onClick={handleBtnActualizar}>
+                                <li className='la la-check-circle-o' /> Actualizar
+                            </Boton>
+                            <Boton type={'danger'} size={'sm'} onClick={handleBtnEliminar}>
+                                <li className='la la-trash-o' /> Eliminar
+                            </Boton>
+                        </div>
                     </div>
-                </div>
-                <div className="card-footer">
-                    <div className='d-flex gap-2'>
-                        <Boton tipo={'success'} size={'sm'} onClick={handleBtnActualizar}>Actualizar</Boton>
-                        <Boton tipo={'danger'} size={'sm'} onClick={handleBtnEliminar}>Eliminar</Boton>
-                    </div>
-                </div>
-            </Tarjeta>
+                </Tarjeta>
+            </div>
         </Contenedor>
         <ToastContainer />
     </>);
