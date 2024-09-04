@@ -10,7 +10,7 @@ import { AuthProvider } from '../context/AuthContext';
 import { Panel } from '../pages/cuenta/Panel';
 import { ConfigurarCuenta } from '../pages/cuenta/ConfigurarCuenta';
 import { EditarDiario } from '../pages/diario/EditarDiario';
-import { Diarios } from '../pages/diario/Diarios';
+import { Diarios } from '../pages/diarios/Diarios';
 import { Tareas } from '../pages/tareas/Tareas';
 import { EditarTarea } from '../pages/tareas/EditarTarea';
 

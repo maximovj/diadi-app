@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 // Componentes
-import { TaskModal } from "../../components/TodoList/TaskModal";
+import { ModalCrear } from "../../components/tareas/ModalCrear";
 import { Boton } from "../../components/Boton";
 import { Contenedor } from "../../components/Contenedor";
 import { SinTareas } from "../../components/tareas/SinTareas";
@@ -136,7 +136,7 @@ export function Tareas() {
       </div>
 
       {/* Modal para crear nueva tarea */}
-      <TaskModal
+      <ModalCrear
         show={showModal}
         handleClose={handleCloseModal}
         handleSubmit={handleSubmit}

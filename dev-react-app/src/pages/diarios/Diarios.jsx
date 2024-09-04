@@ -6,9 +6,10 @@ import { useAuth } from '../../context/AuthContext';
 
 // Componentes
 import { Boton } from "../../components/Boton";
-import { ModalCrear } from "../../components/diario/ModalCrear";
+import { ModalCrear } from "../../components/diarios/ModalCrear";
+import { TarjetaDiario } from "../../components/diarios/TarjetaDiario";
+import { SinDiarios } from "../../components/diarios/SinDiarios";
 import { Contenedor } from "../../components/Contenedor";
-import { TarjetaDiario } from "../../components/diario/TarjetaDiario";
 
 // Servicios 
 import { serviceDiarioCrear, serviceDiarioListar } from "../../services/service_diario";
@@ -16,7 +17,7 @@ import { serviceDiarioCrear, serviceDiarioListar } from "../../services/service_
 // Modulo de notificación toast
 import { ToastContainer, Bounce, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { SinDiarios } from "../../components/diario/SinDiarios";
+
 
 export function Diarios() {
   const { logout } = useAuth();
