@@ -11,7 +11,8 @@
 /api-express/*-lock.yaml
 .my-codes
 
-# Ignorar archivos en general
+# Ignorar archivos y carpetas en general
 /**/*-lock.json
 /**/*-lock.yaml
 /**/.env
+.vscode

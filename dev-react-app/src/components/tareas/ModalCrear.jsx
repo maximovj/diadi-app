@@ -96,8 +96,12 @@ export function ModalCrear({ show, handleClose, handleSubmit, tarea, handleChang
             </form>
           </div>
           <div className="modal-footer">
-            <Boton tipo="secondary" onClick={handleClose}>Cancelar</Boton>
-            <Boton tipo="success" onClick={handleSubmit}>Guardar Tarea</Boton>
+            <Boton type={'secondary'} size={'sm'} onClick={handleClose}>
+              <i className='la la-circle-o' /> Cancelar
+            </Boton>
+            <Boton type={'success'} size={'sm'} onClick={handleSubmit}>
+              <i className='la la-check-circle-o' /> Crear
+            </Boton>
           </div>
         </div>
       </div>

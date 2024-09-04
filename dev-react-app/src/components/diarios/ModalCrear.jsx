@@ -33,11 +33,11 @@ export function ModalCrear({ show, handleClose, handleSubmit, handleChange, titu
             </div>
             <div className="card-footer">
                 <div className="d-flex justify-content-between align-content-center">
-                    <Boton tipo={'secondary'} onClick={handleClose}>
-                        Cancelar
+                    <Boton type={'secondary'} size={'sm'} onClick={handleClose}>
+                        <i className="la la-circle-o" /> Cancelar
                     </Boton>
-                    <Boton tipo={'success'} onClick={handleSubmit}>
-                        Crear
+                    <Boton type={'success'} size={'sm'} onClick={handleSubmit}>
+                        <i className="la la-check-circle-o" /> Crear
                     </Boton>
                 </div>
             </div>

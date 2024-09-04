@@ -99,7 +99,7 @@ export function Acceder() {
         </div>
         <div className="d-flex justify-content-between align-items-center">
           <div></div>
-          <Boton tipo="success" onClick={handleLogin}>Acceder</Boton>
+          <Boton type="success" onClick={handleLogin}>Acceder</Boton>
         </div>
       </Tarjeta>
       <ToastContainer />

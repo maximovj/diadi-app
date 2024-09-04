@@ -87,7 +87,7 @@ export function Registrarme() {
         </div>
         <div className="d-flex justify-content-between align-items-center">
           <div></div>
-          <Boton tipo="success" onClick={handleRegister}>
+          <Boton type="success" onClick={handleRegister}>
             Registrarme
           </Boton>
         </div>

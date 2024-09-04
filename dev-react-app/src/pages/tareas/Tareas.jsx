@@ -125,8 +125,8 @@ export function Tareas() {
     <Contenedor alignItems="align-items-stretch">
       <div className="d-flex justify-content-between align-items-center">
         <h2>Lista de tareas</h2>
-        <Boton tipo={`primary`} onClick={handleOpenModal}>
-          + Nueva Tarea
+        <Boton type={`primary`} onClick={handleOpenModal}>
+          <i className='la la-plus-circle' /> Nuevo tarea
         </Boton>
       </div>
 
